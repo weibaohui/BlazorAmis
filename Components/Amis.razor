@@ -1,0 +1,15 @@
+@using System.Text.Json
+<div id="root" class="app-wrapper"></div>
+
+@code {
+    [Inject] public IJSRuntime JS { get; set; }
+    [Parameter] public object Obj { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var json = JsonSerializer.Serialize(Obj);
+
+        await JS.InvokeAsync<string>("amisLoad", json);
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}

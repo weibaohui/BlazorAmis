@@ -1,0 +1,173 @@
+@page "/AmisDemo"
+<Amis Obj="GetObj()"></Amis>
+
+@code {
+
+
+    private object GetObj()
+    {
+        return new
+        {
+            type = "page",
+            title = "表单页面",
+            body = new
+            {
+                type = "form",
+                mode = "horizontal",
+                api = "/saveForm",
+                body = new[]
+                {
+                    new { label = "Name", type = "input-text", name = "name" },
+                    new { label = "Email", type = "input-email", name = "email" }
+                }
+            }
+        };
+    }
+
+    private object GetObj2()
+    {
+        return new
+        {
+            type = "page",
+            title = "Hello world",
+            body = new object[]
+            {
+                new
+                {
+                    type = "tpl",
+                    tpl = "初始页面",
+                    wrapperComponent = "",
+                    inline = false,
+                    id = "u:0aef7597269c"
+                },
+                new
+                {
+                    type = "tabs",
+                    tabs = new[]
+                    {
+                        new
+                        {
+                            title = "选项卡1",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "tpl",
+                                    tpl = "内容1",
+                                    wrapperComponent = "",
+                                    inline = false,
+                                    id = "u:b767a8585d65"
+                                },
+                                new
+                                {
+                                    type = "input-number",
+                                    label = "数字",
+                                    name = "number",
+                                    keyboard = true,
+                                    id = "u:b9183945d6b3"
+                                },
+                                new
+                                {
+                                    type = "input-tag",
+                                    label = "标签",
+                                    name = "tag",
+                                    options = new[]
+                                    {
+                                        new { label = "红色", value = "red" },
+                                        new { label = "绿色", value = "green" },
+                                        new { label = "蓝色", value = "blue" }
+                                    },
+                                    id = "u:f036f20ed9e8",
+                                    optionsTip = "最近您使用的标签",
+                                    value = "blue"
+                                },
+                                new
+                                {
+                                    type = "radios",
+                                    label = "单选框",
+                                    name = "radios",
+                                    options = new[]
+                                    {
+                                        new { label = "选项A", value = "A" },
+                                        new { label = "选项B", value = "B" }
+                                    },
+                                    id = "u:a87b9358ba86",
+                                    required = true
+                                },
+                                new
+                                {
+                                    type = "input-text",
+                                    label = "文本",
+                                    name = "text",
+                                    id = "u:2d7f101fb261"
+                                }
+                            },
+                            id = "u:cc44360e3630"
+                        },
+                        new
+                        {
+                            title = "选项卡2",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "tpl",
+                                    tpl = "内容2",
+                                    wrapperComponent = "",
+                                    inline = false,
+                                    id = "u:863cf75c381e"
+                                },
+                                new
+                                {
+                                    type = "button-toolbar",
+                                    label = "按钮工具栏",
+                                    buttons = new[]
+                                    {
+                                        new
+                                        {
+                                            type = "button",
+                                            label = "按钮1",
+                                            onEvent = new
+                                            {
+                                                click = new
+                                                {
+                                                    actions = new object[] { }
+                                                }
+                                            },
+                                            id = "u:80f53e500e67"
+                                        },
+                                        new
+                                        {
+                                            type = "button",
+                                            label = "按钮2",
+                                            onEvent = new
+                                            {
+                                                click = new
+                                                {
+                                                    actions = new object[] { }
+                                                }
+                                            },
+                                            id = "u:42aeae65b718"
+                                        }
+                                    },
+                                    id = "u:2a4cc5eb696a"
+                                },
+                                new
+                                {
+                                    type = "icon",
+                                    icon = "fa fa-snapchat",
+                                    vendor = "",
+                                    id = "u:45942ab1f13b"
+                                }
+                            },
+                            id = "u:b200978bbb9f"
+                        }
+                    },
+                    id = "u:514cf0b1e2d9"
+                }
+            },
+            id = "u:c54524588a62"
+        };
+    }
+
+}
