@@ -1,6 +1,10 @@
 # BlazorAmis
 使用Blazor 集成 百度Amis低代码平台
 
+[BlazorServer版本](https://github.com/weibaohui/BlazorAmis)
+[BlazorWasm版本](https://github.com/weibaohui/BlazorAmisWasm)
+
+
 ```csharp
 <Amis Obj="GetObj()"></Amis>
 ```
