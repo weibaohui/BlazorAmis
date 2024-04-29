@@ -1,15 +1,20 @@
 @using System.Text.Json
-<div id="root" class="app-wrapper"></div>
+<div id="@_id" class="app-wrapper"></div>
 
 @code {
-    [Inject] public IJSRuntime JS { get; set; }
-    [Parameter] public object Obj { get; set; }
+    [Inject] public IJSRuntime Js { get; set; }
+    [Parameter] public object Data { get; set; }
+    private string _id = "amis-" + Guid.NewGuid().ToString("N");
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var json = JsonSerializer.Serialize(Obj);
+        if (firstRender)
+        {
+            var json = JsonSerializer.Serialize(Data);
+            await Js.InvokeAsync<string>("amisLoad", _id, json);
+        }
 
-        await JS.InvokeAsync<string>("amisLoad", json);
         await base.OnAfterRenderAsync(firstRender);
     }
+
 }

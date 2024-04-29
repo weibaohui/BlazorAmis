@@ -1,34 +1,36 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">BlazorAmis</a>
-    </div>
-</div>
+﻿<Amis Data="GetMenu()"></Amis>
+@code
+{
+    private object GetMenu()
+    {
+        return new
+        {
+            type = "page",
+            body = new
+            {
+                type = "nav",
+                stacked = true,
+                className = "w-md",
+                links = new object[]
+                {
+                    new { label = "Home", to = "/", icon = "fa fa-home fa-fw" },
+                    new { label = "Counter", to = "/Counter", icon = "fa fa-plus-circle fa-fw" },
+                    new { label = "Weather", to = "/Weather", icon = "fa fa-user fa-fw" },
+                    new { label = "AmisDemo", to = "/AmisDemo", icon = "fa fa-camera-retro fa-fw" },
+                    new
+                    {
+                        label = "表单",
+                        unfolded = true,
+                        children = new object[]
+                        {
+                            new { label = "表单展示模式", to = "/Form/Mode" },
+                            new { label = "所有类型汇总", to = "/Form/Full" }
+                        }
+                    },
+                    new { label = "Nav 3", to = "/docs/renderers" }
+                }
+            }
+        };
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler"/>
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="AmisDemo">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Amis
-            </NavLink>
-        </div>
-    </nav>
-</div>
+    }
+}

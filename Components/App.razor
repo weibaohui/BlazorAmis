@@ -5,9 +5,10 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <base href="/"/>
-    <link rel="stylesheet" href="bootstrap/bootstrap.min.css"/>
-    <link rel="stylesheet" href="app.css"/>
+    @* <link rel="stylesheet" href="bootstrap/bootstrap.min.css"/> *@
+    @* <link rel="stylesheet" href="app.css"/> *@
     <link rel="stylesheet" href="BlazorAmis.styles.css"/>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"/>
     <link rel="icon" type="image/png" href="favicon.png"/>
 
     <link rel="stylesheet" href="sdk/sdk.css"/>
@@ -21,11 +22,12 @@
 
 <script src="_framework/blazor.web.js"></script>
 <script src="sdk/sdk.js"></script>
+<script src="sdk/color-picker.js"></script>
 <script type="text/javascript">
-     amisLoad=(json) =>{
+     amisLoad=(id,json) =>{
          const obj = JSON.parse(json);
          amis=amisRequire("amis/embed");
-         amis.embed('#root', obj);
+         amis.embed("#"+id, obj);
      };
 </script>
 </body>

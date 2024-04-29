@@ -1,0 +1,1065 @@
+@page "/Form/Full"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        return new
+        {
+            title = "所有 Form 元素列举",
+            data = new { id = 1 },
+            body = new[]
+            {
+                new
+                {
+                    type = "form",
+                    api = "/amis/api/mock2/saveForm?waitSeconds=2",
+                    title = "表单项",
+                    mode = "horizontal",
+                    autoFocus = true,
+                    body = new dynamic[]
+                    {
+                        new { type = "html", html = "<p>html 片段, 可以用来添加说明性文字</p>" },
+                        new { type = "divider" },
+                        new { type = "input-text", name = "var1", label = "文本" },
+                        new { type = "divider" },
+                        new { type = "input-text", name = "withHelp", label = "带提示信息", desc = "这是一段描述文字" },
+                        new { type = "divider" },
+                        new { type = "input-password", name = "password", label = "密码", inline = true },
+                        new { type = "divider" },
+                        new { type = "input-number", name = "number", label = "数字", placeholder = "", inline = true, value = 5, min = 1, max = 10 },
+                        new { type = "divider" },
+                        new { type = "input-number", name = "number", label = "数字禁用", placeholder = "", disabled = true, inline = true, value = 5, min = 1, max = 10 },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-tag",
+                            name = "tag",
+                            label = "标签",
+                            placeholder = "",
+                            clearable = true,
+                            options = new dynamic[]
+                            {
+                                new { label = "诸葛亮", value = "zhugeliang" },
+                                new { label = "曹操", value = "caocao" },
+                                new { label = "钟无艳", value = "zhongwuyan" },
+                                new
+                                {
+                                    label = "野核",
+                                    children = new dynamic[]
+                                    {
+                                        new { label = "李白", value = "libai" },
+                                        new { label = "韩信", value = "hanxin" },
+                                        new { label = "云中君", value = "yunzhongjun" }
+                                    }
+                                }
+                            }
+                        },
+                        new { type = "divider" },
+                        new { type = "input-text", name = "placeholder", label = "Placeholder", placeholder = "Placeholder" },
+                        new { type = "divider" },
+                        new { type = "input-text", disabled = true, name = "disabled", label = "禁用状态", placeholder = "这里禁止输入内容" },
+                        new { type = "divider" },
+                        new { type = "input-text", name = "text-sug", label = "文本提示", options = new[] { "lixiaolong", "zhouxingxing", "yipingpei", "liyuanfang" }, addOn = new { type = "text", label = "$" } },
+                        new { type = "divider" },
+                        new { type = "input-text", name = "text-sug-multiple", label = "文本提示多选", multiple = true, options = new[] { "lixiaolong", "zhouxingxing", "yipingpei", "liyuanfang" } },
+                        new { type = "divider" },
+                        new { type = "static", name = "static", labelClassName = "text-muted", label = "静态展示", value = "这是静态展示的值" },
+                        new { type = "divider" },
+                        new { type = "static", name = "static2", label = "静态展示", value = "这是静态展示的值", copyable = new { content = "blabla" } },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "checkboxes",
+                            name = "checkboxes",
+                            label = "多选框",
+                            value = 3,
+                            options = new dynamic[]
+                            {
+                                new { label = "选项1", value = 1 },
+                                new { label = "选项2", value = 2 },
+                                new { label = "选项3", disabled = true, value = 3 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "checkboxes",
+                            name = "checkboxesInline",
+                            label = "多选非联",
+                            inline = false,
+                            options = new dynamic[]
+                            {
+                                new { label = "选项 A", value = 1 },
+                                new { label = "选项 B", value = 2 },
+                                new { label = "选项 C", value = 3 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "radios",
+                            name = "radios",
+                            label = "单选",
+                            value = 3,
+                            options = new dynamic[]
+                            {
+                                new { label = "选项1", value = 1 },
+                                new { label = "选项2", value = 2 },
+                                new { label = "选项3", disabled = true, value = 3 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "radios",
+                            name = "radios",
+                            label = "单选禁用",
+                            value = 3,
+                            disabled = true,
+                            options = new dynamic[]
+                            {
+                                new { label = "选项1", value = 1 },
+                                new { label = "选项2", value = 2 },
+                                new { label = "选项3", value = 3 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "radios",
+                            name = "radiosInline",
+                            label = "单选 非内联",
+                            inline = false,
+                            options = new dynamic[]
+                            {
+                                new { label = "选项1", value = 1 },
+                                new { label = "选项2", value = 2 },
+                                new { label = "选项3", value = 3 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "button-toolbar",
+                            label = "各种按钮",
+                            buttons = new dynamic[]
+                            {
+                                new { type = "action", label = "默认" },
+                                new { type = "action", label = "主要", level = "primary" },
+                                new { type = "action", label = "次要", level = "secondary" },
+                                new { type = "action", label = "成功", level = "success" },
+                                new { type = "action", label = "警告", level = "warning" },
+                                new { type = "action", label = "危险", level = "danger" },
+                                new { type = "action", label = "浅色", level = "light" },
+                                new { type = "action", label = "深色", level = "dark" },
+                                new { type = "action", label = "链接", level = "link" }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "button-group-select",
+                            name = "btn-group",
+                            label = "按钮组",
+                            description = "类似于单选效果",
+                            options = new dynamic[]
+                            {
+                                new { label = "选项 A", value = 1 },
+                                new { label = "选项 B", value = 2 },
+                                new { label = "选项 C", value = 3 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "button-group-select",
+                            name = "btn-group2",
+                            label = "按钮组",
+                            clearable = true,
+                            description = "可清除",
+                            options = new dynamic[]
+                            {
+                                new { label = "选项 A", value = 1 },
+                                new { label = "选项 B", value = 2 },
+                                new { label = "选项 C", value = 3 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "button-group-select",
+                            name = "btn-group3",
+                            label = "按钮组",
+                            multiple = true,
+                            options = new dynamic[]
+                            {
+                                new { label = "选项 A", value = 1 },
+                                new { label = "选项 B", value = 2 },
+                                new { label = "选项 C", value = 3 }
+                            },
+                            desc = "可多选"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "list-select",
+                            name = "List",
+                            label = "List",
+                            desc = "也差不多，只是展示方式不一样",
+                            options = new dynamic[]
+                            {
+                                new { label = "选项 A", value = 1 },
+                                new { label = "选项 B", value = 2 },
+                                new { label = "选项 C", value = 3 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "list-select",
+                            name = "list2",
+                            label = "List",
+                            desc = "可多选",
+                            multiple = true,
+                            options = new dynamic[]
+                            {
+                                new { label = "选项 A", value = 1 },
+                                new { label = "选项 B", value = 2 },
+                                new { label = "选项 C", value = 3 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "list-select",
+                            name = "list4",
+                            label = "List",
+                            imageClassName = "thumb-lg",
+                            desc = "支持放张图片",
+                            options = new dynamic[]
+                            {
+                                new { image = "/amis/static/photo/3893101144_bff2dc9.jpg", value = 1, label = "图片1" },
+                                new { image = "/amis/static/photo/3893101144_bff2dc9.jpg", value = 2, label = "图片2" },
+                                new { image = "/amis/static/photo/3893101144_bff2dc9.jpg", value = 3, label = "图片3" }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "list-select",
+                            name = "list5",
+                            label = "List",
+                            desc = "支持文字排版",
+                            options = new dynamic[]
+                            {
+                                new { value = 1, body = "<div class=\"m-l-sm m-r-sm m-b-sm m-t-xs\">\n                                <div class=\"text-md p-b-xs b-inherit b-b m-b-xs\">套餐：C01</div>\n                                <div class=\"text-sm\">CPU：22核</div>\n                                <div class=\"text-sm\">内存：10GB</div>\n                                <div class=\"text-sm\">SSD盘：1024GB</div>\n                            </div>" },
+                                new { value = 2, body = "<div class=\"m-l-sm m-r-sm  m-b-sm m-t-xs\">\n                            <div class=\"text-md p-b-xs b-inherit b-b m-b-xs\">套餐：C02</div>\n                            <div class=\"text-sm\">CPU：23核</div>\n                            <div class=\"text-sm\">内存：11GB</div>\n                            <div class=\"text-sm\">SSD盘：1025GB</div>\n                            </div>" },
+                                new { value = 3, disabled = true, body = "<div class=\"m-l-sm m-r-sm  m-b-sm m-t-xs\">\n                            <div class=\"text-md p-b-xs b-inherit b-b m-b-xs\">套餐：C03</div>\n                            <div class=\"text-sm\">CPU：24核</div>\n                            <div class=\"text-sm\">内存：12GB</div>\n                            <div class=\"text-sm\">SSD盘：1026GB</div>\n                            </div>" }
+                            }
+                        },
+                        new { type = "divider" },
+                        new { type = "input-rating", count = 5, value = 3, label = "评分", name = "rating", readOnly = false, half = false },
+                        new { type = "divider" },
+                        new { type = "switch", name = "switch", label = "开关" },
+                        new { type = "switch", name = "switch2", value = true, label = "开关开启" },
+                        new { type = "switch", name = "switch3", value = true, disabled = true, label = "开关禁用" },
+                        new { type = "switch", name = "switch4", value = true, onText = "开启", offText = "关闭", label = "开关文字" },
+                        new { type = "switch", name = "switch5", value = true, onText = new { type = "icon", icon = "fa fa-check-circle" }, offText = new { type = "icon", icon = "fa fa-times-circle" }, label = "开关icon" },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "checkbox",
+                            name = "checkbox",
+                            label = "勾选框",
+                            option = ""
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "select",
+                            name = "type",
+                            label = "下拉单选",
+                            inline = true,
+                            options = new[]
+                            {
+                                new { label = "选项1", value = 1 },
+                                new { label = "选项2", value = 2 },
+                                new { label = "内容很长很长的选项，内容很长很长的选项", value = 3 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "select",
+                            name = "type",
+                            label = "下拉单选禁用",
+                            disabled = true,
+                            inline = true,
+                            options = new[]
+                            {
+                                new { label = "选项1", value = 1 },
+                                new { label = "选项2", value = 2 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "select",
+                            name = "type2",
+                            label = "多选",
+                            multiple = true,
+                            inline = true,
+                            options = new[]
+                            {
+                                new { label = "选项1", value = 1 },
+                                new { label = "选项2", value = 2 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-color",
+                            name = "color",
+                            inline = true,
+                            label = "Color"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-date",
+                            name = "date",
+                            inline = true,
+                            label = "日期"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-datetime",
+                            name = "datetime",
+                            inline = true,
+                            label = "日期+时间"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-time",
+                            name = "time",
+                            inline = true,
+                            label = "时间"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-month",
+                            name = "year-month",
+                            inline = true,
+                            label = "年月",
+                            value = "-1month",
+                            inputFormat = "YYYY-MM"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-month",
+                            name = "month",
+                            inline = true,
+                            label = "月份",
+                            value = "-1month",
+                            inputFormat = "MM"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-date-range",
+                            name = "daterangee",
+                            inline = true,
+                            label = "时间范围"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "input-datetime",
+                                    name = "starttime",
+                                    label = "开始时间",
+                                    maxDate = "${endtime}"
+                                },
+                                new
+                                {
+                                    type = "input-datetime",
+                                    name = "endtime",
+                                    label = "结束时间",
+                                    minDate = "${starttime}"
+                                }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "group",
+                            label = "时间范围",
+                            required = "",
+                            gap = "xs",
+                            description = "选择自定义后，可以选择日期范围",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "button-group-select",
+                                    name = "range1",
+                                    value = "today",
+                                    btnActiveLevel = "primary",
+                                    mode = "inline",
+                                    options = new[]
+                                    {
+                                        new { label = "今天", value = "today" },
+                                        new { label = "昨天", value = "yesterday" },
+                                        new { label = "近三天", value = "3days" },
+                                        new { label = "近一周", value = "week" },
+                                        new { label = "自定义", value = "custom" }
+                                    }
+                                },
+                                new
+                                {
+                                    type = "input-date",
+                                    name = "starttime1",
+                                    maxDate = "${endtime1}",
+                                    visibleOn = "data.range1 == 'custom'",
+                                    mode = "inline"
+                                },
+                                new
+                                {
+                                    type = "input-date",
+                                    name = "endtime1",
+                                    minDate = "${starttime1}",
+                                    visibleOn = "data.range1 == 'custom'",
+                                    mode = "inline"
+                                }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-group",
+                            size = "sm",
+                            inline = true,
+                            label = "Icon 组合",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "icon",
+                                    addOnclassName = "no-bg",
+                                    className = "text-sm",
+                                    icon = "search"
+                                },
+                                new
+                                {
+                                    type = "input-text",
+                                    placeholder = "搜索作业ID/名称",
+                                    inputClassName = "b-l-none p-l-none",
+                                    name = "jobName"
+                                }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-group",
+                            label = "各种组合",
+                            inline = true,
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "select",
+                                    name = "memoryUnits",
+                                    options = new[]
+                                    {
+                                        new { label = "Gi", value = "Gi" },
+                                        new { label = "Mi", value = "Mi" },
+                                        new { label = "Ki", value = "Ki" }
+                                    },
+                                    value = "Gi"
+                                },
+                                new { type = "input-text", name = "memory" },
+                                new
+                                {
+                                    type = "select",
+                                    name = "memoryUnits2",
+                                    options = new[]
+                                    {
+                                        new { label = "Gi", value = "Gi" },
+                                        new { label = "Mi", value = "Mi" },
+                                        new { label = "Ki", value = "Ki" }
+                                    },
+                                    value = "Gi"
+                                },
+                                new { type = "button", label = "Go" }
+                            }
+                        },
+                        new { type = "divider" },
+                        new { type = "input-excel", label = "Excel 解析", name = "excel" },
+                        new { type = "divider" },
+                        new { type = "input-kv", label = "kv 输入", name = "kv" },
+                        new
+                        {
+                            type = "input-kvs",
+                            name = "kvs",
+                            label = "kvs",
+                            keyItem = new { label = "字段名" },
+                            valueItems = new object[]
+                            {
+                                new { type = "switch", name = "primary", label = "是否是主键" },
+                                new
+                                {
+                                    type = "select",
+                                    name = "type",
+                                    label = "类型",
+                                    options = new[]
+                                    {
+                                        new { label = "字符串", value = "string" },
+                                        new { label = "整型", value = "int" },
+                                        new { label = "浮点型", value = "float" }
+                                    }
+                                },
+                                new { type = "input-text", name = "default", label = "默认值" }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-image",
+                            name = "image",
+                            label = "图片"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-image",
+                            name = "image",
+                            label = "图片有默认占位图",
+                            frameImage = "/amis/static/photo/3893101144_bff2dc9.jpg",
+                            fixedSize = true,
+                            fixedSizeClassName = "h-32"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-image",
+                            name = "imageCrop",
+                            label = "图片带裁剪",
+                            crop = new
+                            {
+                                aspectRatio = 1.7777777777777777
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-image",
+                            name = "imageLimit",
+                            label = "图片带限制",
+                            limit = new
+                            {
+                                width = 200,
+                                height = 200
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "textarea",
+                            name = "textarea",
+                            label = "多行文本"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "textarea",
+                            name = "textarea",
+                            disabled = true,
+                            label = "多行文本禁用"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            label = "穿梭器",
+                            name = "a",
+                            type = "transfer",
+                            source = "/amis/api/mock2/form/getOptions?waitSeconds=1",
+                            searchable = true,
+                            searchApi = "/amis/api/mock2/options/autoComplete2?term=$term",
+                            selectMode = "list",
+                            sortable = true,
+                            inline = true
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "json-editor",
+                            name = "json",
+                            value = "{\n    \"a\": 1,\n    \"b\": [\n        1,\n        2,\n        3\n    ]\n}",
+                            label = "Json Editor"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-rich-text",
+                            name = "html",
+                            label = "Rich Text",
+                            value = "<p>Just do <code>IT</code>!</p>"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            label = "时间频率",
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "repeatCount",
+                                    type = "input-range",
+                                    label = false,
+                                    visibleOn = "data.repeatUnit == \"year\""
+                                },
+                                new
+                                {
+                                    name = "repeatCount",
+                                    type = "input-range",
+                                    label = false,
+                                    max = 11,
+                                    min = 1,
+                                    visibleOn = "data.repeatUnit == \"month\""
+                                },
+                                new
+                                {
+                                    name = "repeatCount",
+                                    type = "input-range",
+                                    label = false,
+                                    max = 29,
+                                    min = 1,
+                                    visibleOn = "data.repeatUnit == \"day\""
+                                },
+                                new
+                                {
+                                    type = "select",
+                                    name = "repeatUnit",
+                                    label = false,
+                                    value = "none",
+                                    columnClassName = "v-middle w-ssm no-grow",
+                                    options = new[]
+                                    {
+                                        new { label = "不重复", value = "none" },
+                                        new { label = "年", value = "year" },
+                                        new { label = "月", value = "month" },
+                                        new { label = "日", value = "day" }
+                                    }
+                                }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-tree",
+                            name = "tree",
+                            label = "树",
+                            iconField = "icon",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "Folder A",
+                                    value = 1,
+                                    icon = "fa fa-bookmark",
+                                    children = new object[]
+                                    {
+                                        new { label = "file A", value = 2, icon = "fa fa-star" },
+                                        new { label = "file B", value = 3 }
+                                    }
+                                },
+                                new { label = "file C", value = 4 },
+                                new { label = "file D", value = 5 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-tree",
+                            name = "trees",
+                            label = "树多选",
+                            multiple = true,
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "Folder A",
+                                    value = 1,
+                                    children = new object[]
+                                    {
+                                        new { label = "file A", value = 2 },
+                                        new { label = "file B", value = 3 }
+                                    }
+                                },
+                                new { label = "file C", value = 4 },
+                                new { label = "file D", value = 5 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "tree-select",
+                            name = "selecttree",
+                            label = "树选择器",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "Folder A",
+                                    value = 1,
+                                    children = new object[]
+                                    {
+                                        new { label = "file A", value = 2 },
+                                        new { label = "file B", value = 3 }
+                                    }
+                                },
+                                new { label = "file C", value = 4 },
+                                new { label = "file D", value = 5 }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "tree-select",
+                            name = "selecttrees",
+                            label = "树多选选择器",
+                            multiple = true,
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "Folder A",
+                                    value = 1,
+                                    children = new object[]
+                                    {
+                                        new { label = "file A", value = 2 },
+                                        new { label = "file B", value = 3 }
+                                    }
+                                },
+                                new { label = "file C", value = 4 },
+                                new { label = "file D", value = 5 }
+                            }
+                        },
+                        new
+                        {
+                            type = "nested-select",
+                            name = "nestedSelect",
+                            label = "级联选择器",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "概念",
+                                    value = "concepts",
+                                    children = new object[]
+                                    {
+                                        new { label = "配置与组件", value = "schema" },
+                                        new { label = "数据域与数据链", value = "scope" },
+                                        new { label = "模板", value = "template" },
+                                        new { label = "数据映射", value = "data-mapping" },
+                                        new { label = "表达式", value = "expression" },
+                                        new { label = "联动", value = "linkage" },
+                                        new { label = "行为", value = "action" },
+                                        new { label = "样式", value = "style" }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "类型",
+                                    value = "types",
+                                    children = new object[]
+                                    {
+                                        new { label = "SchemaNode", value = "schemanode" },
+                                        new { label = "API", value = "api" },
+                                        new { label = "Definitions", value = "definitions" }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "组件",
+                                    value = "zujian",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "布局",
+                                            value = "buju",
+                                            children = new object[]
+                                            {
+                                                new { label = "Page 页面", value = "page" },
+                                                new { label = "Container 容器", value = "container" },
+                                                new { label = "Collapse 折叠器", value = "Collapse" }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "功能",
+                                            value = "gongneng",
+                                            children = new object[]
+                                            {
+                                                new { label = "Action 行为按钮", value = "action-type" },
+                                                new { label = "App 多页应用", value = "app" },
+                                                new { label = "Button 按钮", value = "button" }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "数据输入",
+                                            value = "shujushuru",
+                                            children = new object[]
+                                            {
+                                                new { label = "Form 表单", value = "form" },
+                                                new { label = "FormItem 表单项", value = "formitem" },
+                                                new { label = "Options 选择器表单项", value = "options" }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "数据展示",
+                                            value = "shujuzhanshi",
+                                            children = new object[]
+                                            {
+                                                new { label = "CRUD 增删改查", value = "crud" },
+                                                new { label = "Table 表格", value = "table" },
+                                                new { label = "Card 卡片", value = "card" }
+                                            }
+                                        },
+                                        new { label = "反馈", value = "fankui" }
+                                    }
+                                }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "nested-select",
+                            name = "nestedSelectMul",
+                            label = "级联选择器多选",
+                            multiple = true,
+                            checkAll = false,
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "概念",
+                                    value = "concepts",
+                                    children = new object[]
+                                    {
+                                        new { label = "配置与组件", value = "schema" },
+                                        new { label = "数据域与数据链", value = "scope" },
+                                        new { label = "模板", value = "template" },
+                                        new { label = "数据映射", value = "data-mapping" },
+                                        new { label = "表达式", value = "expression" },
+                                        new { label = "联动", value = "linkage" },
+                                        new { label = "行为", value = "action" },
+                                        new { label = "样式", value = "style" }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "类型",
+                                    value = "types",
+                                    children = new object[]
+                                    {
+                                        new { label = "SchemaNode", value = "schemanode" },
+                                        new { label = "API", value = "api" },
+                                        new { label = "Definitions", value = "definitions" }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "组件",
+                                    value = "zujian",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "布局",
+                                            value = "buju",
+                                            children = new object[]
+                                            {
+                                                new { label = "Page 页面", value = "page" },
+                                                new { label = "Container 容器", value = "container" },
+                                                new { label = "Collapse 折叠器", value = "Collapse" }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "功能",
+                                            value = "gongneng",
+                                            children = new object[]
+                                            {
+                                                new { label = "Action 行为按钮", value = "action-type" },
+                                                new { label = "App 多页应用", value = "app" },
+                                                new { label = "Button 按钮", value = "button" }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "数据输入",
+                                            value = "shujushuru",
+                                            children = new object[]
+                                            {
+                                                new { label = "Form 表单", value = "form" },
+                                                new { label = "FormItem 表单项", value = "formitem" },
+                                                new { label = "Options 选择器表单项", value = "options" }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "数据展示",
+                                            value = "shujuzhanshi",
+                                            children = new object[]
+                                            {
+                                                new { label = "CRUD 增删改查", value = "crud" },
+                                                new { label = "Table 表格", value = "table" },
+                                                new { label = "Card 卡片", value = "card" }
+                                            }
+                                        },
+                                        new { label = "反馈", value = "fankui" }
+                                    }
+                                }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-city",
+                            name = "city",
+                            label = "城市选择器"
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "matrix-checkboxes",
+                            name = "matrix",
+                            label = "矩阵开关",
+                            rowLabel = "行标题说明",
+                            columns = new[]
+                            {
+                                new { label = "列1" },
+                                new { label = "列2" }
+                            },
+                            rows = new[]
+                            {
+                                new { label = "行1" },
+                                new { label = "行2" }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "combo",
+                            name = "combo",
+                            label = "组合单条",
+                            items = new object[]
+                            {
+                                new { name = "a", type = "input-text", placeholder = "A" },
+                                new { name = "b", type = "select", options = new[] { "a", "b", "c" } }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "combo",
+                            name = "combo2",
+                            label = "组合多条",
+                            multiple = true,
+                            value = new[] { new { } },
+                            items = new object[]
+                            {
+                                new { name = "a", type = "input-text", placeholder = "A" },
+                                new { name = "b", type = "select", options = new[] { "a", "b", "c" } }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-sub-form",
+                            label = "子表单",
+                            name = "subForm",
+                            btnLabel = "点击设置${a}",
+                            form = new
+                            {
+                                title = "子表单",
+                                body = new object[]
+                                {
+                                    new { name = "a", type = "input-text", label = "Foo" },
+                                    new { name = "b", type = "switch", label = "Boo" }
+                                }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-sub-form",
+                            label = "子表单多条",
+                            name = "subForm2",
+                            btnLabel = "点击设置",
+                            labelField = "a",
+                            multiple = true,
+                            form = new
+                            {
+                                title = "子表单",
+                                body = new object[]
+                                {
+                                    new { name = "a", type = "input-text", label = "Foo" },
+                                    new { name = "b", type = "switch", label = "Boo" }
+                                }
+                            }
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-file",
+                            name = "file",
+                            label = "文件上传",
+                            joinValues = false
+                        },
+                        new { type = "divider" },
+                        new
+                        {
+                            type = "input-range",
+                            name = "range",
+                            label = "范围"
+                        },
+                        new { type = "divider" },
+                        new { type = "divider" },
+                        new {
+                            type = "button-toolbar",
+                            buttons = new object[] {
+                                new { type = "submit", label = "登录" },
+                                new { type = "reset", label = "重置" },
+                                new { type = "button", label = "导出", href = "http://www.baidu.com", level = "success" }
+                            }
+                        }
+                    },
+                    actions = new dynamic[]
+                    {
+                        new { type = "submit", label = "登录" },
+                        new { type = "reset", label = "重置" },
+                        new { type = "button", label = "导出", href = "http://www.baidu.com", level = "success" }
+                    }
+                }
+            }
+        };
+    }
+
+}
