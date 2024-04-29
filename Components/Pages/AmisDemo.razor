@@ -1,5 +1,5 @@
 @page "/AmisDemo"
-<Amis Data="GetObj()"></Amis>
+<Amis Data="GetObj2()"></Amis>
 
 @code {
 
@@ -38,12 +38,11 @@
                     tpl = "初始页面",
                     wrapperComponent = "",
                     inline = false,
-                    id = "u:0aef7597269c"
                 },
                 new
                 {
                     type = "tabs",
-                    tabs = new[]
+                    tabs = new object[]
                     {
                         new
                         {
@@ -56,7 +55,6 @@
                                     tpl = "内容1",
                                     wrapperComponent = "",
                                     inline = false,
-                                    id = "u:b767a8585d65"
                                 },
                                 new
                                 {
@@ -64,7 +62,6 @@
                                     label = "数字",
                                     name = "number",
                                     keyboard = true,
-                                    id = "u:b9183945d6b3"
                                 },
                                 new
                                 {
@@ -77,7 +74,6 @@
                                         new { label = "绿色", value = "green" },
                                         new { label = "蓝色", value = "blue" }
                                     },
-                                    id = "u:f036f20ed9e8",
                                     optionsTip = "最近您使用的标签",
                                     value = "blue"
                                 },
@@ -91,7 +87,6 @@
                                         new { label = "选项A", value = "A" },
                                         new { label = "选项B", value = "B" }
                                     },
-                                    id = "u:a87b9358ba86",
                                     required = true
                                 },
                                 new
@@ -99,10 +94,8 @@
                                     type = "input-text",
                                     label = "文本",
                                     name = "text",
-                                    id = "u:2d7f101fb261"
                                 }
                             },
-                            id = "u:cc44360e3630"
                         },
                         new
                         {
@@ -115,7 +108,6 @@
                                     tpl = "内容2",
                                     wrapperComponent = "",
                                     inline = false,
-                                    id = "u:863cf75c381e"
                                 },
                                 new
                                 {
@@ -134,7 +126,6 @@
                                                     actions = new object[] { }
                                                 }
                                             },
-                                            id = "u:80f53e500e67"
                                         },
                                         new
                                         {
@@ -147,26 +138,87 @@
                                                     actions = new object[] { }
                                                 }
                                             },
-                                            id = "u:42aeae65b718"
                                         }
                                     },
-                                    id = "u:2a4cc5eb696a"
                                 },
                                 new
                                 {
                                     type = "icon",
                                     icon = "fa fa-snapchat",
                                     vendor = "",
-                                    id = "u:45942ab1f13b"
                                 }
                             },
-                            id = "u:b200978bbb9f"
                         }
                     },
-                    id = "u:514cf0b1e2d9"
-                }
+                },
+                 new
+                {
+                    type = "button-toolbar",
+                    className = "m-l-none",
+                    buttons = new object[]
+                    {
+                        new
+                        {
+                            type = "button",
+                            label = "sm 弹框",
+                            actionType = "dialog",
+                            dialog = new
+                            {
+                                size = "sm",
+                                title = "提示",
+                                body = "这是个简单的弹框"
+                            }
+                        },
+                        new
+                        {
+                            type = "button",
+                            label = "标准 弹框",
+                            actionType = "dialog",
+                            dialog = new
+                            {
+                                title = "提示",
+                                body = "这是个简单的弹框"
+                            }
+                        },
+                        new
+                        {
+                            type = "button",
+                            label = "lg 弹框",
+                            actionType = "dialog",
+                            dialog = new
+                            {
+                                size = "lg",
+                                title = "提示",
+                                body = "这是个简单的弹框"
+                            }
+                        },
+                        new
+                        {
+                            type = "button",
+                            label = "xl 弹框",
+                            actionType = "dialog",
+                            dialog = new
+                            {
+                                size = "xl",
+                                title = "提示",
+                                body = "这是个简单的弹框"
+                            }
+                        },
+                        new
+                        {
+                            type = "button",
+                            label = "full 弹框",
+                            actionType = "dialog",
+                            dialog = new
+                            {
+                                size = "full",
+                                title = "全屏弹框",
+                                body = "弹框尽可能占满，内容部分滚动。"
+                            }
+                        }
+                    }
+                },
             },
-            id = "u:c54524588a62"
         };
     }
 
