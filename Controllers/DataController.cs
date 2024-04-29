@@ -4,7 +4,7 @@ namespace BlazorAmis.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class FormController:Controller
+public class DataController:Controller
 {
 
     [HttpGet("GetOptions")]
