@@ -238,6 +238,27 @@
                             label = "List",
                             imageClassName = "thumb-lg",
                             desc = "支持放张图片",
+                          options=  new[]
+                            {
+                                new
+                                {
+                                    image = "/photo/3893101144_bff2dc9.jpg",
+                                    value = 1,
+                                    label = "图片1"
+                                },
+                                new
+                                {
+                                    image = "/photo/3893101144_bff2dc9.jpg",
+                                    value = 2,
+                                    label = "图片2"
+                                },
+                                new
+                                {
+                                    image = "/photo/3893101144_bff2dc9.jpg",
+                                    value = 3,
+                                    label = "图片3"
+                                }
+                            }
 
                         },
                         new { type = "divider" },
@@ -540,6 +561,7 @@
                             type = "input-image",
                             name = "image",
                             label = "图片有默认占位图",
+                            frameImage= "/photo/3893101144_bff2dc9.jpg",
                             fixedSize = true,
                             fixedSizeClassName = "h-32"
                         },
