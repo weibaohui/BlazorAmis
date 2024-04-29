@@ -1,7 +1,12 @@
 @page "/AmisDemo"
 <Amis Data="GetObj2()"></Amis>
+<div id="main" style="width: 600px;height:400px;">
+    <Amis Data="GetChart()"></Amis>
+</div>
+
 
 @code {
+
     private object GetObj2()
     {
         return new
@@ -129,7 +134,7 @@
                         }
                     },
                 },
-                 new
+                new
                 {
                     type = "button-toolbar",
                     className = "m-l-none",
@@ -198,6 +203,97 @@
                 },
             },
         };
+    }
+
+    private object GetChart()
+    {
+        var pageConfig = new
+        {
+            type = "page",
+            body = new
+            {
+                type = "chart",
+                config = new
+                {
+                    title = new
+                    {
+                        text = "极坐标双数值轴"
+                    },
+                    legend = new
+                    {
+                        data = new[] { "line" }
+                    },
+                    polar = new
+                    {
+                        center = new[] { "50%", "54%" }
+                    },
+                    tooltip = new
+                    {
+                        trigger = "axis",
+                        axisPointer = new
+                        {
+                            type = "cross"
+                        }
+                    },
+                    angleAxis = new
+                    {
+                        type = "value",
+                        startAngle = 0
+                    },
+                    radiusAxis = new
+                    {
+                        min = 0
+                    },
+                    series = new[]
+                    {
+                        new
+                        {
+                            coordinateSystem = "polar",
+                            name = "line",
+                            type = "line",
+                            showSymbol = false,
+                            data = new object[][]
+                            {
+                                new object[] { 0, 0 },
+                                new object[] { 0.03487823687206265, 1 },
+                                new object[] { 0.06958655048003272, 2 },
+                                new object[] { 0.10395584540887964, 3 },
+                                new object[] { 0.13781867790849958, 4 },
+                                new object[] { 0.17101007166283433, 5 },
+                                new object[] { 0.2033683215379001, 6 },
+                                new object[] { 0.2347357813929454, 7 },
+                                new object[] { 0.26495963211660245, 8 },
+                                new object[] { 0.2938926261462365, 9 },
+                                new object[] { 0.3213938048432697, 10 }
+                            }
+                        }
+                    },
+                    animationDuration = 2000
+                },
+                clickAction = new
+                {
+                    actionType = "dialog",
+                    dialog = new
+                    {
+                        title = "详情",
+                        body = new object[]
+                        {
+                            new
+                            {
+                                type = "tpl",
+                                tpl = "<span>当前选中值 ${value|json}<span>"
+                            },
+                            new
+                            {
+                                type = "chart",
+                                api = "/amis/api/mock2/chart/chart1"
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return pageConfig;
     }
 
 }
