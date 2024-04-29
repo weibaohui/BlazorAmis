@@ -21,16 +21,16 @@
                     {
                         label = "页面",
                         unfolded = true,
-                        icon = "fa fa-bars fa-fw",
+                        icon = "fa fa-bars fa-th",
                         children = new object[]
                         {
+                            new { label = "初始化出错", to = "/Page/Error" },
                             new { label = "表单页面", to = "/Page/Form" },
                         }
                     },
                     new
                     {
                         label = "表单",
-                        unfolded = true,
                         children = new object[]
                         {
                             new { label = "表单展示模式", to = "/Form/Mode" },

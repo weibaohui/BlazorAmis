@@ -73,7 +73,21 @@ public class DataController:Controller
                 id = 1
             }
         };
-
+    }
+    [HttpGet("InitDataError")]
+    public object InitDataError()
+    {
+        return  new
+        {
+            status = 404,
+            msg = "测试返回错误",
+            msgTimeout = 10000,
+            data = new
+            {
+                title = "Test Page Component",
+                date = "2017-10-13"
+            }
+        };
 
     }
 }
