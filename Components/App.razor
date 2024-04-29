@@ -22,12 +22,11 @@
 
 <script src="_framework/blazor.web.js"></script>
 <script src="sdk/sdk.js"></script>
-<script src="sdk/color-picker.js"></script>
 <script type="text/javascript">
      amisLoad=(id,json) =>{
          const obj = JSON.parse(json);
-         amis=amisRequire("amis/embed");
-         amis.embed("#"+id, obj);
+         let amis=amisRequire("amis/embed");
+         let amisScoped = amis.embed("#"+id, obj);
      };
 </script>
 </body>
