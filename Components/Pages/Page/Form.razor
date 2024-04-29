@@ -1,0 +1,28 @@
+@page "/Page/Form"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+
+    private object GetObj()
+    {
+        return new
+        {
+            type = "page",
+            title = "表单页面",
+            body = new
+            {
+                type = "form",
+                mode = "horizontal",
+                api = "/api/data/SaveForm",
+                body = new[]
+                {
+                    new { label = "Name", type = "input-text", name = "name" },
+                    new { label = "Email", type = "input-email", name = "email" }
+                }
+            }
+        };
+    }
+
+
+}

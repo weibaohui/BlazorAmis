@@ -61,4 +61,19 @@ public class DataController:Controller
         };
 
     }
+    [HttpPost("SaveForm")]
+    public object SaveForm()
+    {
+        return  new
+        {
+            status = 0,
+            msg = "保存成功",
+            data = new
+            {
+                id = 1
+            }
+        };
+
+
+    }
 }

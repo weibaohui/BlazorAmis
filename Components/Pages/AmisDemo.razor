@@ -2,28 +2,6 @@
 <Amis Data="GetObj2()"></Amis>
 
 @code {
-
-
-    private object GetObj()
-    {
-        return new
-        {
-            type = "page",
-            title = "表单页面",
-            body = new
-            {
-                type = "form",
-                mode = "horizontal",
-                api = "/saveForm",
-                body = new[]
-                {
-                    new { label = "Name", type = "input-text", name = "name" },
-                    new { label = "Email", type = "input-email", name = "email" }
-                }
-            }
-        };
-    }
-
     private object GetObj2()
     {
         return new

@@ -19,6 +19,16 @@
                     new { label = "AmisDemo", to = "/AmisDemo", icon = "fa fa-camera-retro fa-fw" },
                     new
                     {
+                        label = "页面",
+                        unfolded = true,
+                        icon = "fa fa-bars fa-fw",
+                        children = new object[]
+                        {
+                            new { label = "表单页面", to = "/Page/Form" },
+                        }
+                    },
+                    new
+                    {
                         label = "表单",
                         unfolded = true,
                         children = new object[]
@@ -27,7 +37,6 @@
                             new { label = "所有类型汇总", to = "/Form/Full" }
                         }
                     },
-                    new { label = "Nav 3", to = "/docs/renderers" }
                 }
             }
         };
