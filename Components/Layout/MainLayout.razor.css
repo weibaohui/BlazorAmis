@@ -1,0 +1,11 @@
+.outer {
+    display: flex;
+}
+
+.left {
+    flex: 0 0 200px; /* 左侧宽度固定 */
+}
+
+.right {
+    flex-grow: 1; /* 右侧宽度自适应 */
+}
