@@ -5,9 +5,8 @@ namespace BlazorAmis.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ConvertController:Controller
+public class ConvertController : Controller
 {
-
     [HttpGet("Convert")]
     public string Convert()
     {
@@ -1733,7 +1732,7 @@ export default {
 }
 ";
         ss = ss.Replace("export default ", "");
-          var ssx = @"
+        var ssx = @"
  {
               type: 'button',
               label: '导出',
@@ -1743,8 +1742,6 @@ export default {
         var json = ConvertService.NormalizeJson(ss);
         Console.WriteLine(json);
 
-        return  ConvertService.Test(json);
-
+        return ConvertService.Test(json);
     }
-
 }

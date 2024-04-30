@@ -205,11 +205,11 @@ public class ConvertService
     {
         if (node is JsonObject jsonObject)
         {
+
             foreach (var property in jsonObject)
             {
                 string propertyName = property.Key;
                 JsonNode propertyValue = property.Value;
-
                 sb.Append('\t', indentation);
                 sb.Append(propertyName);
                 sb.Append(" = ");
@@ -225,12 +225,15 @@ public class ConvertService
                 }
                 else if (propertyValue is JsonArray)
                 {
-                    sb.AppendLine("new[]");
+                    sb.AppendLine("new object[]");
                     sb.Append('\t', indentation);
                     sb.AppendLine("{");
                     foreach (var item in (JsonArray)propertyValue)
                     {
+                        sb.AppendLine("new {");
                         GeneratePropertyAssignments(sb, item, indentation + 1);
+                        sb.AppendLine("},");
+
                     }
 
                     sb.Append('\t', indentation);
@@ -242,6 +245,7 @@ public class ConvertService
                     sb.AppendLine($"\"{propertyValue}\",");
                 }
             }
+
         }
         else
         {
