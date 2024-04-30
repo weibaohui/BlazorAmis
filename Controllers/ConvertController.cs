@@ -1740,8 +1740,6 @@ export default {
               level: 'success'
             }";
         var json = ConvertService.NormalizeJson(ss);
-        Console.WriteLine(json);
-
         return ConvertService.Test(json);
     }
 }
