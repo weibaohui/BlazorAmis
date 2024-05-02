@@ -1,4 +1,8 @@
 using BlazorAmis.Components;
+using BlazorAmis.Service;
+using BlazorApp.Service;
+using BlazorApp.Service.AI;
+using BlazorApp.Service.impl;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,9 @@ builder.Services.AddRazorComponents()
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddControllers();
+builder.Services.AddScoped<IPromptService, PromptService>();
+builder.Services.AddScoped<IOpenAiService, OpenAiService>();
+builder.Services.AddScoped<IConfigService, ConfigService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

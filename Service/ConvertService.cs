@@ -40,7 +40,6 @@ public class ConvertService
 
         // 输出格式化后的 JSON 字符串
         string formattedJson = rootNode.ToJsonString(JsonSerializerOptions.Default);
-        Console.WriteLine(formattedJson);
         return formattedJson;
     }
 
@@ -84,7 +83,6 @@ public class ConvertService
         string pattern = @"^\s*//.*?$";
         string cleanedJsonString = Regex.Replace(jsonString, pattern, "", RegexOptions.Multiline);
         return cleanedJsonString;
-
     }
 
     private static string NormalizeKeys(string jsonString)
@@ -154,36 +152,35 @@ public class ConvertService
         return input;
     }
 
-    public static string Test(string json)
+    public static string Json2Anonymous(string json)
     {
-        string jsonString = @"
-        {
-            ""type"": ""page"",
-            ""title"": ""表单页面"",
-            ""body"": [
-                {
-                    ""type"": ""form"",
-                    ""mode"": ""horizontal"",
-                    ""api"": ""https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm"",
-                    ""body"": [
-                        {
-                            ""label"": ""Name"",
-                            ""type"": ""input-text"",
-                            ""name"": ""name""
-                        },
-                        {
-                            ""label"": ""Email"",
-                            ""type"": ""input-email"",
-                            ""placeholder"": ""请输入邮箱地址"",
-                            ""name"": ""email""
-                        }
-                    ]
-                }
-            ]
-        }";
+        // string jsonString = @"
+        // {
+        //     ""type"": ""page"",
+        //     ""title"": ""表单页面"",
+        //     ""body"": [
+        //         {
+        //             ""type"": ""form"",
+        //             ""mode"": ""horizontal"",
+        //             ""api"": ""https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm"",
+        //             ""body"": [
+        //                 {
+        //                     ""label"": ""Name"",
+        //                     ""type"": ""input-text"",
+        //                     ""name"": ""name""
+        //                 },
+        //                 {
+        //                     ""label"": ""Email"",
+        //                     ""type"": ""input-email"",
+        //                     ""placeholder"": ""请输入邮箱地址"",
+        //                     ""name"": ""email""
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // }";
 
         string csharpCode = ConvertJsonToCSharpAnonymousClass(json, "data");
-        Console.WriteLine(csharpCode);
         return csharpCode;
     }
 
@@ -205,7 +202,6 @@ public class ConvertService
     {
         if (node is JsonObject jsonObject)
         {
-
             foreach (var property in jsonObject)
             {
                 string propertyName = property.Key;
@@ -230,9 +226,8 @@ public class ConvertService
                     sb.AppendLine("{");
                     foreach (var item in (JsonArray)propertyValue)
                     {
-                        if (item is JsonObject  )
+                        if (item is JsonObject)
                         {
-
                             sb.Append('\t', indentation);
                             sb.AppendLine("new {");
                             GeneratePropertyAssignments(sb, item, indentation + 1);
@@ -244,8 +239,6 @@ public class ConvertService
                             sb.Append('\t', indentation);
                             sb.Append($"\"{item}\",");
                         }
-
-
                     }
 
                     sb.Append('\t', indentation);
@@ -253,11 +246,40 @@ public class ConvertService
                 }
                 else
                 {
-                    sb.AppendLine($"\"{propertyValue}\",");
+                    var itemStr = $"{propertyValue}".Replace("\"", "\\\"");
+                    sb.AppendLine($"\"{itemStr}\",");
                 }
             }
-
         }
+    }
 
+    public static string ReadFile(string filePath)
+    {
+        return File.ReadAllText(filePath)
+                .Replace("export default ", "")
+                .Trim()
+                .TrimEnd(';')
+            ;
+    }
+
+    public static string Anonymous2Blazor(string json, string blazorPageUrl)
+    {
+        var tempalte = @"
+@page ""/$blazorPageUrl$""
+<Amis Data=""GetObj()""></Amis>
+
+@code {
+    private object GetObj()
+    {
+        $json$
+        return data;
+        
+    }
+}
+";
+        tempalte = tempalte
+            .Replace("$blazorPageUrl$", blazorPageUrl)
+            .Replace("$json$", json);
+        return tempalte;
     }
 }
