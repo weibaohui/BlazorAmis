@@ -1,0 +1,687 @@
+@page "/Form/Transfer"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "Transfer 穿梭器 示例",
+            body = new object[]
+            {
+                new
+                {
+                    type = "form",
+                    title = "",
+                    mode = "horizontal",
+                    actions = new object[]
+                    {
+                        new
+                        {
+                            type = "submit",
+                            label = "提交"
+                        }
+                    },
+                    body = new object[]
+                    {
+                        new
+                        {
+                            label = "默认",
+                            type = "transfer",
+                            name = "transfer1",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "诸葛亮",
+                                    value = "zhugeliang"
+                                },
+                                new
+                                {
+                                    label = "曹操",
+                                    value = "caocao"
+                                },
+                                new
+                                {
+                                    label = "钟无艳",
+                                    value = "zhongwuyan"
+                                },
+                                new
+                                {
+                                    label = "李白",
+                                    value = "libai"
+                                },
+                                new
+                                {
+                                    label = "韩信",
+                                    value = "hanxin"
+                                },
+                                new
+                                {
+                                    label = "云中君",
+                                    value = "yunzhongjun"
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "分组",
+                            type = "transfer",
+                            name = "transfer2",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "法师",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "诸葛亮",
+                                            value = "zhugeliang"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "战士",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "曹操",
+                                            value = "caocao"
+                                        },
+                                        new
+                                        {
+                                            label = "钟无艳",
+                                            value = "zhongwuyan"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "打野",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "李白",
+                                            value = "libai"
+                                        },
+                                        new
+                                        {
+                                            label = "韩信",
+                                            value = "hanxin"
+                                        },
+                                        new
+                                        {
+                                            label = "云中君",
+                                            value = "yunzhongjun"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "表格形式",
+                            type = "transfer",
+                            name = "transfer3",
+                            selectMode = "table",
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "label",
+                                    label = "英雄"
+                                },
+                                new
+                                {
+                                    name = "position",
+                                    label = "位置"
+                                }
+                            },
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "诸葛亮",
+                                    value = "zhugeliang",
+                                    position = "中单"
+                                },
+                                new
+                                {
+                                    label = "曹操",
+                                    value = "caocao",
+                                    position = "上单"
+                                },
+                                new
+                                {
+                                    label = "钟无艳",
+                                    value = "zhongwuyan",
+                                    position = "上单"
+                                },
+                                new
+                                {
+                                    label = "李白",
+                                    value = "libai",
+                                    position = "打野"
+                                },
+                                new
+                                {
+                                    label = "韩信",
+                                    value = "hanxin",
+                                    position = "打野"
+                                },
+                                new
+                                {
+                                    label = "云中君",
+                                    value = "yunzhongjun",
+                                    position = "打野"
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "树型展示",
+                            type = "transfer",
+                            name = "transfer4",
+                            selectMode = "tree",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "法师",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "诸葛亮",
+                                            value = "zhugeliang"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "战士",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "曹操",
+                                            value = "caocao"
+                                        },
+                                        new
+                                        {
+                                            label = "钟无艳",
+                                            value = "zhongwuyan"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "打野",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "李白",
+                                            value = "libai"
+                                        },
+                                        new
+                                        {
+                                            label = "韩信",
+                                            value = "hanxin"
+                                        },
+                                        new
+                                        {
+                                            label = "云中君",
+                                            value = "yunzhongjun"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "级联选择",
+                            type = "transfer",
+                            name = "transfer5",
+                            selectMode = "chained",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "法师",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "诸葛亮",
+                                            value = "zhugeliang"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "战士",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "曹操",
+                                            value = "caocao"
+                                        },
+                                        new
+                                        {
+                                            label = "钟无艳",
+                                            value = "zhongwuyan"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "打野",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "李白",
+                                            value = "libai"
+                                        },
+                                        new
+                                        {
+                                            label = "韩信",
+                                            value = "hanxin"
+                                        },
+                                        new
+                                        {
+                                            label = "云中君",
+                                            value = "yunzhongjun"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "带搜索",
+                            type = "transfer",
+                            name = "transfer6",
+                            selectMode = "chained",
+                            searchable = true,
+                            sortable = true,
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "法师",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "诸葛亮",
+                                            value = "zhugeliang"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "战士",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "曹操",
+                                            value = "caocao"
+                                        },
+                                        new
+                                        {
+                                            label = "钟无艳",
+                                            value = "zhongwuyan"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "打野",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "李白",
+                                            value = "libai"
+                                        },
+                                        new
+                                        {
+                                            label = "韩信",
+                                            value = "hanxin"
+                                        },
+                                        new
+                                        {
+                                            label = "云中君",
+                                            value = "yunzhongjun"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "组合穿梭器",
+                            type = "tabs-transfer",
+                            name = "a",
+                            sortable = true,
+                            selectMode = "tree",
+                            searchable = true,
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "成员",
+                                    selectMode = "tree",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "法师",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "诸葛亮",
+                                                    value = "zhugeliang"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "战士",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "曹操",
+                                                    value = "caocao"
+                                                },
+                                                new
+                                                {
+                                                    label = "钟无艳",
+                                                    value = "zhongwuyan"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "打野",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "李白",
+                                                    value = "libai"
+                                                },
+                                                new
+                                                {
+                                                    label = "韩信",
+                                                    value = "hanxin"
+                                                },
+                                                new
+                                                {
+                                                    label = "云中君",
+                                                    value = "yunzhongjun"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "用户",
+                                    selectMode = "chained",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "法师",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "诸葛亮",
+                                                    value = "zhugeliang"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "战士",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "曹操",
+                                                    value = "caocao"
+                                                },
+                                                new
+                                                {
+                                                    label = "钟无艳",
+                                                    value = "zhongwuyan"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "打野",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "李白",
+                                                    value = "libai"
+                                                },
+                                                new
+                                                {
+                                                    label = "韩信",
+                                                    value = "hanxin"
+                                                },
+                                                new
+                                                {
+                                                    label = "云中君",
+                                                    value = "yunzhongjun"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "延时加载",
+                            type = "transfer",
+                            name = "transfer7",
+                            selectMode = "tree",
+                            deferApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/deferOptions?label=${label}",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "法师",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "诸葛亮",
+                                            value = "zhugeliang"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "战士",
+                                    defer = true
+                                },
+                                new
+                                {
+                                    label = "打野",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "李白",
+                                            value = "libai"
+                                        },
+                                        new
+                                        {
+                                            label = "韩信",
+                                            value = "hanxin"
+                                        },
+                                        new
+                                        {
+                                            label = "云中君",
+                                            value = "yunzhongjun"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "关联选择模式",
+                            type = "transfer",
+                            name = "b",
+                            sortable = true,
+                            searchable = true,
+                            deferApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/deferOptions?label=${label}",
+                            selectMode = "associated",
+                            leftMode = "tree",
+                            leftOptions = new object[]
+                            {
+                                new
+                                {
+                                    label = "法师",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "诸葛亮",
+                                            value = "zhugeliang"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "战士",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "曹操",
+                                            value = "caocao"
+                                        },
+                                        new
+                                        {
+                                            label = "钟无艳",
+                                            value = "zhongwuyan"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "打野",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "李白",
+                                            value = "libai"
+                                        },
+                                        new
+                                        {
+                                            label = "韩信",
+                                            value = "hanxin"
+                                        },
+                                        new
+                                        {
+                                            label = "云中君",
+                                            value = "yunzhongjun"
+                                        }
+                                    }
+                                }
+                            },
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    xref = "zhugeliang",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "A",
+                                            value = "a"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    xref = "caocao",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "B",
+                                            value = "b"
+                                        },
+                                        new
+                                        {
+                                            label = "C",
+                                            value = "c"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    xref = "zhongwuyan",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "D",
+                                            value = "d"
+                                        },
+                                        new
+                                        {
+                                            label = "E",
+                                            value = "e"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    xref = "libai",
+                                    defer = true
+                                },
+                                new
+                                {
+                                    xref = "hanxin",
+                                    defer = true
+                                },
+                                new
+                                {
+                                    xref = "yunzhongjun",
+                                    defer = true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

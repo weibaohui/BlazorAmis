@@ -1,0 +1,238 @@
+@page "/Form/Static"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+      var  data=new
+        {
+            title = "所有 Form 元素列举",
+            data = new
+            {
+                id = 1,
+                image = "../../static/photo/3893101144.jpg",
+                images = new object[]
+                {
+                    new
+                    {
+                        image = "../../static/photo/4f3cb4202335.jpg",
+                        src = "../../static/photo/4f3cb4202335.jpg"
+                    },
+                    new
+                    {
+                        image = "../../static/photo/d8e4992057f9.jpg",
+                        src = "../../static/photo/d8e4992057f9.jpg"
+                    },
+                    new
+                    {
+                        image = "../../static/photo/1314a2a3d3f6.jpg",
+                        src = "../../static/photo/1314a2a3d3f6.jpg"
+                    },
+                    new
+                    {
+                        image = "../../static/photo/8f2e79f82be0.jpg",
+                        src = "../../static/photo/8f2e79f82be0.jpg"
+                    },
+                    new
+                    {
+                        image = "../../static/photo/552b175ef11d.jpg",
+                        src = "../../static/photo/552b175ef11d.jpg"
+                    }
+                }
+            },
+            body = new object[]
+            {
+                new
+                {
+                    type = "form",
+                    api = "/api/mock2/saveForm?waitSeconds=2",
+                    title = "表单项静态展示",
+                    mode = "horizontal",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "static",
+                            label = "文本",
+                            value = "文本"
+                        },
+
+                        new
+                        {
+                            type = "divider"
+                        },
+
+                        new
+                        {
+                            type = "static",
+                            label = "模板",
+                            tpl = "自己拼接 HTML 取变量 \\${id}: ${id}"
+                        },
+
+                        new
+                        {
+                            type = "divider"
+                        },
+
+                        new
+                        {
+                            type = "static-date",
+                            label = "日期",
+                            value = DateTimeOffset.Now.ToUnixTimeSeconds()
+                        },
+
+                        new
+                        {
+                            type = "divider"
+                        },
+
+                        new
+                        {
+                            type = "static-datetime",
+                            label = "日期时间",
+                            value = DateTimeOffset.Now.ToUnixTimeSeconds()
+                        },
+
+                        new
+                        {
+                            type = "divider"
+                        },
+
+                        new
+                        {
+                            type = "control",
+                            label = "映射",
+                            body = new
+                            {
+                                type = "mapping",
+                                value = new Random().Next(5),
+                                map = new Dictionary<string, string>()
+                                {
+                                    { "*", "<span class='label label-default'>-</span>" },
+                                    { "0", "<span class='label label-info'>一</span>" },
+                                    { "1", "<span class='label label-success'>二</span>" },
+                                    { "2", "<span class='label label-danger'>三</span>" },
+                                    { "3", "<span class='label label-warning'>四</span>" },
+                                    { "4", "<span class='label label-primary'>五</span>" }
+                                }
+                            }
+                        },
+
+                        new
+                        {
+                            type = "divider"
+                        },
+
+                        new
+                        {
+                            type = "control",
+                            label = "进度",
+                            body = new
+                            {
+                                type = "progress",
+                                value = 66.66
+                            }
+                        },
+
+                        new
+                        {
+                            type = "divider"
+                        },
+
+                        new
+                        {
+                            type = "static-image",
+                            label = "图片",
+                            name = "image",
+                            thumbMode = "cover",
+                            thumbRatio = "4:3",
+                            title = "233",
+                            imageCaption = "jfe fjkda fejfkda fejk fdajf dajfe jfkda",
+                            popOver = new
+                            {
+                                title = "查看大图",
+                                body = "<div class='w-xxl'><img class='w-full' src='${image}'/></div>"
+                            }
+                        },
+
+                        new
+                        {
+                            type = "divider"
+                        },
+
+                        new
+                        {
+                            type = "static-image",
+                            label = "图片自带放大",
+                            name = "image",
+                            thumbMode = "cover",
+                            thumbRatio = "4:3",
+                            title = "233",
+                            imageCaption = "jfe fjkda fejfkda fejk fdajf dajfe jfkda",
+                            enlargeAble = true,
+                            showToolbar = true,
+                            originalSrc = "${image}"
+                        },
+
+                        new
+                        {
+                            type = "static-images",
+                            label = "图片集",
+                            name = "images",
+                            thumbMode = "cover",
+                            thumbRatio = "4:3",
+                            enlargeAble = true,
+                            showToolbar = true,
+                            originalSrc = "${src}" // 注意这个取变量是想对数组成员取的。
+                        },
+
+                        new
+                        {
+                            type = "divider"
+                        },
+
+                        new
+                        {
+                            type = "static-json",
+                            label = "JSON",
+                            value = new { a = 1, b = 2, c = new { d = 3 } }
+                        },
+
+                        new
+                        {
+                            type = "divider"
+                        },
+
+                        new
+                        {
+                            type = "static",
+                            label = "可复制",
+                            value = "文本",
+                            copyable = new
+                            {
+                                content = "内容，支持变量 ${id}"
+                            }
+                        },
+
+                        new
+                        {
+                            type = "divider"
+                        },
+
+                        new
+                        {
+                            type = "static",
+                            name = "text",
+                            label = "可快速编辑",
+                            value = "文本",
+                            quickEdit = true
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

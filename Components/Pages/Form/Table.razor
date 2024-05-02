@@ -1,0 +1,273 @@
+@page "/Form/Table"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "表格编辑",
+            body = new
+            {
+                type = "form",
+                mode = "horizontal",
+                api = "/api/mock2/form/saveForm?waitSeconds=2",
+                actions = new[]
+                {
+                    new
+                    {
+                        type = "submit",
+                        label = "提交",
+                        primary = true
+                    }
+                },
+                body = new object[]
+                {
+                    new
+                    {
+                        type = "input-table",
+                        name = "tableAffixHeader",
+                        label = "头部固定",
+                        affixHeader = true,
+                        columns = new object[]
+                        {
+                            new
+                            {
+                                name = "aa",
+                                label = "AA",
+                                type = "input-text"
+                            },
+                            new
+                            {
+                                name = "cc",
+                                label = "CC",
+                                type = "select",
+                                options = new[]
+                                {
+                                    new
+                                    {
+                                        label = "AA",
+                                        value = "aa"
+                                    },
+                                    new
+                                    {
+                                        label = "CC",
+                                        value = "cc"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    new
+                    {
+                        type = "combo",
+                        name = "colors",
+                        label = "Combo",
+                        multiple = true,
+                        draggable = true,
+                        multiLine = true,
+                        value = new[]
+                        {
+                            new
+                            {
+                                color = "green",
+                                name = "颜色"
+                            }
+                        },
+                        items = new object[]
+                        {
+                            new
+                            {
+                                type = "input-color",
+                                name = "color",
+                                clearable = false
+                            },
+                            new
+                            {
+                                type = "input-text",
+                                name = "name",
+                                placeholder = "说明文字"
+                            }
+                        }
+                    },
+                    new
+                    {
+                        type = "static",
+                        label = "当前值",
+                        tpl = "<pre>${colors|json}</pre>"
+                    },
+                    new
+                    {
+                        type = "input-table",
+                        name = "colors",
+                        label = "Table",
+                        draggable = true,
+                        addable = true,
+                        removable = true,
+                        needConfirm = false,
+                        columns = new object[]
+                        {
+                            new
+                            {
+                                label = "Color",
+                                name = "color",
+                                type = "input-color",
+                                quickEdit = false
+                            },
+                            new
+                            {
+                                label = "说明文字",
+                                name = "name"
+                            }
+                        }
+                    },
+                    new
+                    {
+                        type = "control",
+                        body = new
+                        {
+                            type = "button",
+                            label = "Table2新增一行",
+                            target = "table2",
+                            actionType = "add"
+                        }
+                    },
+                    new
+                    {
+                        type = "input-table",
+                        name = "table2",
+                        label = "Table2",
+                        editable = true,
+                        addable = true,
+                        removable = true,
+                        draggable = true,
+                        columns = new object[]
+                        {
+                            new
+                            {
+                                name = "a",
+                                label = "A"
+                            },
+                            new
+                            {
+                                name = "b",
+                                label = "B",
+                                quickEdit = new
+                                {
+                                    type = "select",
+                                    options = new[]
+                                    {
+                                        new
+                                        {
+                                            label = "A",
+                                            value = "a"
+                                        },
+                                        new
+                                        {
+                                            label = "B",
+                                            value = "b"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    new
+                    {
+                        type = "input-table",
+                        name = "table3",
+                        label = "Table3(指定第2列只有update时能编辑)",
+                        editable = true,
+                        addable = true,
+                        removable = true,
+                        draggable = true,
+                        columns = new object[]
+                        {
+                            new
+                            {
+                                name = "a",
+                                label = "A",
+                                quickEdit = true
+                            },
+                            new
+                            {
+                                name = "b",
+                                label = "B",
+                                quickEdit = false,
+                                quickEditOnUpdate = new
+                                {
+                                    type = "select",
+                                    options = new[]
+                                    {
+                                        new
+                                        {
+                                            label = "A",
+                                            value = "a"
+                                        },
+                                        new
+                                        {
+                                            label = "B",
+                                            value = "b"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    new
+                    {
+                        type = "input-table",
+                        name = "table5",
+                        label = "内容自适应",
+                        autoFillHeight = true,
+                        tableContentClassName = "max-h-60",
+                        columns = new object[]
+                        {
+                            new
+                            {
+                                name = "aa",
+                                label = "AA",
+                                type = "input-text"
+                            },
+                            new
+                            {
+                                name = "cc",
+                                label = "CC",
+                                type = "select",
+                                options = new[]
+                                {
+                                    new
+                                    {
+                                        label = "AA",
+                                        value = "aa"
+                                    },
+                                    new
+                                    {
+                                        label = "CC",
+                                        value = "cc"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                data = new
+                {
+                    table5 = new object[20].Select((_, index) => new
+                    {
+                        aa = index % 2 == 0 ? "hello" : "hi",
+                        cc = index % 2 == 0 ? "aa" : "cc"
+                    }).ToArray(),
+                    tableAffixHeader = new object[5].Select((_, index) => new
+                    {
+                        aa = index % 2 == 0 ? "hello" : "hi",
+                        cc = index % 2 == 0 ? "aa" : "cc"
+                    }).ToArray()
+                }
+            }
+        };
+        return data;
+    }
+
+}

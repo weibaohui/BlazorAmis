@@ -1,0 +1,511 @@
+@page "/Form/Validation"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "表单验证示例",
+            toolbar = "<a target='_blank' href='/docs/renderers/Form/FormItem'>文档</a>",
+            body = new[]
+            {
+                new
+                {
+                    type = "grid",
+                    columns = new object[]
+                    {
+                        new
+                        {
+                            body = new[]
+                            {
+                                new
+                                {
+                                    type = "form",
+                                    autoFocus = false,
+                                    messages = new
+                                    {
+                                        validateFailed = "请仔细检查表单规则，部分表单项没通过验证"
+                                    },
+                                    title = "表单",
+                                    actions = new[]
+                                    {
+                                        new
+                                        {
+                                            type = "submit",
+                                            label = "提交"
+                                        }
+                                    },
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveFormFailed?waitSeconds=2",
+                                    mode = "horizontal",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "input-text",
+                                            name = "test",
+                                            label = "必填",
+                                            required = true
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            name = "test1",
+                                            type = "input-email",
+                                            label = "Email"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            name = "url",
+                                            type = "input-url",
+                                            label = "URL"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            name = "num",
+                                            type = "input-text",
+                                            label = "数字",
+                                            validations = "isNumeric"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            name = "alpha",
+                                            type = "input-text",
+                                            label = "字母或数字",
+                                            validations = "isAlphanumeric"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            name = "int",
+                                            type = "input-text",
+                                            label = "整形",
+                                            validations = "isInt"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            name = "minLength",
+                                            type = "input-text",
+                                            label = "长度限制",
+                                            validations = "minLength:2,maxLength:10"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            name = "min",
+                                            type = "input-text",
+                                            label = "数值限制",
+                                            validations = "maximum:10,minimum:2"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            name = "reg",
+                                            type = "input-text",
+                                            label = "正则",
+                                            validations = "matchRegexp:/^abc/",
+                                            validationErrors = new
+                                            {
+                                                matchRegexp = "请输入abc开头的好么?"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            name = "test2",
+                                            type = "input-text",
+                                            label = "服务端验证"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "form",
+                                    name = "form2",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm",
+                                    debug = true,
+                                    debugConfig = new
+                                    {
+                                        levelExpand = 3
+                                    },
+                                    title = "<b>日期时间相关校验规则</b>",
+                                    data = new
+                                    {
+                                        datetime1 = "2022-09-10 00:00:00",
+                                        datetime2 = "2022-10-01 00:00:00",
+                                        datetime3 = "2022-10-01 00:00:00",
+                                        datetime4 = "2022-10-01 00:00:01",
+                                        datetime5 = "2022-09-30 23:59:59",
+                                        datetime6 = "2022-09-30 23:59:59"
+                                    },
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "input-datetime",
+                                            label = "isDateTimeSame",
+                                            name = "datetime1",
+                                            format = "YYYY-MM-DD HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isDateTimeSame = "2022-10-01 00:00:00"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-datetime",
+                                            label = "isDateTimeBefore",
+                                            name = "datetime2",
+                                            format = "YYYY-MM-DD HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isDateTimeBefore = "2022-10-01 00:00:00"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-datetime",
+                                            label = "isDateTimeAfter",
+                                            name = "datetime3",
+                                            format = "YYYY-MM-DD HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isDateTimeAfter = "2022-10-01 00:00:00"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-datetime",
+                                            label = "isDateTimeSameOrBefore",
+                                            name = "datetime4",
+                                            format = "YYYY-MM-DD HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isDateTimeSameOrBefore = "2022-10-01 00:00:00"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-datetime",
+                                            label = "isDateTimeSameOrAfter",
+                                            name = "datetime5",
+                                            format = "YYYY-MM-DD HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isDateTimeSameOrAfter = "2022-10-01 00:00:00"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-datetime",
+                                            label = "isDateTimeBetween",
+                                            name = "datetime6",
+                                            format = "YYYY-MM-DD HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isDateTimeBetween = new[]
+                                                {
+                                                    "2022-10-01 00:00:00",
+                                                    "2022-10-03 00:00:00",
+                                                    "second",
+                                                    "[]"
+                                                }
+                                            },
+                                            validationErrors = new
+                                            {
+                                                isDateTimeBetween = "选择的日期有误，日期必须在 $1 ～ $2 范围内"
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    type = "form",
+                                    name = "form3",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm",
+                                    debug = true,
+                                    debugConfig = new
+                                    {
+                                        levelExpand = 3
+                                    },
+                                    title = "<b>日期时间相关校验规则（带变量）</b>",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "input-datetime",
+                                            label = "开始日期时间",
+                                            name = "startTime",
+                                            inputFormat = "YYYY-MM-DD HH:mm:ss",
+                                            format = "YYYY-MM-DD HH:mm:ss",
+                                            required = true,
+                                            validations = new
+                                            {
+                                                isDateTimeSameOrBefore = "${endTime}"
+                                            },
+                                            validationErrors = new
+                                            {
+                                                isDateTimeSameOrBefore = "当前日期值不合法，开始时间不能大于结束时间"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "input-datetime",
+                                            label = "结束日期时间",
+                                            name = "endTime",
+                                            inputFormat = "YYYY-MM-DD HH:mm:ss",
+                                            format = "YYYY-MM-DD HH:mm:ss",
+                                            required = true
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "form",
+                                    name = "form4",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm",
+                                    debug = true,
+                                    debugConfig = new
+                                    {
+                                        levelExpand = 3
+                                    },
+                                    title = "<b>时间相关校验规则</b>",
+                                    data = new
+                                    {
+                                        time1 = "16:00:00",
+                                        time2 = "16:00:00",
+                                        time3 = "16:00:00",
+                                        time4 = "16:00:01",
+                                        time5 = "16:00:01",
+                                        time6 = "15:00:01"
+                                    },
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "input-time",
+                                            label = "isTimeSame",
+                                            name = "time1",
+                                            format = "HH:mm:ss",
+                                            timeFormat = "HH:mm:ss",
+                                            inputFormat = "HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isTimeSame = "16:00:01"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-time",
+                                            label = "isTimeBefore",
+                                            name = "time2",
+                                            format = "HH:mm:ss",
+                                            timeFormat = "HH:mm:ss",
+                                            inputFormat = "HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isTimeBefore = "15:00:00"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-time",
+                                            label = "isTimeAfter",
+                                            name = "time3",
+                                            format = "HH:mm:ss",
+                                            timeFormat = "HH:mm:ss",
+                                            inputFormat = "HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isTimeAfter = "16:00:30"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-time",
+                                            label = "isTimeSameOrBefore",
+                                            name = "time4",
+                                            format = "HH:mm:ss",
+                                            timeFormat = "HH:mm:ss",
+                                            inputFormat = "HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isTimeSameOrBefore = "16:00:00"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-time",
+                                            label = "isTimeSameOrAfter",
+                                            name = "time5",
+                                            format = "HH:mm:ss",
+                                            timeFormat = "HH:mm:ss",
+                                            inputFormat = "HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isTimeSameOrAfter = "16:30:00"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-time",
+                                            label = "isTimeBetween",
+                                            name = "time6",
+                                            format = "HH:mm:ss",
+                                            timeFormat = "HH:mm:ss",
+                                            inputFormat = "HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isTimeBetween = new[]
+                                                {
+                                                    "03:00:00",
+                                                    "15:00:00",
+                                                    "second",
+                                                    "[]"
+                                                }
+                                            },
+                                            validationErrors = new
+                                            {
+                                                isTimeBetween = "选择的时间有误，时间必须在 $1 ～ $2 范围内"
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    type = "form",
+                                    name = "form5",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm",
+                                    debug = true,
+                                    debugConfig = new
+                                    {
+                                        levelExpand = 3
+                                    },
+                                    title = "<b>时间相关校验规则（带变量）</b>",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "input-time",
+                                            label = "开始时间",
+                                            name = "startTime",
+                                            timeFormat = "HH:mm:ss",
+                                            inputFormat = "HH:mm:ss",
+                                            format = "HH:mm:ss",
+                                            validations = new
+                                            {
+                                                isRequired = true,
+                                                isTimeSameOrBefore = "${endTime}"
+                                            },
+                                            validationErrors = new
+                                            {
+                                                isTimeSameOrBefore = "当前时间值不合法，开始时间不能大于结束时间 $1"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "input-time",
+                                            label = "结束时间",
+                                            name = "endTime",
+                                            timeFormat = "HH:mm:ss",
+                                            inputFormat = "HH:mm:ss",
+                                            format = "HH:mm:ss",
+                                            required = true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        return data;
+    }
+
+}

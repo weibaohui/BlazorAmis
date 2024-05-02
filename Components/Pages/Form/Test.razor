@@ -1,0 +1,173 @@
+@page "/Form/Test"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            body = new
+            {
+                type = "form",
+                title = "详情",
+                name = "scene_detail",
+                mode = "horizontal",
+                submitText = "",
+                submitOnChange = false,
+                actions = new object[]
+                {
+                    new
+                    {
+                        type = "button",
+                        label = "修改",
+                        actionType = "drawer",
+                        drawer = new
+                        {
+                            type = "form",
+                            position = "left",
+                            title = "修改内容",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "input-text",
+                                    label = "标题",
+                                    name = "name",
+                                    required = true
+                                },
+                                new
+                                {
+                                    label = "描述",
+                                    type = "input-text",
+                                    name = "typeDesc",
+                                    required = true
+                                },
+                                new
+                                {
+                                    label = "内容",
+                                    type = "textarea",
+                                    name = "contents",
+                                    required = true
+                                }
+                            }
+                        }
+                    }
+                },
+                body = new object[]
+                {
+                    new
+                    {
+                        type = "input-tree",
+                        name = "tree",
+                        label = "树",
+                        options = new object[]
+                        {
+                            new
+                            {
+                                label = "Folder A",
+                                value = 1,
+                                children = new object[]
+                                {
+                                    new
+                                    {
+                                        label = "file A",
+                                        value = 2
+                                    },
+                                    new
+                                    {
+                                        label = "file B",
+                                        value = 3
+                                    }
+                                }
+                            },
+                            new
+                            {
+                                label = "file C",
+                                value = 4
+                            },
+                            new
+                            {
+                                label = "file D",
+                                value = 5
+                            }
+                        }
+                    },
+                    new
+                    {
+                        type = "divider"
+                    },
+                    new
+                    {
+                        type = "tree",
+                        name = "trees",
+                        label = "树多选",
+                        multiple = true,
+                        options = new object[]
+                        {
+                            new
+                            {
+                                label = "Folder A",
+                                value = 1,
+                                children = new object[]
+                                {
+                                    new
+                                    {
+                                        label = "file A",
+                                        value = 2
+                                    },
+                                    new
+                                    {
+                                        label = "file B",
+                                        value = 3
+                                    }
+                                }
+                            },
+                            new
+                            {
+                                label = "file C",
+                                value = 4
+                            },
+                            new
+                            {
+                                label = "file D",
+                                value = 5
+                            }
+                        }
+                    },
+                    new
+                    {
+                        type = "divider"
+                    },
+                    new
+                    {
+                        name = "select",
+                        type = "tree-select",
+                        label = "动态选项",
+                        source = "/api/mock2/form/getTreeOptions?waitSeconds=1",
+                        description = "通过接口一口气拉取选项",
+                        clearable = true,
+                        searchable = true
+                    },
+                    new
+                    {
+                        type = "divider"
+                    },
+                    new
+                    {
+                        name = "select2",
+                        type = "tree-select",
+                        label = "选项自动补全",
+                        autoComplete = "/api/mock2/tree/autoComplete?term=$term",
+                        placeholder = "请输入",
+                        description = "通过接口自动补全",
+                        multiple = true
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

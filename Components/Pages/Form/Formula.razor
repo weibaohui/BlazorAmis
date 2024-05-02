@@ -1,0 +1,128 @@
+
+@page "/Form/Formula"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+    private object GetObj()
+    {
+        var data = new {
+    title = "公式示例",
+    body = new object[] {
+        "<p>通过公式，可以动态的设置目标值。</p>",
+        new {
+            type = "form",
+            title = "自动应用",
+            api = "/api/mock2/form/saveForm",
+            body = new object[] {
+                new {
+                    type = "input-number",
+                    name = "a",
+                    label = "A"
+                },
+                new {
+                    type = "input-number",
+                    name = "b",
+                    label = "B"
+                },
+                new {
+                    type = "input-number",
+                    name = "sum",
+                    label = "和",
+                    disabled = true,
+                    description = "自动计算 A + B"
+                },
+                new {
+                    type = "formula",
+                    name = "sum",
+                    value = 0,
+                    formula = "a + b"
+                }
+            }
+        },
+        new {
+            type = "form",
+            title = "手动应用",
+            api = "/api/mock2/form/saveForm",
+            body = new object[] {
+                new {
+                    type = "input-number",
+                    name = "a",
+                    label = "A"
+                },
+                new {
+                    type = "input-number",
+                    name = "b",
+                    label = "B"
+                },
+                new {
+                    type = "group",
+                    body = new object[] {
+                        new {
+                            type = "input-number",
+                            name = "sum",
+                            label = "和",
+                            disabled = true,
+                            columnClassName = "col-sm-11"
+                        },
+                        new {
+                            type = "button",
+                            label = "计算",
+                            columnClassName = "col-sm-1 v-bottom",
+                            target = "theFormula"
+                        }
+                    }
+                },
+                new {
+                    type = "formula",
+                    name = "sum",
+                    id = "theFormula",
+                    value = 0,
+                    formula = "a + b",
+                    initSet = false,
+                    autoSet = false
+                }
+            }
+        },
+        new {
+            type = "form",
+            title = "条件应用",
+            api = "/api/mock2/form/saveForm",
+            body = new object[] {
+                new {
+                    type = "radios",
+                    name = "radios",
+                    inline = true,
+                    label = "radios",
+                    options = new object[] {
+                        new {
+                            label = "a",
+                            value = "a"
+                        },
+                        new {
+                            label = "b",
+                            value = "b"
+                        }
+                    },
+                    description = "radios 变化会自动清空 B"
+                },
+                new {
+                    type = "input-text",
+                    name = "b",
+                    label = "B"
+                },
+                new {
+                    type = "formula",
+                    name = "b",
+                    value = "some string",
+                    formula = "''",
+                    condition = "${radios}",
+                    initSet = false
+                }
+            }
+        }
+    }
+};
+        return data;
+        
+    }
+}

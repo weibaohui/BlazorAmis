@@ -1,0 +1,105 @@
+@page "/Form/Custom"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "自定义组件示例",
+            body = new object[]
+            {
+                new
+                {
+                    type = "form",
+                    mode = "horizontal",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm?waitSeconds=2",
+                    debug = true,
+                    actions = new[]
+                    {
+                        new
+                        {
+                            type = "submit",
+                            label = "提交",
+                            primary = true
+                        }
+                    },
+                    body = new object[]
+                    {
+                        new
+                        {
+                            label = "姓名",
+                            type = "text",
+                            name = "name"
+                        },
+                        new
+                        {
+                            type = "divider"
+                        },
+                        new
+                        {
+                            label = "使用 custom 组件",
+                            name = "name",
+                            type = "custom"
+                        },
+                        new
+                        {
+                            type = "divider"
+                        },
+                        new
+                        {
+                            name = "a",
+                            asFormItem = true
+                        },
+                        new
+                        {
+                            type = "divider"
+                        },
+                        new
+                        {
+                            name = "b",
+                            type = "my-custom",
+                            label = "自定义FormItem"
+                        },
+                        new
+                        {
+                            type = "divider"
+                        },
+                        new
+                        {
+                            type = "control",
+                            body = new
+                            {
+                                type = "my-renderer",
+                                source = "${x}"
+                            }
+                        },
+                        new
+                        {
+                            type = "divider"
+                        },
+                        new
+                        {
+                            label = "",
+                            asFormItem = true
+                        },
+                        new
+                        {
+                            name = "c",
+                            label = "",
+                            asFormItem = true
+                        }
+                    }
+                },
+                new
+                {
+                    type = "my-renderer",
+                    tip = "放表单外的情况"
+                }
+            }
+        };
+        return data;
+    }
+
+}

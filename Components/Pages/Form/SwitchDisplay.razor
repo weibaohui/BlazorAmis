@@ -1,0 +1,703 @@
+@* @page "/SwitchDisplay" *@
+@* <Amis Data="GetObj()"></Amis> *@
+@* *@
+@* @code { *@
+@* *@
+@*     private object GetObj() *@
+@*     { *@
+@*         var data = new *@
+@*         { *@
+@*             title = "表单及表单项切换输入态展示态", *@
+@*             data = new *@
+@*             { *@
+@*                 id = 1 *@
+@*             }, *@
+@*             body = new object[] *@
+@*             { *@
+@*                 new *@
+@*                 { *@
+@*                     type = "form", *@
+@*                     title = "整个表单状态切换", *@
+@*                     mode = "horizontal", *@
+@*                     labelWidth = 150, *@
+@*                     id = "allFormSwitch", *@
+@*                     data = new *@
+@*                     { *@
+@*                         isStatic = false *@
+@*                     }, *@
+@*                     body = new object[] *@
+@*                     { *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-text", *@
+@*                             name = "var1", *@
+@*                             label = "输入框", *@
+@*                             value = "text" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-color", *@
+@*                             name = "var2", *@
+@*                             label = "颜色选择", *@
+@*                             value = "#F0F" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "switch", *@
+@*                             name = "switch", *@
+@*                             label = "开关", *@
+@*                             option = "开关说明", *@
+@*                             value = true *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "checkboxes", *@
+@*                             name = "checkboxes", *@
+@*                             label = "多选框", *@
+@*                             value = "0,1,2,3,4,5,6,7,8,9,10,11", *@
+@*                             multiple = true, *@
+@*                             options = new[] *@
+@*                             { *@
+@*                                 new { label = "选项0", value = 0 }, *@
+@*                                 new { label = "选项1", value = 1 }, *@
+@*                                 new { label = "选项2", value = 2 }, *@
+@*                                 new { label = "选项3", value = 3 }, *@
+@*                                 new { label = "选项4", value = 4 }, *@
+@*                                 new { label = "选项5", value = 5 }, *@
+@*                                 new { label = "选项6", value = 6 }, *@
+@*                                 new { label = "选项7", value = 7 }, *@
+@*                                 new { label = "选项8", value = 8 }, *@
+@*                                 new { label = "选项9", value = 9 }, *@
+@*                                 new { label = "选项10", value = 10 }, *@
+@*                                 new { label = "选项11", value = 11 } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-tag", *@
+@*                             name = "select11", *@
+@*                             label = "标签选择", *@
+@*                             inline = true, *@
+@*                             value = "0,1,2,3,4,5,6,7,8,9,10,11", *@
+@*                             options = new[] *@
+@*                             { *@
+@*                                 new { label = "选项0", value = 0 }, *@
+@*                                 new { label = "选项1", value = 1 }, *@
+@*                                 new { label = "选项2", value = 2 }, *@
+@*                                 new { label = "选项3", value = 3 }, *@
+@*                                 new { label = "选项4", value = 4 }, *@
+@*                                 new { label = "选项5", value = 5 }, *@
+@*                                 new { label = "选项6", value = 6 }, *@
+@*                                 new { label = "选项7", value = 7 }, *@
+@*                                 new { label = "选项8", value = 8 }, *@
+@*                                 new { label = "选项9", value = 9 }, *@
+@*                                 new { label = "选项10", value = 10 }, *@
+@*                                 new { label = "选项11", value = 11 } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "button-toolbar", *@
+@*                             name = "button-toolbar", *@
+@*                             buttons = new object[] *@
+@*                             { *@
+@*                                 new *@
+@*                                 { *@
+@*                                     type = "button", *@
+@*                                     label = "提交", *@
+@*                                     level = "primary", *@
+@*                                     visibleOn = "${!isStatic}", *@
+@*                                     onEvent = new *@
+@*                                     { *@
+@*                                         click = new *@
+@*                                         { *@
+@*                                             actions = new object[] *@
+@*                                             { *@
+@*                                                 new *@
+@*                                                 { *@
+@*                                                     actionType = "setValue", *@
+@*                                                     componentId = "allFormSwitch", *@
+@*                                                     args = new *@
+@*                                                     { *@
+@*                                                         value = new *@
+@*                                                         { *@
+@*                                                             isStatic = true *@
+@*                                                         } *@
+@*                                                     } *@
+@*                                                 }, *@
+@*                                                 new *@
+@*                                                 { *@
+@*                                                     actionType = "static", *@
+@*                                                     componentId = "allFormSwitch" *@
+@*                                                 } *@
+@*                                             } *@
+@*                                         } *@
+@*                                     } *@
+@*                                 }, *@
+@*                                 new *@
+@*                                 { *@
+@*                                     type = "button", *@
+@*                                     label = "编辑", *@
+@*                                     level = "primary", *@
+@*                                     visibleOn = "${isStatic}", *@
+@*                                     onEvent = new *@
+@*                                     { *@
+@*                                         click = new *@
+@*                                         { *@
+@*                                             actions = new object[] *@
+@*                                             { *@
+@*                                                 new *@
+@*                                                 { *@
+@*                                                     actionType = "setValue", *@
+@*                                                     componentId = "allFormSwitch", *@
+@*                                                     args = new *@
+@*                                                     { *@
+@*                                                         value = new *@
+@*                                                         { *@
+@*                                                             isStatic = false *@
+@*                                                         } *@
+@*                                                     } *@
+@*                                                 }, *@
+@*                                                 new *@
+@*                                                 { *@
+@*                                                     actionType = "nonstatic", *@
+@*                                                     componentId = "allFormSwitch" *@
+@*                                                 } *@
+@*                                             } *@
+@*                                         } *@
+@*                                     } *@
+@*                                 } *@
+@*                             }, *@
+@*                             className = "show" *@
+@*                         } *@
+@*                     }, *@
+@*                     actions = new object[] { } *@
+@*                 }, *@
+@*                 new *@
+@*                 { *@
+@*                     type = "form", *@
+@*                     title = "单个表单项状态切换", *@
+@*                     mode = "horizontal", *@
+@*                     labelWidth = 150, *@
+@*                     body = new object[] *@
+@*                     { *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-text", *@
+@*                             id = "formItemSwitch", *@
+@*                             name = "var1", *@
+@*                             label = "使用事件动作状态切换", *@
+@*                             value = "text" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "button-toolbar", *@
+@*                             name = "button-toolbar", *@
+@*                             buttons = new object[] *@
+@*                             { *@
+@*                                 new *@
+@*                                 { *@
+@*                                     type = "button", *@
+@*                                     label = "输入态", *@
+@*                                     level = "primary", *@
+@*                                     onEvent = new *@
+@*                                     { *@
+@*                                         click = new *@
+@*                                         { *@
+@*                                             actions = new object[] *@
+@*                                             { *@
+@*                                                 new *@
+@*                                                 { *@
+@*                                                     actionType = "nonstatic", *@
+@*                                                     componentId = "formItemSwitch" *@
+@*                                                 } *@
+@*                                             } *@
+@*                                         } *@
+@*                                     } *@
+@*                                 }, *@
+@*                                 new *@
+@*                                 { *@
+@*                                     type = "button", *@
+@*                                     label = "展示态", *@
+@*                                     level = "primary", *@
+@*                                     onEvent = new *@
+@*                                     { *@
+@*                                         click = new *@
+@*                                         { *@
+@*                                             actions = new object[] *@
+@*                                             { *@
+@*                                                 new *@
+@*                                                 { *@
+@*                                                     actionType = "static", *@
+@*                                                     componentId = "formItemSwitch" *@
+@*                                                 } *@
+@*                                             } *@
+@*                                         } *@
+@*                                     } *@
+@*                                 } *@
+@*                             }, *@
+@*                             className = "show" *@
+@*                         } *@
+@*                     }, *@
+@*                     actions = new object[] { } *@
+@*                 }, *@
+@*                 new *@
+@*                 { *@
+@*                     type = "form", *@
+@*                     title = "表单项展示态属性", *@
+@*                     mode = "horizontal", *@
+@*                     labelWidth = 150, *@
+@*                     body = new object[] *@
+@*                     { *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-text", *@
+@*                             id = "formItemInputText", *@
+@*                             name = "var1", *@
+@*                             label = "输入态<br />不设置<br />或static: false", *@
+@*                             value = "text", *@
+@*                             desc = "使用staticOn 支持表达式控制，用法类似" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-text", *@
+@*                             id = "formItemInputText", *@
+@*                             name = "var1", *@
+@*                             label = "展示态<br />static: true", *@
+@*                             value = "text", *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-text", *@
+@*                             id = "formItemInputText", *@
+@*                             name = "var2", *@
+@*                             label = "空值时的占位 staticPlaceholder", *@
+@*                             staticPlaceholder = "空值占位符，默认为 -", *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-text", *@
+@*                             name = "var3", *@
+@*                             label = "自定义展示态schema", *@
+@*                             value = "表单项value", *@
+@*                             staticSchema = new object[] *@
+@*                             { *@
+@*                                 "自定义前缀 | ", *@
+@*                                 new { type = "tpl", tpl = "${var3}" }, *@
+@*                                 " | 自定义后缀" *@
+@*                             } *@
+@*                         } *@
+@*                     }, *@
+@*                     actions = new object[] { } *@
+@*                 }, *@
+@*                 new *@
+@*                 { *@
+@*                     type = "form", *@
+@*                     api = "/api/mock2/saveForm?waitSeconds=2", *@
+@*                     id = "myform", *@
+@*                     mode = "horizontal", *@
+@*                     autoFocus = true, *@
+@*                     panel = false, *@
+@*                     debug = false, *@
+@*                     title = "目前支持输入态展示态切换的表单项", *@
+@*                     labelWidth = 150, *@
+@*                     staticClassName = "now-is-static", *@
+@*                     body = new object[] *@
+@*                     { *@
+@*                         new *@
+@*                         { *@
+@*                             type = "button-toolbar", *@
+@*                             name = "button-toolbar", *@
+@*                             buttons = new object[] *@
+@*                             { *@
+@*                                 new *@
+@*                                 { *@
+@*                                     type = "button", *@
+@*                                     label = "切换为输入态", *@
+@*                                     level = "primary", *@
+@*                                     onEvent = new *@
+@*                                     { *@
+@*                                         click = new *@
+@*                                         { *@
+@*                                             actions = new object[] *@
+@*                                             { *@
+@*                                                 new *@
+@*                                                 { *@
+@*                                                     actionType = "nonstatic", *@
+@*                                                     componentId = "myform" *@
+@*                                                 } *@
+@*                                             } *@
+@*                                         } *@
+@*                                     } *@
+@*                                 }, *@
+@*                                 new *@
+@*                                 { *@
+@*                                     type = "button", *@
+@*                                     label = "切换为展示态", *@
+@*                                     level = "primary", *@
+@*                                     onEvent = new *@
+@*                                     { *@
+@*                                         click = new *@
+@*                                         { *@
+@*                                             actions = new object[] *@
+@*                                             { *@
+@*                                                 new *@
+@*                                                 { *@
+@*                                                     actionType = "static", *@
+@*                                                     componentId = "myform" *@
+@*                                                 } *@
+@*                                             } *@
+@*                                         } *@
+@*                                     } *@
+@*                                 } *@
+@*                             }, *@
+@*                             className = "show" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-text", *@
+@*                             name = "var1", *@
+@*                             label = "文本", *@
+@*                             value = "text", *@
+@*                             desc = "这是一段描述文字", *@
+@*                             id = "my-input-text" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-password", *@
+@*                             name = "password", *@
+@*                             label = "密码", *@
+@*                             inline = true, *@
+@*                             value = "123456" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-email", *@
+@*                             validations = "isEmail", *@
+@*                             label = "邮箱", *@
+@*                             name = "email", *@
+@*                             value = "hello@baidu.com" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-url", *@
+@*                             validations = "isUrl", *@
+@*                             label = "url", *@
+@*                             name = "url", *@
+@*                             value = "https://www.baidu.com" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-number", *@
+@*                             name = "number", *@
+@*                             label = "数字", *@
+@*                             placeholder = "", *@
+@*                             inline = true, *@
+@*                             value = 99999, *@
+@*                             min = 1, *@
+@*                             max = 1000000, *@
+@*                             kilobitSeparator = true, *@
+@*                             prefix = "前缀", *@
+@*                             suffix = "后缀" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "native-date", *@
+@*                             name = "native-date", *@
+@*                             label = "native日期选择", *@
+@*                             value = "2022-08-18" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "native-time", *@
+@*                             name = "native-time", *@
+@*                             label = "native时间选择", *@
+@*                             value = "16:10" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "native-number", *@
+@*                             name = "native-number", *@
+@*                             label = "native数字输入", *@
+@*                             value = "6" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-tag", *@
+@*                             name = "tag", *@
+@*                             label = "标签", *@
+@*                             placeholder = "", *@
+@*                             clearable = true, *@
+@*                             value = "zhugeliang,caocao", *@
+@*                             options = new object[] *@
+@*                             { *@
+@*                                 new { label = "诸葛亮", value = "zhugeliang" }, *@
+@*                                 new { label = "曹操", value = "caocao" }, *@
+@*                                 new { label = "钟无艳", value = "zhongwuyan" }, *@
+@*                                 new *@
+@*                                 { *@
+@*                                     label = "野核", *@
+@*                                     children = new object[] *@
+@*                                     { *@
+@*                                         new { label = "李白", value = "libai" }, *@
+@*                                         new { label = "韩信", value = "hanxin" }, *@
+@*                                         new { label = "云中君", value = "yunzhongjun" } *@
+@*                                     } *@
+@*                                 } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "checkboxes", *@
+@*                             name = "checkboxes", *@
+@*                             label = "多选框", *@
+@*                             value = "1,2", *@
+@*                             options = new object[] *@
+@*                             { *@
+@*                                 new { label = "选项1", value = 1 }, *@
+@*                                 new { label = "选项2", value = 2 }, *@
+@*                                 new { label = "选项3", value = 3 } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "radios", *@
+@*                             name = "radios", *@
+@*                             label = "单选", *@
+@*                             value = 3, *@
+@*                             options = new object[] *@
+@*                             { *@
+@*                                 new { label = "选项1", value = 1 }, *@
+@*                                 new { label = "选项2", value = 2 }, *@
+@*                                 new { label = "选项3", value = 3 } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "button-group-select", *@
+@*                             name = "btn-group", *@
+@*                             label = "按钮组", *@
+@*                             description = "类似于单选效果", *@
+@*                             value = 1, *@
+@*                             options = new object[] *@
+@*                             { *@
+@*                                 new { label = "选项 A", value = 1 }, *@
+@*                                 new { label = "选项 B", value = 2 }, *@
+@*                                 new { label = "选项 C", value = 3 } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "list-select", *@
+@*                             name = "List", *@
+@*                             label = "List", *@
+@*                             desc = "也差不多，只是展示方式不一样", *@
+@*                             value = 3, *@
+@*                             options = new object[] *@
+@*                             { *@
+@*                                 new { label = "选项 A", value = 1 }, *@
+@*                                 new { label = "选项 B", value = 2 }, *@
+@*                                 new { label = "选项 C", value = 3 } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "list-select", *@
+@*                             name = "list2", *@
+@*                             label = "List", *@
+@*                             desc = "可多选", *@
+@*                             multiple = true, *@
+@*                             value = "0,1", *@
+@*                             options = new object[] *@
+@*                             { *@
+@*                                 new { label = "选项0", value = 0 }, *@
+@*                                 new { label = "选项1", value = 1 }, *@
+@*                                 new { label = "选项2", value = 2 } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "list-select", *@
+@*                             name = "list4", *@
+@*                             label = "List", *@
+@*                             imageClassName = "thumb-lg", *@
+@*                             desc = "支持放张图片", *@
+@*                             value = "0,1", *@
+@*                             options = new object[] *@
+@*                             { *@
+@*                                 new { image = "/examples/static/photo/3893101144.jpg", value = 0, label = "图片0" }, *@
+@*                                 new { image = "/examples/static/photo/3893101144.jpg", value = 1, label = "图片1" }, *@
+@*                                 new { image = "/examples/static/photo/3893101144.jpg", value = 2, label = "图片2" } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "list-select", *@
+@*                             name = "list5", *@
+@*                             label = "List", *@
+@*                             desc = "支持文字排版", *@
+@*                             multiple = true, *@
+@*                             value = 1, *@
+@*                             options = new object[] *@
+@*                             { *@
+@*                                 new *@
+@*                                 { *@
+@*                                     value = 0, *@
+@*                                     body = "<div class='m-l-sm m-r-sm m-b-sm m-t-xs'>\n                                  <div class='text-md p-b-xs b-inherit b-b m-b-xs'>套餐：C01</div>\n                                  <div class='text-sm'>CPU：22核</div>\n                                  <div class='text-sm'>内存：10GB</div>\n                                  <div class='text-sm'>SSD盘：1024GB</div>\n                              </div>" *@
+@*                                 }, *@
+@*                                 new *@
+@*                                 { *@
+@*                                     value = 1, *@
+@*                                     body = "<div class='m-l-sm m-r-sm m-b-sm m-t-xs'>\n                                  <div class='text-md p-b-xs b-inherit b-b m-b-xs'>套餐：C02</div>\n                                  <div class='text-sm'>CPU：23核</div>\n                                  <div class='text-sm'>内存：11GB</div>\n                                  <div class='text-sm'>SSD盘：1124GB</div>\n                              </div>" *@
+@*                                 }, *@
+@*                                 new *@
+@*                                 { *@
+@*                                     value = 2, *@
+@*                                     body = "<div class='m-l-sm m-r-sm m-b-sm m-t-xs'>\n                                  <div class='text-md p-b-xs b-inherit b-b m-b-xs'>套餐：C03</div>\n                                  <div class='text-sm'>CPU：24核</div>\n                                  <div class='text-sm'>内存：12GB</div>\n                                  <div class='text-sm'>SSD盘：1224GB</div>\n                              </div>" *@
+@*                                 } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-rating", *@
+@*                             count = 5, *@
+@*                             value = 4, *@
+@*                             label = "评分", *@
+@*                             name = "rating", *@
+@*                             half = false *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "switch", *@
+@*                             name = "switch", *@
+@*                             label = "开关", *@
+@*                             value = true *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "switch", *@
+@*                             name = "switch4", *@
+@*                             value = true, *@
+@*                             onText = "开启", *@
+@*                             offText = "关闭", *@
+@*                             label = "开关文字" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "switch", *@
+@*                             name = "switch5", *@
+@*                             value = true, *@
+@*                             onText = new { type = "icon", icon = "fa fa-check-circle" }, *@
+@*                             offText = new { type = "icon", icon = "fa fa-times-circle" }, *@
+@*                             label = "开关icon" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "checkbox", *@
+@*                             name = "checkbox", *@
+@*                             label = "勾选框", *@
+@*                             option = "同意协议", *@
+@*                             value = true *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "select", *@
+@*                             name = "type", *@
+@*                             label = "下拉单选", *@
+@*                             inline = true, *@
+@*                             value = 1, *@
+@*                             options = new object[] *@
+@*                             { *@
+@*                                 new { label = "选项1", value = 1 }, *@
+@*                                 new { label = "选项2", value = 2 }, *@
+@*                                 new { label = "内容很长很长的选项，内容很长很长的选项", value = 3 } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "select", *@
+@*                             name = "type2", *@
+@*                             label = "多选", *@
+@*                             multiple = true, *@
+@*                             inline = true, *@
+@*                             value = "1,2", *@
+@*                             options = new object[] *@
+@*                             { *@
+@*                                 new { label = "选项1", value = 1 }, *@
+@*                                 new { label = "选项2", value = 2 } *@
+@*                             } *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "input-color", *@
+@*                             name = "color", *@
+@*                             label = "Color", *@
+@*                             value = "#dc1717" *@
+@*                         }, *@
+@*                         new *@
+@*                         { *@
+@*                             type = "divider" *@
+@* *@
+@*                             return data; *@
+@*                         } *@
+@*                     } *@

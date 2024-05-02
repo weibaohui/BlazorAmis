@@ -1,0 +1,182 @@
+
+@page "/Form/ConditionBuilder"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+    private object GetObj()
+    {
+        var data = new
+{
+    title = "条件生成器",
+    body = new object[]
+    {
+        new
+        {
+            type = "form",
+            api = "/api/mock2/saveForm?waitSeconds=2",
+            title = "",
+            mode = "horizontal",
+            horizontal = new
+            {
+                leftFixed = true
+            },
+            actions = new object[]
+            {
+                new
+                {
+                    label = "查看数据",
+                    type = "button",
+                    actionType = "dialog",
+                    dialog = new
+                    {
+                        title = "数据",
+                        body = "<pre>${conditions|json:2}</pre>"
+                    }
+                }
+            },
+            body = new object[]
+            {
+                new
+                {
+                    type = "condition-builder",
+                    label = "条件组件",
+                    name = "conditions",
+                    description = "适合让用户自己拼查询条件，然后后端根据数据生成 query where",
+                    fields = new object[]
+                    {
+                        new
+                        {
+                            name = "switch",
+                            type = "custom",
+                            label = "开关",
+                            value = new
+                            {
+                                name = "checkbox",
+                                type = "checkbox",
+                                label = "勾选框",
+                                option = "选项说明"
+                            },
+                            operators = new object[]
+                            {
+                                "equal",
+                                new
+                                {
+                                    label = "属于",
+                                    value = "belong"
+                                },
+                                new
+                                {
+                                    label = "不属于",
+                                    value = "not_belong",
+                                    values = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "input-date",
+                                            name = "date1",
+                                            label = "日期",
+                                            inputFormat = "YYYY年MM月DD日"
+                                        },
+                                        new
+                                        {
+                                            type = "tpl",
+                                            tpl = "~"
+                                        },
+                                        new
+                                        {
+                                            type = "input-date",
+                                            name = "date2",
+                                            label = "日期",
+                                            inputFormat = "YYYY年MM月DD日"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "文本",
+                            type = "text",
+                            name = "text"
+                        },
+                        new
+                        {
+                            label = "数字",
+                            type = "number",
+                            name = "number"
+                        },
+                        new
+                        {
+                            label = "布尔",
+                            type = "boolean",
+                            name = "boolean"
+                        },
+                        new
+                        {
+                            label = "选项",
+                            type = "select",
+                            name = "select",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "A",
+                                    value = "a"
+                                },
+                                new
+                                {
+                                    label = "B",
+                                    value = "b"
+                                },
+                                new
+                                {
+                                    label = "C",
+                                    value = "c"
+                                },
+                                new
+                                {
+                                    label = "D",
+                                    value = "d"
+                                },
+                                new
+                                {
+                                    label = "E",
+                                    value = "e"
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "日期",
+                            children = new object[]
+                            {
+                                new
+                                {
+                                    label = "日期",
+                                    type = "date",
+                                    name = "date"
+                                },
+                                new
+                                {
+                                    label = "时间",
+                                    type = "time",
+                                    name = "time"
+                                },
+                                new
+                                {
+                                    label = "日期时间",
+                                    type = "datetime",
+                                    name = "datetime"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+};
+        return data;
+        
+    }
+}

@@ -1,0 +1,210 @@
+
+@page "/Form/Tabs"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+    private object GetObj()
+    {
+        var data = new {
+  title = "Tabs 示例",
+  body = new object[] {
+    new {
+      type = "form",
+      mode = "horizontal",
+      api = "/api/mock2/form/saveForm?waitSeconds=2",
+      title = "",
+      actions = new object[] {
+        new {
+          type = "button",
+          actionType = "dialog",
+          label = "弹框中的 Tabs",
+          level = "info",
+          dialog = new {
+            title = "",
+            body = new {
+              type = "form",
+              mode = "horizontal",
+              horizontal = new {
+                leftFixed = "xs"
+              },
+              api = "/api/mock2/form/saveForm?waitSeconds=2",
+              actions = new object[] {
+                new {
+                  type = "submit",
+                  label = "提交",
+                  primary = true
+                }
+              },
+              body = new object[] {
+                new {
+                  type = "tabs",
+                  tabs = new object[] {
+                    new {
+                      title = "基本信息",
+                      body = new object[] {
+                        new {
+                          type = "group",
+                          body = new object[] {
+                            new {
+                              type = "input-email",
+                              name = "email1",
+                              placeholder = "请输入邮箱地址",
+                              label = "邮箱"
+                            },
+                            new {
+                              type = "input-password",
+                              name = "password",
+                              placeholder = "密码",
+                              label = false
+                            }
+                          }
+                        },
+                        new {
+                          type = "divider"
+                        },
+                        new {
+                          type = "group",
+                          body = new object[] {
+                            new {
+                              type = "input-email",
+                              name = "email2",
+                              placeholder = "请输入邮箱地址",
+                              label = "邮箱"
+                            },
+                            new {
+                              type = "checkbox",
+                              name = "rememberMe",
+                              label = false,
+                              option = "记住我"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    new {
+                      title = "其他信息",
+                      body = new object[] {
+                        new {
+                          type = "input-email",
+                          name = "email3",
+                          placeholder = "请输入邮箱地址",
+                          label = "邮箱"
+                        },
+                        new {
+                          type = "divider"
+                        },
+                        new {
+                          type = "checkbox",
+                          name = "rememberMe2",
+                          option = "记住我"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        new {
+          type = "submit",
+          label = "提交",
+          primary = true
+        }
+      },
+      body = new object[] {
+        new {
+          type = "tabs",
+          name = "outertabs",
+          className = "m-b",
+          tabs = new object[] {
+            new {
+              title = "基本信息",
+              hash = "tab1",
+              body = new object[] {
+                new {
+                  type = "group",
+                  body = new object[] {
+                    new {
+                      type = "input-email",
+                      name = "email",
+                      placeholder = "请输入邮箱地址",
+                      label = "邮箱"
+                    },
+                    new {
+                      type = "input-password",
+                      name = "password",
+                      placeholder = "密码",
+                      label = false
+                    }
+                  }
+                },
+                new {
+                  type = "divider"
+                },
+                new {
+                  type = "group",
+                  body = new object[] {
+                    new {
+                      type = "input-email",
+                      name = "email2",
+                      placeholder = "请输入邮箱地址",
+                      label = "邮箱"
+                    },
+                    new {
+                      type = "checkbox",
+                      name = "rememberMe",
+                      label = false,
+                      option = "记住我"
+                    }
+                  }
+                }
+              }
+            },
+            new {
+              title = "其他信息",
+              hash = "tab2",
+              body = new object[] {
+                new {
+                  type = "input-email",
+                  name = "email3",
+                  placeholder = "请输入邮箱地址",
+                  label = "邮箱"
+                },
+                new {
+                  type = "divider"
+                },
+                new {
+                  type = "checkbox",
+                  name = "rememberMe4",
+                  label = "记住我"
+                }
+              }
+            }
+          }
+        },
+        new {
+          type = "radios",
+          name = "outertabs",
+          label = "Tabs值",
+          mode = "normal",
+          description = "如果 tabs 设置了 name 是可以跟表单值联动的，默认并不会开启此功能。",
+          options = new object[] {
+            new {
+              label = "基本信息",
+              value = "基本信息"
+            },
+            new {
+              label = "其他信息",
+              value = "其他信息"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+        return data;
+        
+    }
+}

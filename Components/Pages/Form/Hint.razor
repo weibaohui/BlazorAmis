@@ -1,0 +1,88 @@
+
+@page "/Form/Hint"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+    private object GetObj()
+    {
+        var data = new {
+    title = "其他类型演示",
+    body = new object[] {
+        new {
+            type = "form",
+            api = "/api/mock2/saveForm?waitSeconds=2",
+            title = "Hint demo",
+            mode = "horizontal",
+            horizontal = new {
+                leftFixed = true
+            },
+            body = new object[] {
+                new {
+                    type = "input-group",
+                    size = "md",
+                    label = "Icon 组合",
+                    body = new object[] {
+                        new {
+                            type = "icon",
+                            addOnclassName = "no-bg",
+                            className = "text-sm",
+                            icon = "search",
+                            vendor = "iconfont"
+                        },
+                        new {
+                            type = "input-text",
+                            placeholder = "搜索作业ID/名称",
+                            inputClassName = "b-l-none p-l-none",
+                            name = "jobName"
+                        }
+                    }
+                },
+                new {
+                    name = "a",
+                    type = "input-text",
+                    label = "ID",
+                    value = "",
+                    size = "xs",
+                    hint = "比如输入 a-xxxx-xxx"
+                },
+                new {
+                    name = "b",
+                    type = "input-text",
+                    label = "ID",
+                    value = "",
+                    size = "sm",
+                    hint = "比如输入 a-xxxx-xxx"
+                },
+                new {
+                    name = "c",
+                    type = "input-text",
+                    label = "ID",
+                    value = "",
+                    size = "md",
+                    hint = "比如输入 a-xxxx-xxx"
+                },
+                new {
+                    name = "d",
+                    type = "input-text",
+                    label = "ID",
+                    value = "",
+                    size = "lg",
+                    hint = "比如输入 a-xxxx-xxx"
+                },
+                new {
+                    name = "tag",
+                    type = "input-tag",
+                    label = "Tag",
+                    size = "md",
+                    clearable = true,
+                    placeholder = "多个标签以逗号分隔",
+                    options = new string[] { "周小度", "杜小度" }
+                }
+            }
+        }
+    }
+};
+        return data;
+        
+    }
+}

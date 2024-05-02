@@ -1,0 +1,134 @@
+@page "/Form/InputKVS"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            body = new
+            {
+                type = "form",
+                title = "input-kvs 实现复杂嵌套数据结构",
+                mode = "horizontal",
+                debug = true,
+                submitText = "",
+                submitOnChange = false,
+                body = new object[]
+                {
+                    new
+                    {
+                        type = "input-kvs",
+                        name = "dataModel",
+                        addButtonText = "新增数据源权限",
+                        keyItem = new
+                        {
+                            label = "数据源名",
+                            type = "select",
+                            options = new string[] { "local-mysql", "remote-postgres", "cloud-oracle" }
+                        },
+                        valueItems = new object[]
+                        {
+                            new
+                            {
+                                label = "数据源级别权限",
+                                type = "checkboxes",
+                                name = "permissions",
+                                joinValues = false,
+                                extractValue = true,
+                                options = new object[]
+                                {
+                                    new { label = "查询", value = "select" },
+                                    new { label = "写入", value = "insert" },
+                                    new { label = "更新", value = "update" },
+                                    new { label = "删除", value = "delete" }
+                                }
+                            },
+                            new
+                            {
+                                type = "input-kvs",
+                                label = "表权限",
+                                addButtonText = "新增表权限",
+                                name = "dataModel",
+                                keyItem = new
+                                {
+                                    label = "表名",
+                                    mode = "horizontal",
+                                    type = "select",
+                                    options = new string[] { "table1", "table2", "table3" }
+                                },
+                                valueItems = new object[]
+                                {
+                                    new
+                                    {
+                                        type = "switch",
+                                        name = "canInsert",
+                                        mode = "horizontal",
+                                        label = "是否可写入"
+                                    },
+                                    new
+                                    {
+                                        type = "switch",
+                                        name = "canDelete",
+                                        mode = "horizontal",
+                                        label = "是否可删除"
+                                    },
+                                    new
+                                    {
+                                        type = "input-kvs",
+                                        label = "字段级别权限",
+                                        addButtonText = "新增字段权限",
+                                        name = "field",
+                                        keyItem = new
+                                        {
+                                            label = "字段名",
+                                            mode = "horizontal",
+                                            type = "select",
+                                            options = new string[] { "id", "title", "content" }
+                                        },
+                                        valueIsArray = true,
+                                        valueItems = new object[]
+                                        {
+                                            new
+                                            {
+                                                type = "checkboxes",
+                                                name = "_value",
+                                                joinValues = false,
+                                                extractValue = true,
+                                                options = new object[]
+                                                {
+                                                    new { label = "查询", value = "select" },
+                                                    new { label = "写入", value = "insert" },
+                                                    new { label = "更新", value = "update" },
+                                                    new { label = "删除", value = "delete" }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    new
+                                    {
+                                        name = "fieldSelectExp",
+                                        label = "字段表达式权限",
+                                        type = "input-array",
+                                        value = new string[] { "SUM(fieldKey)" },
+                                        addButtonText = "新增表达式权限",
+                                        inline = true,
+                                        items = new
+                                        {
+                                            size = "md",
+                                            type = "input-text"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

@@ -1,0 +1,162 @@
+
+@page "/Form/FieldSet"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+    private object GetObj()
+    {
+        var data = new {
+    title = "FieldSet 示例",
+    body = new object[] {
+        new {
+            type = "form",
+            mode = "horizontal",
+            api = "/api/mock2/saveForm?waitSeconds=2",
+            actions = new object[] {
+                new {
+                    type = "submit",
+                    label = "提交",
+                    primary = true
+                }
+            },
+            collapsable = true,
+            title = "fieldSet 可以对表单元素做个分组",
+            body = new object[] {
+                new {
+                    type = "fieldSet",
+                    title = "基本信息",
+                    collapsable = true,
+                    body = new object[] {
+                        new {
+                            type = "group",
+                            body = new object[] {
+                                new {
+                                    type = "input-email",
+                                    name = "email",
+                                    placeholder = "请输入邮箱地址",
+                                    label = "邮箱"
+                                },
+                                new {
+                                    type = "input-password",
+                                    name = "password",
+                                    label = false,
+                                    placeholder = "Password"
+                                }
+                            }
+                        },
+                        new {
+                            type = "divider"
+                        },
+                        new {
+                            type = "group",
+                            body = new object[] {
+                                new {
+                                    type = "input-email",
+                                    name = "email",
+                                    placeholder = "请输入邮箱地址",
+                                    label = "邮箱"
+                                },
+                                new {
+                                    type = "checkbox",
+                                    name = "rememberMe",
+                                    label = false,
+                                    option = "Remember me"
+                                }
+                            }
+                        }
+                    }
+                },
+                new {
+                    title = "其他信息",
+                    type = "fieldSet",
+                    body = new object[] {
+                        new {
+                            type = "input-email",
+                            name = "email",
+                            placeholder = "请输入邮箱地址",
+                            label = "邮箱"
+                        },
+                        new {
+                            type = "divider"
+                        },
+                        new {
+                            type = "checkbox",
+                            name = "rememberMe",
+                            option = "记住我"
+                        }
+                    }
+                }
+            }
+        },
+        new {
+            title = "FieldSet 样式集",
+            type = "form",
+            body = new object[] {
+                new {
+                    title = "超级小",
+                    type = "fieldSet",
+                    collapsable = true,
+                    size = "xs",
+                    body = new object[] {
+                        new {
+                            type = "plain",
+                            text = "文本 ..."
+                        }
+                    }
+                },
+                new {
+                    title = "小尺寸",
+                    type = "fieldSet",
+                    collapsable = true,
+                    size = "sm",
+                    body = new object[] {
+                        new {
+                            type = "plain",
+                            text = "文本 ..."
+                        }
+                    }
+                },
+                new {
+                    title = "正常尺寸",
+                    type = "fieldSet",
+                    collapsable = true,
+                    size = "base",
+                    body = new object[] {
+                        new {
+                            type = "plain",
+                            text = "文本 ..."
+                        }
+                    }
+                },
+                new {
+                    title = "中大尺寸",
+                    type = "fieldSet",
+                    collapsable = true,
+                    size = "md",
+                    body = new object[] {
+                        new {
+                            type = "plain",
+                            text = "文本 ..."
+                        }
+                    }
+                },
+                new {
+                    title = "超大尺寸",
+                    type = "fieldSet",
+                    collapsable = true,
+                    size = "lg",
+                    body = new object[] {
+                        new {
+                            type = "plain",
+                            text = "文本 ..."
+                        }
+                    }
+                }
+            }
+        }
+    }
+};
+        return data;
+        
+    }
+}

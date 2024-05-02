@@ -1,0 +1,65 @@
+@page "/Form/Schem"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "Person",
+            type = "object",
+            properties = new
+            {
+                firstName = new
+                {
+                    title = "First Name",
+                    type = "string"
+                },
+                lastName = new
+                {
+                    type = "string"
+                },
+                age = new
+                {
+                    description = "Age in years",
+                    type = "integer",
+                    minimum = 0
+                },
+                tag = new
+                {
+                    type = "array",
+                    description = "Tags",
+                    // default = new string[] { "IT" },
+                    items = new
+                    {
+                        type = "text"
+                    }
+                },
+                clients = new
+                {
+                    type = "array",
+                    description = "Tags",
+                    items = new object[]
+                    {
+                        new
+                        {
+                            firstName = new
+                            {
+                                title = "First Name",
+                                type = "string"
+                            },
+                            lastName = new
+                            {
+                                type = "string"
+                            }
+                        }
+                    }
+                }
+            },
+            required = new string[] { "firstName", "lastName" }
+        };
+        return data;
+    }
+
+}
