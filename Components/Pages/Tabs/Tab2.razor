@@ -1,0 +1,41 @@
+
+@page "/Tabs/Tab2"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+    private object GetObj()
+    {
+        var data = new {
+    type = "page",
+    title = "选项卡2页面",
+    body = new object[] {
+        new {
+            type = "nav",
+            links = new object[] {
+                new {
+                    label = "选项卡1",
+                    icon = "fa fa-cloud",
+                    to = "./tab1"
+                },
+                new {
+                    label = "选项卡2",
+                    to = "./tab2"
+                },
+                new {
+                    label = "选项卡3",
+                    icon = "fa fa-youtube",
+                    to = "./tab3"
+                }
+            }
+        },
+        new {
+            type = "wrapper",
+            className = "wrapper bg-white b-l b-b b-r",
+            body = "选项卡2的内容"
+        }
+    }
+};
+        return data;
+        
+    }
+}

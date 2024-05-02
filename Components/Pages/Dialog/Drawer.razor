@@ -1,0 +1,401 @@
+
+@page "/Dialog/Drawer"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+    private object GetObj()
+    {
+        var data = new {
+    type = "page",
+    title = "Drawer",
+    body = new object[] {
+        new {
+            type = "button-toolbar",
+            className = "block",
+            buttons = new object[] {
+                new {
+                    type = "button",
+                    label = "左侧弹出-极小框",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "left",
+                        size = "xs",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "左侧弹出-小框",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "left",
+                        size = "sm",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "左侧弹出-中框",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "left",
+                        size = "md",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "左侧弹出-大框",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "left",
+                        size = "lg",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "左侧弹出-超大",
+                    actionType = "drawer",
+                    level = "danger",
+                    drawer = new {
+                        position = "left",
+                        size = "xl",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                }
+            }
+        },
+        new {
+            type = "button-toolbar",
+            className = "block m-t",
+            buttons = new [] {
+                new {
+                    type = "button",
+                    label = "右侧弹出-极小框",
+                    level = "success",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "right",
+                        size = "xs",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "右侧弹出-小框",
+                    level = "success",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "right",
+                        size = "sm",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "右侧弹出-中框",
+                    level = "success",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "right",
+                        size = "md",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "右侧弹出-大框",
+                    level = "success",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "right",
+                        size = "lg",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "右侧弹出-超大",
+                    level = "danger",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "right",
+                        size = "xl",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                }
+            }
+        },
+        new {
+            type = "button-toolbar",
+            className = "block m-t",
+            buttons = new object[] {
+                new {
+                    type = "button",
+                    label = "顶部弹出-极小框",
+                    actionType = "drawer",
+                    level = "info",
+                    drawer = new {
+                        position = "top",
+                        size = "xs",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "顶部弹出-小框",
+                    level = "info",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "top",
+                        size = "sm",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "顶部弹出-中框",
+                    actionType = "drawer",
+                    level = "info",
+                    drawer = new {
+                        position = "top",
+                        size = "md",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "顶部弹出-大框",
+                    actionType = "drawer",
+                    level = "info",
+                    drawer = new {
+                        position = "top",
+                        size = "lg",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "顶部弹出 - 超大",
+                    level = "danger",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "top",
+                        size = "xl",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                }
+            }
+        },
+        new {
+            type = "button-toolbar",
+            className = "block m-t",
+            buttons = new object[] {
+                new {
+                    type = "button",
+                    label = "底部弹出-极小框",
+                    actionType = "drawer",
+                    level = "primary",
+                    drawer = new {
+                        position = "bottom",
+                        size = "xs",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "底部弹出-小框",
+                    level = "primary",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "bottom",
+                        size = "sm",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "底部弹出-中框",
+                    actionType = "drawer",
+                    level = "primary",
+                    drawer = new {
+                        position = "bottom",
+                        size = "md",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "底部弹出-大框",
+                    actionType = "drawer",
+                    level = "primary",
+                    drawer = new {
+                        position = "bottom",
+                        size = "lg",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "底部弹出-超大",
+                    level = "danger",
+                    actionType = "drawer",
+                    drawer = new {
+                        position = "bottom",
+                        size = "xl",
+                        title = "提示",
+                        body = "这是个简单的弹框"
+                    }
+                }
+            }
+        },
+        new {
+            type = "button-toolbar",
+            className = "block m-t",
+            buttons = new object[] {
+                new {
+                    type = "button",
+                    label = "多级弹框",
+                    actionType = "drawer",
+                    level = "danger",
+                    drawer = new {
+                        title = "提示",
+                        body = "这是个简单的弹框",
+                        closeOnEsc = true,
+                        actions = new object[] {
+                            new {
+                                type = "button",
+                                actionType = "confirm",
+                                label = "确认",
+                                primary = true
+                            },
+                            new {
+                                type = "button",
+                                actionType = "drawer",
+                                label = "再弹一个",
+                                drawer = new {
+                                    position = "left",
+                                    title = "弹框中的弹框",
+                                    closeOnEsc = true,
+                                    body = "如果你想，可以无限弹下去",
+                                    actions = new [] {
+                                        new {
+                                            type = "button",
+                                            actionType = "drawer",
+                                            label = "来吧",
+                                            level = "info",
+                                            drawer = new {
+                                                position = "right",
+                                                title = "弹框中的弹框",
+                                                closeOnEsc = true,
+                                                body = "如果你想，可以无限弹下去",
+                                                actions = new [] {
+                                                    new {
+                                                        type = "button",
+                                                        actionType = "confirm",
+                                                        label = "可以了",
+                                                        primary = true
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "交叉测试",
+                    actionType = "drawer",
+                    className = "m-l-xs",
+                    level = "danger",
+                    drawer = new {
+                        title = "提示",
+                        closeOnEsc = true,
+                        body = "这是个简单的弹框",
+                        actions = new object[] {
+                            new {
+                                type = "button",
+                                actionType = "confirm",
+                                label = "确认",
+                                primary = true
+                            },
+                            new {
+                                type = "button",
+                                actionType = "dialog",
+                                closeOnEsc = true,
+                                label = "再弹一个",
+                                dialog = new {
+                                    position = "left",
+                                    title = "弹框中的弹框",
+                                    closeOnEsc = true,
+                                    body = "如果你想，可以无限弹下去",
+                                    actions = new [] {
+                                        new {
+                                            type = "button",
+                                            actionType = "drawer",
+                                            label = "来吧",
+                                            level = "info",
+                                            drawer = new {
+                                                position = "right",
+                                                title = "弹框中的弹框",
+                                                body = "如果你想，可以无限弹下去",
+                                                closeOnEsc = true,
+                                                actions = new [] {
+                                                    new {
+                                                        type = "button",
+                                                        actionType = "confirm",
+                                                        label = "可以了",
+                                                        primary = true
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new {
+                    type = "button",
+                    label = "可拉拽调整大小",
+                    actionType = "drawer",
+                    level = "danger",
+                    drawer = new {
+                        title = "提示",
+                        closeOnEsc = true,
+                        resizable = true,
+                        body = "这是个简单的弹框"
+                    }
+                }
+            }
+        }
+    }
+};
+        return data;
+        
+    }
+}

@@ -1,0 +1,55 @@
+@page "/Tabs/Dynamic"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "动态选项卡",
+            subTitle = "根据变量动态生成",
+            data = new
+            {
+                arr = new object[]
+                {
+                    new
+                    {
+                        label = "收入",
+                        value = 123
+                    },
+                    new
+                    {
+                        label = "支出",
+                        value = 233
+                    }
+                }
+            },
+            body = new object[]
+            {
+                new
+                {
+                    type = "tabs",
+                    source = "${arr}",
+                    mode = "card",
+                    tabs = new object[]
+                    {
+                        new
+                        {
+                            title = "${label}-A",
+                            body = "选项卡内容 ${value}"
+                        },
+                        new
+                        {
+                            title = "${label}-B",
+                            body = "选项卡内容 ${value}"
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

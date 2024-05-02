@@ -1,4 +1,5 @@
 ﻿<Amis Data="GetMenu()"></Amis>
+
 @code
 {
     // https://github.com/baidu/amis/blob/master/examples/components/Example.jsx
@@ -38,9 +39,64 @@
                             new { label = "所有类型汇总", to = "/Form/Full" }
                         }
                     },
+                    new
+                    {
+                        label = "弹框",
+                        icon = "fa fa-bomb",
+                        children = new object[]
+                        {
+                            new
+                            {
+                                label = "对话框",
+                                to = "/Dialog/Simple",
+                            },
+                            new
+                            {
+                                label = "侧边弹出",
+                                to = "/Dialog/Drawer",
+                            }
+                        }
+                    },
+                    new
+                    {
+                        label = "选项卡",
+                        icon = "fa fa-clone",
+                        children = new object[]
+                        {
+                            new
+                            {
+                                label = "常规选项卡",
+                                to = "/Tabs/Normal",
+                            },
+                            new
+                            {
+                                label = "表单中选项卡分组",
+                                to = "/Tabs/Form",
+                            },
+                            new
+                            {
+                                label = "动态选项卡",
+                                to = "/Tabs/Dynamic",
+                            },
+                            new
+                            {
+                                label = "选项卡页面1",
+                                to = "/Tabs/Tab1",
+                            },
+                            new
+                            {
+                                label = "选项卡页面2",
+                                to = "/Tabs/Tab2",
+                            },
+                            new
+                            {
+                                label = "选项卡页面3",
+                                to = "/Tabs/Tab3",
+                            }
+                        }
+                    },
                 }
             }
         };
-
     }
 }
