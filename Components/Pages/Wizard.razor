@@ -1,0 +1,188 @@
+@page "/Wizard"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "表单向导",
+            body = new object[]
+            {
+                new
+                {
+                    type = "wizard",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm?waitSeconds=2",
+                    initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/initData?waitSeconds=2",
+                    steps = new object[]
+                    {
+                        new
+                        {
+                            title = "第一步",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "website",
+                                    label = "网址",
+                                    type = "input-url",
+                                    required = true
+                                },
+                                new
+                                {
+                                    name = "name",
+                                    label = "名称",
+                                    type = "input-text",
+                                    required = true
+                                }
+                            }
+                        },
+                        new
+                        {
+                            title = "Step 2",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "email2",
+                                    label = "邮箱",
+                                    type = "input-email",
+                                    required = true
+                                }
+                            }
+                        },
+                        new
+                        {
+                            title = "Step 3",
+                            body = new object[] { "这是最后一步了" }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "wizard",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm?waitSeconds=2",
+                    mode = "vertical",
+                    steps = new object[]
+                    {
+                        new
+                        {
+                            title = "第一步",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "website",
+                                    label = "网址",
+                                    type = "input-url",
+                                    required = true
+                                },
+                                new
+                                {
+                                    name = "email",
+                                    label = "邮箱",
+                                    type = "input-email",
+                                    required = true
+                                }
+                            }
+                        },
+                        new
+                        {
+                            title = "Step 2",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "email2",
+                                    label = "邮箱",
+                                    type = "input-email",
+                                    required = true
+                                }
+                            }
+                        },
+                        new
+                        {
+                            title = "Step 3",
+                            body = new object[] { "这是最后一步了" }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "wizard",
+                    steps = new object[]
+                    {
+                        new
+                        {
+                            title = "第一步",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "website",
+                                    label = "网址",
+                                    type = "input-url",
+                                    required = true
+                                },
+                                new
+                                {
+                                    name = "email",
+                                    label = "邮箱",
+                                    type = "input-email",
+                                    required = true
+                                }
+                            },
+                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm?waitSeconds=2"
+                        },
+                        new
+                        {
+                            title = "第二步",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "test1",
+                                    type = "input-email",
+                                    label = "Email",
+                                    value = "test@test.com"
+                                },
+                                new
+                                {
+                                    type = "divider"
+                                },
+                                new
+                                {
+                                    type = "input-text",
+                                    name = "test2",
+                                    label = "必填示例",
+                                    required = true
+                                },
+                                new
+                                {
+                                    type = "divider"
+                                },
+                                new
+                                {
+                                    type = "input-text",
+                                    name = "test3",
+                                    placeholder = "可选"
+                                }
+                            },
+                            initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/initForm",
+                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm?waitSeconds=2"
+                        },
+                        new
+                        {
+                            title = "确定",
+                            body = new object[] { "最后一步了，确认要提交吗？" },
+                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm?waitSeconds=2"
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}
