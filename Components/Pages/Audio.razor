@@ -1,0 +1,55 @@
+@page "/Audio"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "音频播放器",
+            body = new object[]
+            {
+                new
+                {
+                    type = "audio",
+                    autoPlay = false,
+                    rates = new double[] { 1.0, 1.5, 2.0 },
+                    src = "https://baidu.github.io/amis/static/audio/chicane-poppiholla-original-radio-edit.mp3"
+                },
+                new
+                {
+                    type = "form",
+                    title = "",
+                    actions = new string[] { },
+                    className = "b v-middle inline w-lg h-xs",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "card",
+                            className = "v-middle w inline no-border",
+                            header = new
+                            {
+                                title = "歌曲名称",
+                                subTitle = "专辑名称",
+                                description = "description",
+                                avatarClassName = "pull-left thumb-md avatar m-r no-border",
+                                avatar = "https://baidu.github.io/amis/static/photo/bd3eb13533fa828b13b24500f31f4134960a5a44.jpg"
+                            }
+                        },
+                        new
+                        {
+                            type = "audio",
+                            className = "v-middle no-border",
+                            src = "https://baidu.github.io/amis/static/audio/chicane-poppiholla-original-radio-edit.mp3",
+                            controls = new string[] { "play" }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}
