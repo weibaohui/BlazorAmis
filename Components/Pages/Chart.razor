@@ -1,0 +1,318 @@
+@page "/Chart"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "图表示例",
+            body = new object[]
+            {
+                new
+                {
+                    type = "grid",
+                    columns = new object[]
+                    {
+                        new
+                        {
+                            type = "panel",
+                            title = "本地配置示例 支持交互",
+                            name = "chart-local",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "chart",
+                                    config = new
+                                    {
+                                        title = new
+                                        {
+                                            text = "极坐标双数值轴"
+                                        },
+                                        legend = new
+                                        {
+                                            data = new string[] { "line" }
+                                        },
+                                        polar = new
+                                        {
+                                            center = new string[] { "50%", "54%" }
+                                        },
+                                        tooltip = new
+                                        {
+                                            trigger = "axis",
+                                            axisPointer = new
+                                            {
+                                                type = "cross"
+                                            }
+                                        },
+                                        angleAxis = new
+                                        {
+                                            type = "value",
+                                            startAngle = 0
+                                        },
+                                        radiusAxis = new
+                                        {
+                                            min = 0
+                                        },
+                                        series = new object[]
+                                        {
+                                            new
+                                            {
+                                                coordinateSystem = "polar",
+                                                name = "line",
+                                                type = "line",
+                                                showSymbol = false,
+                                                data = new object[]
+                                                {
+                                                    new double[] { 0, 0 },
+                                                    new double[] { 0.03487823687206265, 1 },
+                                                    new double[] { 0.06958655048003272, 2 },
+                                                    new double[] { 0.10395584540887964, 3 },
+                                                    new double[] { 0.13781867790849958, 4 },
+                                                    new double[] { 0.17101007166283433, 5 },
+                                                    new double[] { 0.2033683215379001, 6 },
+                                                    new double[] { 0.2347357813929454, 7 },
+                                                    new double[] { 0.26495963211660245, 8 },
+                                                    new double[] { 0.2938926261462365, 9 },
+                                                    new double[] { 0.3213938048432697, 10 }
+                                                }
+                                            }
+                                        },
+                                        animationDuration = 2000
+                                    },
+                                    clickAction = new
+                                    {
+                                        actionType = "dialog",
+                                        dialog = new
+                                        {
+                                            title = "详情",
+                                            body = new object[]
+                                            {
+                                                new
+                                                {
+                                                    type = "tpl",
+                                                    tpl = "<span>当前选中值 ${value|json}<span>"
+                                                },
+                                                new
+                                                {
+                                                    type = "chart",
+                                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/chart/chart1"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "panel",
+                            title = "远程图表示例(返回值带function)",
+                            name = "chart-remote",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "chart",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/chart/chart1"
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "panel",
+                    title = "Form+chart组合",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "form",
+                            title = "过滤条件",
+                            target = "chart1,chart2",
+                            submitOnInit = true,
+                            className = "m-b",
+                            wrapWithPanel = false,
+                            mode = "inline",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "input-date",
+                                    label = "开始日期",
+                                    name = "starttime",
+                                    value = "-8days",
+                                    maxDate = "${endtime}"
+                                },
+                                new
+                                {
+                                    type = "input-date",
+                                    label = "结束日期",
+                                    name = "endtime",
+                                    value = "-1days",
+                                    minDate = "${starttime}"
+                                },
+                                new
+                                {
+                                    type = "input-text",
+                                    label = "条件",
+                                    name = "name",
+                                    addOn = new
+                                    {
+                                        type = "submit",
+                                        label = "搜索",
+                                        level = "primary"
+                                    }
+                                }
+                            },
+                            actions = new object[] { }
+                        },
+                        new
+                        {
+                            type = "divider"
+                        },
+                        new
+                        {
+                            type = "grid",
+                            className = "m-t-lg",
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    type = "chart",
+                                    name = "chart1",
+                                    initFetch = false,
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/chart/chart?name=$name&starttime=${starttime}&endtime=${endtime}"
+                                },
+                                new
+                                {
+                                    type = "chart",
+                                    name = "chart2",
+                                    initFetch = false,
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/chart/chart2?name=$name"
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "chart",
+                    mapURL = "/api/map/HK",
+                    mapName = "HK",
+                    height = 600,
+                    config = new
+                    {
+                        title = new
+                        {
+                            text = "Population Density of Hong Kong （2011）",
+                            subtext = "Data from Wikipedia"
+                        },
+                        tooltip = new
+                        {
+                            trigger = "item",
+                            formatter = "{b}<br/>{c} (p / km2)"
+                        },
+                        toolbox = new
+                        {
+                            show = true,
+                            orient = "vertical",
+                            left = "right",
+                            top = "center",
+                            feature = new
+                            {
+                                dataView = new { readOnly = false },
+                                restore = new { },
+                                saveAsImage = new { }
+                            }
+                        },
+                        visualMap = new
+                        {
+                            min = 800,
+                            max = 50000,
+                            text = new string[] { "High", "Low" },
+                            realtime = false,
+                            calculable = true,
+                            inRange = new
+                            {
+                                color = new string[] { "lightskyblue", "yellow", "orangered" }
+                            }
+                        },
+                        series = new
+                        {
+                            name = "香港18区人口密度",
+                            type = "map",
+                            map = "HK",
+                            label = new
+                            {
+                                show = true
+                            },
+                            data = new object[]
+                            {
+                                new { name = "中西区", value = 20057.34 },
+                                new { name = "湾仔", value = 15477.48 },
+                                new { name = "东区", value = 31686.1 },
+                                new { name = "南区", value = 6992.6 },
+                                new { name = "油尖旺", value = 44045.49 },
+                                new { name = "深水埗", value = 40689.64 },
+                                new { name = "九龙城", value = 37659.78 },
+                                new { name = "黄大仙", value = 45180.97 },
+                                new { name = "观塘", value = 55204.26 },
+                                new { name = "葵青", value = 21900.9 },
+                                new { name = "荃湾", value = 4918.26 },
+                                new { name = "屯门", value = 5881.84 },
+                                new { name = "元朗", value = 4178.01 },
+                                new { name = "北区", value = 2227.92 },
+                                new { name = "大埔", value = 2180.98 },
+                                new { name = "沙田", value = 9172.94 },
+                                new { name = "西贡", value = 3368 },
+                                new { name = "离岛", value = 806.98 }
+                            },
+                            nameMap = new Dictionary<string, string>()
+                            {
+                                { "Central and Western", "中西区" },
+                                { "Eastern", "东区" },
+                                { "Islands", "离岛" },
+                                { "Kowloon City", "九龙城" },
+                                { "Kwai Tsing", "葵青" },
+                                { "Kwun Tong", "观塘" },
+                                { "North", "北区" },
+                                { "Sai Kung", "西贡" },
+                                { "Sha Tin", "沙田" },
+                                { "Sham Shui Po", "深水埗" },
+                                { "Southern", "南区" },
+                                { "Tai Po", "大埔" },
+                                { "Tsuen Wan", "荃湾" },
+                                { "Tuen Mun", "屯门" },
+                                { "Wan Chai", "湾仔" },
+                                { "Wong Tai Sin", "黄大仙" },
+                                { "Yau Tsim Mong", "油尖旺" },
+                                { "Yuen Long", "元朗" }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "chart",
+                    loadBaiduMap = true,
+                    ak = "LiZT5dVbGTsPI91tFGcOlSpe5FDehpf7",
+                    config = new
+                    {
+                        bmap = new
+                        {
+                            center = new double[] { 116.414, 39.915 },
+                            zoom = 14,
+                            roam = true
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}
