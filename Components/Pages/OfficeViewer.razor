@@ -1,0 +1,42 @@
+@page "/OfficeViewer"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            body = new
+            {
+                type = "form",
+                title = "",
+                wrapWithPanel = false,
+                body = new object[]
+                {
+                    new
+                    {
+                        type = "input-file",
+                        name = "file",
+                        label = "选择 Docx/Excel 文件预览效果（不会上传到服务器）",
+                        asBlob = true,
+                        accept = ".docx,.xlsx,.csv,.tsv"
+                    },
+                    new
+                    {
+                        type = "office-viewer",
+                        id = "office-viewer",
+                        name = "file",
+                        excelOptions = new
+                        {
+                            height = 500
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}
