@@ -1,0 +1,248 @@
+@page "/Loading"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            body = new object[]
+            {
+                new
+                {
+                    type = "button",
+                    label = "dialog内带 loading",
+                    actionType = "dialog",
+                    level = "primary",
+                    dialog = new
+                    {
+                        size = "lg",
+                        title = "提示",
+                        body = new
+                        {
+                            type = "service",
+                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=10",
+                            loadingConfig = new
+                            {
+                                show = true,
+                                root = "[role=dialog-body]"
+                            },
+                            body = new
+                            {
+                                type = "page",
+                                initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=10",
+                                body = new object[]
+                                {
+                                    new
+                                    {
+                                        loading = false,
+                                        type = "nav",
+                                        stacked = true,
+                                        className = "w-md",
+                                        draggable = true,
+                                        saveOrderApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//options/nav",
+                                        source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=30",
+                                        itemActions = new object[]
+                                        {
+                                            new
+                                            {
+                                                type = "icon",
+                                                icon = "cloud",
+                                                visibleOn = "this.to === '?cat=1'"
+                                            },
+                                            new
+                                            {
+                                                type = "dropdown-button",
+                                                level = "link",
+                                                icon = "fa fa-ellipsis-h",
+                                                hideCaret = true,
+                                                buttons = new object[]
+                                                {
+                                                    new
+                                                    {
+                                                        type = "button",
+                                                        label = "编辑"
+                                                    },
+                                                    new
+                                                    {
+                                                        type = "button",
+                                                        label = "删除"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    new
+                                    {
+                                        type = "button",
+                                        label = "OpenDialog",
+                                        actionType = "drawer",
+                                        reload = "thepage",
+                                        drawer = new
+                                        {
+                                            body = new
+                                            {
+                                                type = "form",
+                                                controls = new object[]
+                                                {
+                                                    new
+                                                    {
+                                                        type = "text",
+                                                        name = "a",
+                                                        value = "3"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    new
+                                    {
+                                        type = "page",
+                                        body = new
+                                        {
+                                            type = "crud",
+                                            syncLocation = false,
+                                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample?waitSeconds=30",
+                                            headerToolbar = new string[] { "bulkActions" },
+                                            bulkActions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "批量删除",
+                                                    actionType = "ajax",
+                                                    api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample/${ids|raw}?waitSeconds=30",
+                                                    confirmText = "确定要批量删除?"
+                                                },
+                                                new
+                                                {
+                                                    label = "批量修改",
+                                                    actionType = "dialog",
+                                                    dialog = new
+                                                    {
+                                                        title = "批量编辑",
+                                                        body = new
+                                                        {
+                                                            type = "form",
+                                                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample/bulkUpdate2?waitSeconds=30",
+                                                            body = new object[]
+                                                            {
+                                                                new
+                                                                {
+                                                                    type = "hidden",
+                                                                    name = "ids"
+                                                                },
+                                                                new
+                                                                {
+                                                                    type = "input-text",
+                                                                    name = "engine",
+                                                                    label = "Engine"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            columns = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "id",
+                                                    label = "ID"
+                                                },
+                                                new
+                                                {
+                                                    name = "engine",
+                                                    label = "Rendering engine"
+                                                },
+                                                new
+                                                {
+                                                    name = "browser",
+                                                    label = "Browser"
+                                                },
+                                                new
+                                                {
+                                                    name = "platform",
+                                                    label = "Platform(s)"
+                                                },
+                                                new
+                                                {
+                                                    name = "version",
+                                                    label = "Engine version"
+                                                },
+                                                new
+                                                {
+                                                    name = "grade",
+                                                    label = "CSS grade"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    new
+                                    {
+                                        type = "page",
+                                        body = new
+                                        {
+                                            type = "crud",
+                                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample?orderBy=id&orderDir=desc&waitSeconds=30",
+                                            syncLocation = false,
+                                            columns = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "id",
+                                                    label = "ID"
+                                                },
+                                                new
+                                                {
+                                                    name = "engine",
+                                                    label = "Rendering engine"
+                                                },
+                                                new
+                                                {
+                                                    name = "browser",
+                                                    label = "Browser"
+                                                },
+                                                new
+                                                {
+                                                    type = "operation",
+                                                    label = "操作",
+                                                    buttons = new object[]
+                                                    {
+                                                        new
+                                                        {
+                                                            label = "删除",
+                                                            type = "button",
+                                                            actionType = "ajax",
+                                                            level = "danger",
+                                                            confirmText = "确认要删除？",
+                                                            api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample/${id}?waitSeconds=30"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "service",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=10",
+                    loadingConfig = new
+                    {
+                        show = true,
+                        root = "body"
+                    }
+                }
+            }
+        };
+
+        return data;
+    }
+
+}

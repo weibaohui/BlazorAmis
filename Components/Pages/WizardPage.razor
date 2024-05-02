@@ -1,0 +1,143 @@
+@page "/WizardPage"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "Simple Form Page",
+            regions = new object[]
+            {
+                "body"
+            },
+            body = new object[]
+            {
+                new
+                {
+                    type = "wizard",
+                    steps = new object[]
+                    {
+                        new
+                        {
+                            title = "基本信息",
+                            hiddenOn = "${!validateCode}",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "input-text",
+                                    label = "用户名",
+                                    name = "username",
+                                    value = "12121123123",
+                                    mode = "horizontal"
+                                },
+                                new
+                                {
+                                    type = "input-password",
+                                    label = "密码",
+                                    name = "password",
+                                    value = "qwerasdfzxcv",
+                                    mode = "horizontal"
+                                },
+                                new
+                                {
+                                    type = "input-password",
+                                    label = "确认密码",
+                                    name = "confirmPassword",
+                                    mode = "horizontal"
+                                },
+                                new
+                                {
+                                    type = "button-group-select",
+                                    name = "hiddenTest",
+                                    label = "测试下隐藏",
+                                    inline = false,
+                                    value = 1,
+                                    options = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "选项1",
+                                            value = 1
+                                        },
+                                        new
+                                        {
+                                            label = "选项2",
+                                            value = 2
+                                        }
+                                    },
+                                    multiple = false,
+                                    mode = "horizontal"
+                                }
+                            },
+                            mode = "normal"
+                        },
+                        new
+                        {
+                            title = "验证码",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "input-group",
+                                    label = "验证码",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "input-text",
+                                            label = "验证码",
+                                            name = "validateCode",
+                                            mode = "horizontal"
+                                        },
+                                        new
+                                        {
+                                            type = "button",
+                                            label = "发送验证码"
+                                        }
+                                    }
+                                }
+                            },
+                            mode = "normal"
+                        },
+                        new
+                        {
+                            title = "确认信息",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "tpl",
+                                    tpl = "用户名: ${username}"
+                                },
+                                new
+                                {
+                                    type = "input-text",
+                                    name = "hahahha"
+                                }
+                            },
+                            mode = "normal"
+                        }
+                    },
+                    mode = "horizontal",
+                    stepsClassName = "w-1/2 mx-auto",
+                    wrapWithPanel = false,
+                    footerClassName = "bg-white fixed -bottom-0 w-full",
+                    className = "bg-gray-50 overflow-hidden h-full -mx-3 -my-4",
+                    stepClassName = "overflow-hidden mb-14",
+                    bodyClassName = "bg-white wizard-body"
+                }
+            },
+            pullRefresh = new
+            {
+                disabled = true
+            },
+            className = "h-full"
+        };
+        return data;
+    }
+
+}

@@ -1,0 +1,39 @@
+@page "/PdfViewer"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            body = new
+            {
+                type = "form",
+                id = "form",
+                debug = true,
+                wrapWithPanel = false,
+                body = new object[]
+                {
+                    new
+                    {
+                        type = "input-file",
+                        name = "file",
+                        label = "选择 PDF 文件预览效果（不会上传到服务器）",
+                        asBlob = true,
+                        accept = ".pdf"
+                    },
+                    new
+                    {
+                        type = "pdf-viewer",
+                        id = "pdf-viewer",
+                        name = "file",
+                        width = 500
+                    }
+                }
+            }
+        };
+        return data;
+    }
+}
