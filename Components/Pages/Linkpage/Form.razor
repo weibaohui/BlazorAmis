@@ -1,0 +1,85 @@
+@page "/Linkpage/Form"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "表单与表单之间的联动",
+            aside = new
+            {
+                type = "form",
+                target = "detailForm",
+                className = "wrapper-sm",
+                wrapWithPanel = false,
+                body = new object[]
+                {
+                    new
+                    {
+                        type = "input-text",
+                        placeholder = "关键字",
+                        name = "keywords",
+                        addOn = new
+                        {
+                            type = "submit",
+                            label = "搜索",
+                            primary = true
+                        }
+                    },
+                    "<span class=\"text-danger\">请在此输入内容后点击搜索</sapn>"
+                }
+            },
+            body = new
+            {
+                name = "detailForm",
+                type = "form",
+                mode = "horizontal",
+                title = "",
+                initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/form/initData?keywords=${keywords}",
+                actions = new object[0],
+                body = new object[]
+                {
+                    "Form 模型除了用来提交数据外，还比较适合用来做详情数据的展示",
+                    new
+                    {
+                        type = "divider"
+                    },
+                    new
+                    {
+                        label = "名称",
+                        type = "static",
+                        labelClassName = "text-muted",
+                        name = "name"
+                    },
+                    new
+                    {
+                        label = "作者",
+                        type = "static",
+                        labelClassName = "text-muted",
+                        name = "author"
+                    },
+                    new
+                    {
+                        label = "输入信息",
+                        type = "static",
+                        labelClassName = "text-muted",
+                        name = "info"
+                    },
+                    new
+                    {
+                        label = "请求时间",
+                        type = "static-datetime",
+                        labelClassName = "text-muted",
+                        format = "YYYY-MM-DD HH:mm:ss",
+                        name = "date"
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

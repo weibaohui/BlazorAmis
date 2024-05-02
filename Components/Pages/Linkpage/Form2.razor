@@ -1,0 +1,341 @@
+@page "/Linkpage/Form2"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "表单初始数据自动重新拉取",
+            body = new object[]
+            {
+                new
+                {
+                    type = "form",
+                    title = "监听表单内部的修改",
+                    mode = "horizontal",
+                    initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/form/initData?tpl=${tpl}",
+                    actions = new object[] { },
+                    body = new object[]
+                    {
+                        "<span class=\"text-danger\">当 <code>initApi</code> 中有变量，且变量的值发生了变化了，则该表单就会重新初始数据。</span>",
+                        new
+                        {
+                            type = "divider"
+                        },
+                        new
+                        {
+                            label = "数据模板",
+                            type = "select",
+                            labelClassName = "text-muted",
+                            name = "tpl",
+                            value = "tpl1",
+                            inline = true,
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "模板1",
+                                    value = "tpl1"
+                                },
+                                new
+                                {
+                                    label = "模板2",
+                                    value = "tpl2"
+                                },
+                                new
+                                {
+                                    label = "模板3",
+                                    value = "tpl3"
+                                }
+                            },
+                            description = "<span class=\"text-danger\">请修改这里看效果</span>"
+                        },
+                        new
+                        {
+                            label = "名称",
+                            type = "static",
+                            labelClassName = "text-muted",
+                            name = "name"
+                        },
+                        new
+                        {
+                            label = "作者",
+                            type = "static",
+                            labelClassName = "text-muted",
+                            name = "author"
+                        },
+                        new
+                        {
+                            label = "请求时间",
+                            type = "static-datetime",
+                            labelClassName = "text-muted",
+                            format = "YYYY-MM-DD HH:mm:ss",
+                            name = "date"
+                        }
+                    }
+                },
+                new
+                {
+                    type = "grid",
+                    columns = new object[]
+                    {
+                        new
+                        {
+                            type = "form",
+                            title = "自动填充",
+                            mode = "horizontal",
+                            actions = new object[] { },
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    label = "数据模板",
+                                    type = "select",
+                                    labelClassName = "text-muted",
+                                    name = "tpl",
+                                    value = "tpl1",
+                                    inline = true,
+                                    options = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "模板1",
+                                            value = "tpl1"
+                                        },
+                                        new
+                                        {
+                                            label = "模板2",
+                                            value = "tpl2"
+                                        },
+                                        new
+                                        {
+                                            label = "模板3",
+                                            value = "tpl3"
+                                        }
+                                    },
+                                    description = "<span class=\"text-danger\">请修改这里看效果</span>"
+                                },
+                                "<div class=\"text-danger m-b\">如果 <code>initApi</code> 已经暂用，用 <code>service</code>一样可以拉取值填充，同样以下 api 值发生变化时会自动填充。</div>",
+                                new
+                                {
+                                    type = "service",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/form/initData?tpl=${tpl}",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "名称",
+                                            type = "input-text",
+                                            labelClassName = "text-muted",
+                                            name = "name"
+                                        },
+                                        new
+                                        {
+                                            label = "作者",
+                                            type = "input-text",
+                                            labelClassName = "text-muted",
+                                            name = "author"
+                                        },
+                                        new
+                                        {
+                                            label = "请求时间",
+                                            type = "input-datetime",
+                                            labelClassName = "text-muted",
+                                            inputFormat = "YYYY-MM-DD HH:mm:ss",
+                                            name = "date"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "form",
+                            title = "手动填充",
+                            mode = "horizontal",
+                            actions = new object[] { },
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "group",
+                                    label = "数据模板",
+                                    labelClassName = "text-muted",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "select",
+                                            name = "tpl",
+                                            value = "tpl1",
+                                            mode = "inline",
+                                            options = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "模板1",
+                                                    value = "tpl1"
+                                                },
+                                                new
+                                                {
+                                                    label = "模板2",
+                                                    value = "tpl2"
+                                                },
+                                                new
+                                                {
+                                                    label = "模板3",
+                                                    value = "tpl3"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            mode = "inline",
+                                            type = "button",
+                                            label = "获取",
+                                            level = "dark",
+                                            actionType = "reload",
+                                            target = "theService"
+                                        }
+                                    }
+                                },
+                                "<div class=\"text-danger m-b\">如果不想自动填充，自动填充，则把参数放在 data 里面，就不会监控变化自动拉取了，同时把 <code>servcie</code> 的初始拉取关掉，然后来个刷新目标组件的按钮。</div>",
+                                new
+                                {
+                                    type = "service",
+                                    name = "theService",
+                                    api = new
+                                    {
+                                        method = "get",
+                                        url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/form/initData",
+                                        data = new
+                                        {
+                                            tpl = "${tpl}"
+                                        }
+                                    },
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "名称",
+                                            type = "input-text",
+                                            labelClassName = "text-muted",
+                                            name = "name"
+                                        },
+                                        new
+                                        {
+                                            label = "作者",
+                                            type = "input-text",
+                                            labelClassName = "text-muted",
+                                            name = "author"
+                                        },
+                                        new
+                                        {
+                                            label = "请求时间",
+                                            type = "input-datetime",
+                                            labelClassName = "text-muted",
+                                            inputFormat = "YYYY-MM-DD HH:mm:ss",
+                                            name = "date"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "divider"
+                },
+                new
+                {
+                    type = "form",
+                    title = "条件表单",
+                    target = "detailForm",
+                    submitOnInit = true,
+                    mode = "inline",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            label = "数据模板",
+                            type = "select",
+                            labelClassName = "text-muted",
+                            name = "tpl",
+                            value = "tpl1",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "模板1",
+                                    value = "tpl1"
+                                },
+                                new
+                                {
+                                    label = "模板2",
+                                    value = "tpl2"
+                                },
+                                new
+                                {
+                                    label = "模板3",
+                                    value = "tpl3"
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "submit",
+                            label = "提交",
+                            primary = true
+                        }
+                    }
+                },
+                new
+                {
+                    name = "detailForm",
+                    type = "form",
+                    title = "响应表单",
+                    mode = "horizontal",
+                    initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/form/initData?tpl=${tpl}",
+                    initFetchOn = "data.tpl",
+                    actions = new object[] { },
+                    body = new object[]
+                    {
+                        "<span class=\"text-danger\">当 <code>initApi</code> 中有变量，且变量的值发生了变化了，则该表单就会重新初始数据。</span>",
+                        new
+                        {
+                            type = "divider"
+                        },
+                        new
+                        {
+                            label = "名称",
+                            type = "static",
+                            labelClassName = "text-muted",
+                            name = "name"
+                        },
+                        new
+                        {
+                            label = "作者",
+                            type = "static",
+                            labelClassName = "text-muted",
+                            name = "author"
+                        },
+                        new
+                        {
+                            label = "请求时间",
+                            type = "static-datetime",
+                            labelClassName = "text-muted",
+                            format = "YYYY-MM-DD HH:mm:ss",
+                            name = "date"
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

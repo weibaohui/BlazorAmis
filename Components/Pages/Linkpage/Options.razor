@@ -1,0 +1,77 @@
+@page "/Linkpage/Options"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "表单选线之间的远程联动",
+            body = new
+            {
+                type = "form",
+                mode = "horizontal",
+                title = "",
+                actions = new object[] { },
+                body = new object[]
+                {
+                    "<p class=\"text-danger\">表单选项可以设置 source 通过 API 远程拉取，同时如果 source 中有变量的话，变量值发生变化就会重新拉取，达到联动效果。</p>",
+                    new
+                    {
+                        type = "divider"
+                    },
+                    new
+                    {
+                        label = "选项1",
+                        type = "select",
+                        labelClassName = "text-muted",
+                        name = "a",
+                        inline = true,
+                        options = new object[]
+                        {
+                            new
+                            {
+                                label = "选项1",
+                                value = 1
+                            },
+                            new
+                            {
+                                label = "选项2",
+                                value = 2
+                            },
+                            new
+                            {
+                                label = "选项3",
+                                value = 3
+                            }
+                        }
+                    },
+                    new
+                    {
+                        label = "选项2",
+                        type = "select",
+                        labelClassName = "text-muted",
+                        name = "b",
+                        inline = true,
+                        source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/options/level2?a=${a}",
+                        initFetchOn = "data.a"
+                    },
+                    new
+                    {
+                        label = "选项3",
+                        type = "select",
+                        labelClassName = "text-muted",
+                        name = "c",
+                        inline = true,
+                        visibleOn = "data.b",
+                        source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/options/level3?b=${b}"
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

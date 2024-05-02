@@ -1,0 +1,53 @@
+@page "/Linkpage/FormSubmit"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "表单提交后显示结果",
+            body = new
+            {
+                type = "form",
+                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/form/saveForm",
+                title = "查询用户 ID",
+                body = new object[]
+                {
+                    new
+                    {
+                        type = "input-group",
+                        name = "input-group",
+                        body = new object[]
+                        {
+                            new
+                            {
+                                type = "input-text",
+                                name = "name",
+                                label = "姓名"
+                            },
+                            new
+                            {
+                                type = "submit",
+                                label = "查询",
+                                level = "primary"
+                            }
+                        }
+                    },
+                    new
+                    {
+                        type = "static",
+                        name = "id",
+                        visibleOn = "typeof data.id !== 'undefined'",
+                        label = "返回 ID"
+                    }
+                },
+                actions = new object[] { }
+            }
+        };
+        return data;
+    }
+
+}
