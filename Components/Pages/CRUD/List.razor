@@ -1,0 +1,309 @@
+@page "/CRUD/List"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "增删改查示例",
+            remark = "bla bla bla",
+            body = new
+            {
+                type = "crud",
+                name = "thelist",
+                syncLocation=false,
+                api = new
+                {
+                    method = "get",
+                    url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample",
+                    sendOn = "${mode}"
+                },
+                mode = "list",
+                draggable = true,
+                saveOrderApi = new
+                {
+                    url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/saveOrder"
+                },
+                orderField = "weight",
+                affixHeader = true,
+                bulkActions = new object[]
+                {
+                    new
+                    {
+                        label = "批量删除",
+                        actionType = "ajax",
+                        api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/${ids|raw}",
+                        confirmText = "确定要批量删除?",
+                        type = "button",
+                        level = "danger"
+                    },
+                    new
+                    {
+                        label = "批量修改",
+                        actionType = "dialog",
+                        level = "info",
+                        type = "button",
+                        dialog = new
+                        {
+                            title = "批量编辑",
+                            body = new
+                            {
+                                type = "form",
+                                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate2",
+                                body = new object[]
+                                {
+                                    new { type = "hidden", name = "ids" },
+                                    new
+                                    {
+                                        type = "input-text",
+                                        name = "engine",
+                                        label = "Engine"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                quickSaveApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate",
+                quickSaveItemApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                headerToolbar = new object[]
+                {
+                    new
+                    {
+                        type = "form",
+                        mode = "inline",
+                        wrapWithPanel = false,
+                        submitOnChange = true,
+                        submitOnInit = true,
+                        target = "thelist",
+                        body = new object[]
+                        {
+                            new
+                            {
+                                type = "select",
+                                name = "mode",
+                                className = "mb-0",
+                                selectFirst = true,
+                                options = new object[]
+                                {
+                                    new
+                                    {
+                                        label = "模式 1",
+                                        value = "mode1"
+                                    },
+                                    new
+                                    {
+                                        label = "模式 2",
+                                        value = "mode2"
+                                    }
+                                }
+                            },
+                            new
+                            {
+                                type = "input-text",
+                                name = "keywords",
+                                placeholder = "通过关键字搜索",
+                                className = "mb-0",
+                                addOn = new
+                                {
+                                    label = "搜索",
+                                    type = "submit"
+                                }
+                            }
+                        }
+                    }
+                },
+                listItem = new
+                {
+                    actions = new object[]
+                    {
+                        new
+                        {
+                            type = "button",
+                            icon = "fa fa-eye",
+                            actionType = "dialog",
+                            dialog = new
+                            {
+                                title = "查看",
+                                body = new
+                                {
+                                    type = "form",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "static",
+                                            name = "engine",
+                                            label = "Engine"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "static",
+                                            name = "browser",
+                                            label = "Browser"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "static",
+                                            name = "platform",
+                                            label = "Platform(s)"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "static",
+                                            name = "version",
+                                            label = "Engine version"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "static",
+                                            name = "grade",
+                                            label = "CSS grade"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "html",
+                                            html = "<p>添加其他 <span>Html 片段</span> 需要支持变量替换（todo）.</p>"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "button",
+                            icon = "fa fa-pencil",
+                            actionType = "dialog",
+                            dialog = new
+                            {
+                                title = "编辑",
+                                body = new
+                                {
+                                    type = "form",
+                                    name = "sample-edit-form",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "input-text",
+                                            name = "engine",
+                                            label = "Engine",
+                                            required = true
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-text",
+                                            name = "browser",
+                                            label = "Browser",
+                                            required = true
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-text",
+                                            name = "platform",
+                                            label = "Platform(s)",
+                                            required = true
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-text",
+                                            name = "version",
+                                            label = "Engine version"
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "input-text",
+                                            name = "grade",
+                                            label = "CSS grade"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "button",
+                            icon = "fa fa-times text-danger",
+                            actionType = "ajax",
+                            confirmText = "您确认要删除?",
+                            api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id"
+                        }
+                    },
+                    body = new object[]
+                    {
+                        new
+                        {
+                            name = "engine",
+                            label = "Rendering engine",
+                            sortable = true,
+                            quickEdit = true
+                        },
+                        new
+                        {
+                            type = "hbox",
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "browser",
+                                    label = "Browser"
+                                },
+                                new
+                                {
+                                    name = "platform",
+                                    label = "Platform(s)"
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "version",
+                            label = "Engine version"
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

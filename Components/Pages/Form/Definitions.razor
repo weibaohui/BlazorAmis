@@ -39,7 +39,7 @@
                         },
                         new
                         {
-                            xref = "options",
+                            atRef = "options",
                             label = "子选项",
                             name = "children",
                             addButtonText = "新增子选项"
@@ -224,7 +224,7 @@
                                 },
                                 new
                                 {
-                                    xref = "queryItem",
+                                    atRef = "queryItem",
                                     name = "exprs",
                                     minLength = 1,
                                     value = new object[] { }
@@ -263,7 +263,7 @@
                         },
                         new
                         {
-                            xref = "queryItem",
+                            atRef = "queryItem",
                             name = "exprs",
                             minLength = 1,
                             value = new object[] { }
@@ -278,13 +278,13 @@
                 new
                 {
                     type = "form",
-                    api = "/api/mock/saveForm",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock/saveForm",
                     mode = "horizontal",
                     body = new object[]
                     {
                         new
                         {
-                            xref = "options",
+                            atRef = "options",
                             name = "options",
                             value = new object[]
                             {
@@ -302,12 +302,12 @@
                 new
                 {
                     type = "form",
-                    api = "/api/mock/saveForm",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock/saveForm",
                     body = new object[]
                     {
                         new
                         {
-                            xref = "queryGroup",
+                            atRef = "queryGroup",
                             name = "q",
                             value = new { },
                             label = "Query"

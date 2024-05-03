@@ -23,6 +23,7 @@
                     {
                         label = "页面",
                         icon = "fa fa-bars fa-th",
+                        unfolded=true,
                         children = new object[]
                         {
                             new { label = "初始化出错", to = "/Page/Error" },
@@ -61,6 +62,44 @@
                             new { label = "锚点导航", to = "/Form/AnchorNav" },
                             new { label = "复杂嵌套数据", to = "/Form/InputKVS" },
                             new { label = "树形结构", to = "/Form/Tree" }
+                        }
+                    },
+                     new
+                    {
+                        label = "增删改查",
+                        icon = "fa fa-table",
+                        children = new object[]
+                        {
+                            new { label = "表格模式", to = "/CRUD/Table" },
+                            new { label = "表格高度自适应", to = "/CRUD/TableAutoFill" },
+                            new { label = "卡片模式", to = "/CRUD/Grid" },
+                            new { label = "列表模式", to = "/CRUD/List" },
+                            new { label = "加载更多模式", to = "/CRUD/LoadMore" },
+                            new { label = "操作交互显示", to = "/CRUD/ItemActions" },
+                            new { label = "列类型汇总", to = "/CRUD/Columns" },
+                            new { label = "可折叠", to = "/CRUD/Footable" },
+                            new { label = "嵌套", to = "/CRUD/Nested" },
+                            new { label = "合并单元格", to = "/CRUD/MergeCell" },
+                            new { label = "表头分组", to = "/CRUD/HeaderGroup" },
+                            new { label = "表头隐藏", to = "/CRUD/HeaderHide" },
+                            new { label = "带边栏（用 tree）", to = "/CRUD/Aside" },
+                            new { label = "带边栏（用 Nav）", to = "/CRUD/Aside2" },
+                            new { label = "固定表头/列", to = "/CRUD/Fixed" },
+                            new { label = "键盘操作编辑", to = "/CRUD/Keyboards" },
+                            new { label = "操作并下一个", to = "/CRUD/JumpNext" },
+                            new { label = "列展示详情", to = "/CRUD/Popover" },
+                            new { label = "前端分页", icon = "fa fa-list-ol",
+                                children = new []
+                                {
+                                    new { label = "一次性加载", to = "/CRUD/LoadOnce" },
+                                    new { label = "匹配函数", to = "/CRUD/MatchFunc" }
+                                }
+                            },
+                            new { label = "点击联动", to = "/CRUD/ItemAction" },
+                            new { label = "导出 Excel/CSV", to = "/CRUD/ExportCSVExcel" },
+                            new { label = "动态列", to = "/CRUD/Dynamic" },
+                            new { label = "简单分页", to = "/CRUD/SimplePager" },
+                            new { label = "解析Query参数", to = "/CRUD/ParsePrimitiveQuery" }
                         }
                     },
                     new

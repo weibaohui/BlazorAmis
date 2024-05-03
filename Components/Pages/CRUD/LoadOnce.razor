@@ -1,4 +1,4 @@
-@page "/Linkpage/CRUD"
+@page "/CRUD/LoadOnce"
 <Amis Data="GetObj()"></Amis>
 
 @code {
@@ -7,17 +7,17 @@
     {
         var data = new
         {
-            title = "表单与列表之间的联动",
-            body = new object[]
+            title = "一次性加载，前端分页，前端排序",
+            body = new
             {
-                new
+                type = "crud",
+                syncLocation=false,
+                loadDataOnce = true,
+                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample?waitSeconds=1&loadDataOnce=1",
+                filter = new
                 {
-                    title = "",
-                    type = "form",
-                    mode = "inline",
-                    target = "list",
-                    wrapWithPanel = false,
-                    className = "m-b",
+                    title = "条件搜索",
+                    submitText = "",
                     body = new object[]
                     {
                         new
@@ -25,31 +25,76 @@
                             type = "input-text",
                             name = "keywords",
                             placeholder = "通过关键字搜索",
-                            clearable = true,
                             addOn = new
                             {
-                                type = "submit",
-                                icon = "fa fa-search",
-                                level = "primary"
+                                label = "搜索",
+                                type = "submit"
                             }
                         }
                     }
                 },
-                new
+                columns = new object[]
                 {
-                    type = "crud",
-                    name = "list",
-                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample",
-                    mode = "list",
-                    listItem = new
+                    new
                     {
-                        actions = new object[]
+                        name = "id",
+                        label = "ID",
+                        sortable = true,
+                        type = "text",
+                        toggled = true,
+                        remark = "Bla bla Bla"
+                    },
+                    new
+                    {
+                        name = "engine",
+                        label = "Rendering engine",
+                        sortable = true,
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "browser",
+                        label = "Browser",
+                        sortable = true,
+                        type = "text",
+                        toggled = false
+                    },
+                    new
+                    {
+                        name = "platform",
+                        label = "Platform(s)",
+                        sortable = true,
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "version",
+                        label = "Engine version",
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "grade",
+                        label = "CSS grade",
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        type = "operation",
+                        label = "操作",
+                        width = 100,
+                        buttons = new object[]
                         {
                             new
                             {
                                 type = "button",
                                 icon = "fa fa-eye",
                                 actionType = "dialog",
+                                tooltip = "查看",
                                 dialog = new
                                 {
                                     title = "查看",
@@ -103,6 +148,15 @@
                                                 type = "static",
                                                 name = "grade",
                                                 label = "CSS grade"
+                                            },
+                                            new
+                                            {
+                                                type = "divider"
+                                            },
+                                            new
+                                            {
+                                                type = "html",
+                                                html = "<p>添加其他 <span>Html 片段</span> 需要支持变量替换（todo）.</p>"
                                             }
                                         }
                                     }
@@ -112,9 +166,12 @@
                             {
                                 type = "button",
                                 icon = "fa fa-pencil",
-                                actionType = "dialog",
-                                dialog = new
+                                tooltip = "编辑",
+                                actionType = "drawer",
+                                drawer = new
                                 {
+                                    position = "left",
+                                    size = "lg",
                                     title = "编辑",
                                     body = new
                                     {
@@ -168,9 +225,10 @@
                                             },
                                             new
                                             {
-                                                type = "input-text",
+                                                type = "select",
                                                 name = "grade",
-                                                label = "CSS grade"
+                                                label = "CSS grade",
+                                                options = new string[] { "A", "B", "C", "D", "X" }
                                             }
                                         }
                                     }
@@ -181,44 +239,12 @@
                                 type = "button",
                                 icon = "fa fa-times text-danger",
                                 actionType = "ajax",
+                                tooltip = "删除",
                                 confirmText = "您确认要删除?",
-                                api = "delete:/api/sample/$id"
+                                api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id"
                             }
                         },
-                        body = new object[]
-                        {
-                            new
-                            {
-                                name = "engine",
-                                label = "Rendering engine",
-                                labelClassName = "w-sm"
-                            },
-                            new
-                            {
-                                type = "hbox",
-                                columns = new object[]
-                                {
-                                    new
-                                    {
-                                        name = "browser",
-                                        label = "Browser",
-                                        labelClassName = "w-sm"
-                                    },
-                                    new
-                                    {
-                                        name = "platform",
-                                        label = "Platform(s)",
-                                        labelClassName = "w-sm"
-                                    }
-                                }
-                            },
-                            new
-                            {
-                                name = "version",
-                                label = "Engine version",
-                                labelClassName = "w-sm"
-                            }
-                        }
+                        toggled = true
                     }
                 }
             }

@@ -1,0 +1,296 @@
+@page "/CRUD/ItemActions"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "增删改查示例",
+            remark = "bla bla bla",
+            body = new
+            {
+                type = "crud",
+                syncLocation=false,
+                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample",
+                headerToolbar = new object[]
+                {
+                    "bulkActions",
+                    new
+                    {
+                        type = "columns-toggler",
+                        className = "pull-right",
+                        align = "right"
+                    },
+                    new
+                    {
+                        type = "search-box",
+                        align = "right",
+                        name = "keywords",
+                        placeholder = "请输入关键字",
+                        mini = true
+                    },
+                    new
+                    {
+                        type = "drag-toggler",
+                        align = "right"
+                    },
+                    new
+                    {
+                        type = "pagination",
+                        align = "right"
+                    }
+                },
+                itemActions = new object[]
+                {
+                    new
+                    {
+                        type = "button",
+                        label = "查看",
+                        actionType = "dialog",
+                        dialog = new
+                        {
+                            title = "查看",
+                            body = new
+                            {
+                                type = "form",
+                                body = new object[]
+                                {
+                                    new
+                                    {
+                                        type = "static",
+                                        name = "engine",
+                                        label = "Engine"
+                                    },
+                                    new
+                                    {
+                                        type = "divider"
+                                    },
+                                    new
+                                    {
+                                        type = "static",
+                                        name = "browser",
+                                        label = "Browser"
+                                    },
+                                    new
+                                    {
+                                        type = "divider"
+                                    },
+                                    new
+                                    {
+                                        type = "static",
+                                        name = "platform",
+                                        label = "Platform(s)"
+                                    },
+                                    new
+                                    {
+                                        type = "divider"
+                                    },
+                                    new
+                                    {
+                                        type = "static",
+                                        name = "version",
+                                        label = "Engine version"
+                                    },
+                                    new
+                                    {
+                                        type = "divider"
+                                    },
+                                    new
+                                    {
+                                        type = "static",
+                                        name = "grade",
+                                        label = "CSS grade"
+                                    },
+                                    new
+                                    {
+                                        type = "divider"
+                                    },
+                                    new
+                                    {
+                                        type = "html",
+                                        html = "<p>添加其他 <span>Html 片段</span> 需要支持变量替换（todo）.</p>"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    new
+                    {
+                        type = "button",
+                        label = "编辑",
+                        actionType = "drawer",
+                        drawer = new
+                        {
+                            position = "left",
+                            size = "lg",
+                            title = "编辑",
+                            body = new
+                            {
+                                type = "form",
+                                name = "sample-edit-form",
+                                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                                body = new object[]
+                                {
+                                    new
+                                    {
+                                        type = "input-text",
+                                        name = "engine",
+                                        label = "Engine",
+                                        required = true
+                                    },
+                                    new
+                                    {
+                                        type = "divider"
+                                    },
+                                    new
+                                    {
+                                        type = "input-text",
+                                        name = "browser",
+                                        label = "Browser",
+                                        required = true
+                                    },
+                                    new
+                                    {
+                                        type = "divider"
+                                    },
+                                    new
+                                    {
+                                        type = "input-text",
+                                        name = "platform",
+                                        label = "Platform(s)",
+                                        required = true
+                                    },
+                                    new
+                                    {
+                                        type = "divider"
+                                    },
+                                    new
+                                    {
+                                        type = "input-text",
+                                        name = "version",
+                                        label = "Engine version"
+                                    },
+                                    new
+                                    {
+                                        type = "divider"
+                                    },
+                                    new
+                                    {
+                                        type = "select",
+                                        name = "grade",
+                                        label = "CSS grade",
+                                        options = new[] { "A", "B", "C", "D", "X" }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    new
+                    {
+                        type = "button",
+                        label = "删除",
+                        actionType = "ajax",
+                        confirmText = "您确认要删除?",
+                        api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id"
+                    }
+                },
+                bulkActions = new object[]
+                {
+                    new
+                    {
+                        label = "批量删除",
+                        actionType = "ajax",
+                        api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/${ids|raw}",
+                        confirmText = "确定要批量删除?",
+                        type = "button"
+                    },
+                    new
+                    {
+                        label = "批量修改",
+                        actionType = "dialog",
+                        dialog = new
+                        {
+                            title = "批量编辑",
+                            name = "sample-bulk-edit",
+                            body = new
+                            {
+                                type = "form",
+                                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate2",
+                                body = new object[]
+                                {
+                                    new
+                                    {
+                                        type = "hidden",
+                                        name = "ids"
+                                    },
+                                    new
+                                    {
+                                        type = "input-text",
+                                        name = "engine",
+                                        label = "Engine"
+                                    }
+                                }
+                            }
+                        },
+                        type = "button"
+                    }
+                },
+                columns = new object[]
+                {
+                    new
+                    {
+                        name = "id",
+                        label = "ID",
+                        sortable = true,
+                        type = "text",
+                        toggled = true,
+                        remark = "Bla bla Bla"
+                    },
+                    new
+                    {
+                        name = "engine",
+                        label = "Rendering engine",
+                        sortable = true,
+                        searchable = true,
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "browser",
+                        label = "Browser",
+                        sortable = true,
+                        type = "text",
+                        toggled = false
+                    },
+                    new
+                    {
+                        name = "platform",
+                        label = "Platform(s)",
+                        sortable = true,
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "version",
+                        label = "Engine version",
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "grade",
+                        label = "CSS grade",
+                        type = "text",
+                        toggled = true
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

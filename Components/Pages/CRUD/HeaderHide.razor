@@ -1,0 +1,81 @@
+@page "/CRUD/HeaderHide"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "当 column 每一项的 label 值都为空字符时，可以隐藏表头",
+            body = new object[]
+            {
+                new
+                {
+                    type = "table",
+                    data = new
+                    {
+                        items = new object[]
+                        {
+                            new { engine = "Trident", browser = "Internet Explorer 4.2", platform = "Win 95+", version = "4", grade = "A" },
+                            new { engine = "Trident", browser = "Internet Explorer 4.2", platform = "Win 95+", version = "4", grade = "B" },
+                            // more items...
+                        }
+                    },
+                    columns = new object[]
+                    {
+                        new { name = "engine", label = "" },
+                        new { name = "browser", label = "" },
+                        // more columns...
+                    }
+                },
+                new { type = "divider" },
+                "<h4>搭配合并单元格和列上配置 isHead 可以实现超级表头放在左侧</h4>",
+                new
+                {
+                    type = "table",
+                    data = new
+                    {
+                        items = new object[]
+                        {
+                            new { engine = "Trident", browser = "Internet Explorer 4.2", platform = "Win 95+", version = "4", grade = "A" },
+                            new { engine = "Trident", browser = "Internet Explorer 4.2", platform = "Win 95+", version = "4", grade = "B" },
+                            // more items...
+                        }
+                    },
+                    combineNum = 1,
+                    columns = new object[]
+                    {
+                        new { name = "engine", label = "", isHead = true },
+                        new { name = "browser", label = "" },
+                        // more columns...
+                    }
+                },
+                new { type = "divider" },
+                "<h4>还可以继续使用超级表头</h4>",
+                new
+                {
+                    type = "table",
+                    data = new
+                    {
+                        items = new object[]
+                        {
+                            new { engine = "Trident", browser = "Internet Explorer 4.2", platform = "Win 95+", version = "4", grade = "A" },
+                            new { engine = "Trident", browser = "Internet Explorer 4.2", platform = "Win 95+", version = "4", grade = "B" },
+                            // more items...
+                        }
+                    },
+                    combineNum = 1,
+                    columns = new object[]
+                    {
+                        new { name = "engine", label = "", groupName = "A", isHead = true },
+                        new { name = "browser", label = "", groupName = "A" },
+                        // more columns...
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

@@ -1,0 +1,169 @@
+@page "/CRUD/JumpNext"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "操作并下一个",
+            remark = "当存在下一条时，支持直接打开下一条操作。",
+            body = new
+            {
+                type = "crud",
+                syncLocation=false,
+                title = "",
+                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/list",
+                columnsTogglable = false,
+                columns = new object[]
+                {
+                    new
+                    {
+                        name = "id",
+                        label = "ID",
+                        width = 30,
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "engine",
+                        label = "Rendering engine",
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "browser",
+                        label = "Browser",
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        type = "operation",
+                        label = "操作",
+                        width = 130,
+                        buttons = new object[]
+                        {
+                            new
+                            {
+                                type = "button",
+                                icon = "fa fa-pencil",
+                                actionType = "dialog",
+                                nextCondition = "true",
+                                _nextCondition = "可以设置条件比如： data.grade == 'B'",
+                                dialog = new
+                                {
+                                    title = "编辑",
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "button",
+                                            actionType = "prev",
+                                            level = "info",
+                                            visibleOn = "data.hasPrev",
+                                            label = "上一个"
+                                        },
+                                        new
+                                        {
+                                            type = "button",
+                                            actionType = "cancel",
+                                            label = "关闭"
+                                        },
+                                        new
+                                        {
+                                            type = "submit",
+                                            actionType = "next",
+                                            visibleOn = "data.hasNext",
+                                            label = "保存并下一个",
+                                            level = "primary"
+                                        },
+                                        new
+                                        {
+                                            type = "submit",
+                                            visibleOn = "!data.hasNext",
+                                            label = "保存",
+                                            level = "primary"
+                                        },
+                                        new
+                                        {
+                                            type = "button",
+                                            actionType = "next",
+                                            level = "info",
+                                            visibleOn = "data.hasNext",
+                                            label = "下一个"
+                                        }
+                                    },
+                                    body = new
+                                    {
+                                        type = "form",
+                                        name = "sample-edit-form",
+                                        api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                                        body = new object[]
+                                        {
+                                            new
+                                            {
+                                                type = "input-text",
+                                                name = "engine",
+                                                label = "Engine",
+                                                required = true
+                                            },
+                                            new
+                                            {
+                                                type = "divider"
+                                            },
+                                            new
+                                            {
+                                                type = "input-text",
+                                                name = "browser",
+                                                label = "Browser",
+                                                required = true
+                                            },
+                                            new
+                                            {
+                                                type = "divider"
+                                            },
+                                            new
+                                            {
+                                                type = "input-text",
+                                                name = "platform",
+                                                label = "Platform(s)",
+                                                required = true
+                                            },
+                                            new
+                                            {
+                                                type = "divider"
+                                            },
+                                            new
+                                            {
+                                                type = "input-text",
+                                                name = "version",
+                                                label = "Engine version"
+                                            },
+                                            new
+                                            {
+                                                type = "divider"
+                                            },
+                                            new
+                                            {
+                                                type = "input-text",
+                                                name = "grade",
+                                                label = "CSS grade"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        toggled = true
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

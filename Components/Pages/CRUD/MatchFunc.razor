@@ -1,0 +1,336 @@
+@page "/CRUD/MatchFunc"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "匹配函数",
+            remark = "使用前端分页处理列字段类型较为复杂或者字段值格式和后端返回不一致的场景",
+            body = new object[]
+            {
+                new
+                {
+                    type = "container",
+                    style = new
+                    {
+                        padding = "8px",
+                        marginBottom = "8px",
+                        backgroundColor = "#f5f5f5",
+                        borderRadius = "4px"
+                    },
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "tpl",
+                            tpl = "<h4>匹配函数签名：</h4>",
+                            inline = false
+                        },
+                        new
+                        {
+                            type = "code",
+                            language = "typescript",
+                            value = "interface CRUDMatchFunc {\r\n  (\r\n    /* 当前列表的全量数据 */\r\n    items: any,\r\n    /* 最近一次接口返回的全量数据 */\r\n    itemsRaw: any,\r\n    /** 相关配置 */\r\n    options?: {\r\n      /* 查询参数 */\r\n      query: Record<string, any>,\r\n      /* 列配置 */\r\n      columns: any;\r\n      /** match-sorter 匹配函数 */\r\n      matchSorter: (items: any[], value: string, options?: MatchSorterOptions<any>) => any[]\r\n    }\r\n  ): boolean;\r\n}"
+                        }
+                    }
+                },
+                new
+                {
+                    type = "crud",
+                    syncLocation = false,
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/crud/loadDataOnce",
+                    loadDataOnce = true,
+                    loadDataOnceFetchOnFilter = false,
+                    perPage = 5,
+                    matchFunc = @"
+        const {query = {}, columns} = options;
+        let result = items.concat();
+
+        Object.keys(query).forEach(key => {
+          const value = query[key];
+
+          if (value == null) {
+            return;
+          }
+
+          if (key === 'status') {
+            result = result.filter(item => item.status === Boolean(value));
+          } else if (key === 'time') {
+            if (typeof value === 'string') {
+              const [start, end] = value.split(',');
+              result = result.filter(item => {
+                const time = Number(item.time);
+
+                return time >= Number(start) && time <= Number(end);
+              });
+            }
+          }
+        });
+
+        return result;",
+                    filter = new
+                    {
+                        debug = true,
+                        body = new object[]
+                        {
+                            new
+                            {
+                                type = "switch",
+                                name = "status",
+                                label = "已核验",
+                                size = "sm"
+                            },
+                            new
+                            {
+                                type = "input-datetime-range",
+                                name = "time",
+                                label = "时间",
+                                size = "full"
+                            }
+                        },
+                        actions = new object[]
+                        {
+                            new
+                            {
+                                type = "reset",
+                                label = "重置"
+                            },
+                            new
+                            {
+                                type = "submit",
+                                level = "primary",
+                                label = "查询"
+                            }
+                        }
+                    },
+                    columns = new object[]
+                    {
+                        new
+                        {
+                            name = "id",
+                            label = "ID"
+                        },
+                        new
+                        {
+                            name = "browser",
+                            label = "Browser"
+                        },
+                        new
+                        {
+                            name = "version",
+                            label = "Engine version",
+                            searchable = new
+                            {
+                                type = "select",
+                                name = "version",
+                                label = "Engine version",
+                                clearable = true,
+                                multiple = true,
+                                searchable = true,
+                                checkAll = true,
+                                options = new object[] { "1.7", "3.3", "5.6" },
+                                maxTagCount = 10,
+                                extractValue = true,
+                                joinValues = false,
+                                delimiter = ",",
+                                defaultCheckAll = false,
+                                checkAllLabel = "全选"
+                            }
+                        },
+                        new
+                        {
+                            name = "grade",
+                            label = "CSS grade"
+                        },
+                        new
+                        {
+                            name = "status",
+                            label = "已核验",
+                            type = "tpl",
+                            tpl = "${status === true ? '是' : '否'}",
+                            filterable = new
+                            {
+                                options = new object[]
+                                {
+                                    new { label = "是", value = true },
+                                    new { label = "否", value = false }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "time",
+                            type = "date",
+                            label = "时间",
+                            format = "YYYY-MM-DD HH:mm:ss"
+                        }
+                    }
+                },
+                new
+                {
+                    type = "divider"
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "<h2>使用数据域变量作为数据源：</h2>",
+                    inline = false
+                },
+                new
+                {
+                    type = "service",
+                    api = new
+                    {
+                        url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/crud/loadDataOnce",
+                        method = "get",
+                        responseData = new
+                        {
+                            table = "${rows}"
+                        }
+                    },
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "crud",
+                            syncLocation = false,
+                            source = "${table}",
+                            loadDataOnce = true,
+                            loadDataOnceFetchOnFilter = false,
+                            perPage = 5,
+                            matchFunc = @"
+            const {query = {}, columns} = options;
+            let result = itemsRaw.concat();
+
+            Object.keys(query).forEach(key => {
+              const value = query[key];
+
+              if (value == null) {
+                return;
+              }
+
+              if (key === 'status') {
+                result = result.filter(item => item.status === Boolean(value));
+              } else if (key === 'time') {
+                if (typeof value === 'string') {
+                  const [start, end] = value.split(',');
+                  result = result.filter(item => {
+                    const time = Number(item.time);
+
+                    return time >= Number(start) && time <= Number(end);
+                  });
+                }
+              }
+            });
+
+            return result;",
+                            filter = new
+                            {
+                                debug = true,
+                                body = new object[]
+                                {
+                                    new
+                                    {
+                                        type = "switch",
+                                        name = "status",
+                                        label = "已核验",
+                                        size = "sm"
+                                    },
+                                    new
+                                    {
+                                        type = "input-datetime-range",
+                                        name = "time",
+                                        label = "时间",
+                                        size = "full"
+                                    }
+                                },
+                                actions = new object[]
+                                {
+                                    new
+                                    {
+                                        type = "reset",
+                                        label = "重置"
+                                    },
+                                    new
+                                    {
+                                        type = "submit",
+                                        level = "primary",
+                                        label = "查询"
+                                    }
+                                }
+                            },
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "id",
+                                    label = "ID"
+                                },
+                                new
+                                {
+                                    name = "browser",
+                                    label = "Browser"
+                                },
+                                new
+                                {
+                                    name = "version",
+                                    label = "Engine version",
+                                    searchable = new
+                                    {
+                                        type = "select",
+                                        name = "version",
+                                        label = "Engine version",
+                                        clearable = true,
+                                        multiple = true,
+                                        searchable = true,
+                                        checkAll = true,
+                                        options = new object[] { "1.7", "3.3", "5.6" },
+                                        maxTagCount = 10,
+                                        extractValue = true,
+                                        joinValues = false,
+                                        delimiter = ",",
+                                        defaultCheckAll = false,
+                                        checkAllLabel = "全选"
+                                    }
+                                },
+                                new
+                                {
+                                    name = "grade",
+                                    label = "CSS grade"
+                                },
+                                new
+                                {
+                                    name = "status",
+                                    label = "已核验",
+                                    type = "tpl",
+                                    tpl = "${status === true ? '是' : '否'}",
+                                    filterable = new
+                                    {
+                                        options = new object[]
+                                        {
+                                            new { label = "是", value = true },
+                                            new { label = "否", value = false }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "time",
+                                    type = "date",
+                                    label = "时间",
+                                    format = "YYYY-MM-DD HH:mm:ss"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

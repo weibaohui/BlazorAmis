@@ -1,4 +1,4 @@
-@page "/Linkpage/CRUD"
+@page "/CRUD/Aside2"
 <Amis Data="GetObj()"></Amis>
 
 @code {
@@ -7,17 +7,39 @@
     {
         var data = new
         {
-            title = "表单与列表之间的联动",
-            body = new object[]
+            title = "带边栏联动",
+            aside = new
+            {
+                type = "nav",
+                name = "nav",
+                stacked = true,
+                source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/options/nav?parentId=${value}&waitSeconds=2"
+            },
+            toolbar = new object[]
             {
                 new
                 {
-                    title = "",
-                    type = "form",
-                    mode = "inline",
-                    target = "list",
-                    wrapWithPanel = false,
-                    className = "m-b",
+                    type = "button",
+                    actionType = "reload",
+                    label = "Reload Nav",
+                    primary = true,
+                    target = "nav"
+                }
+            },
+            body = new
+            {
+                type = "crud",
+                draggable = true,
+                syncLocation=false,
+                api = new
+                {
+                    url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample",
+                    sendOn = "this.cat"
+                },
+                filter = new
+                {
+                    title = "条件搜索",
+                    submitText = "",
                     body = new object[]
                     {
                         new
@@ -25,25 +47,124 @@
                             type = "input-text",
                             name = "keywords",
                             placeholder = "通过关键字搜索",
-                            clearable = true,
                             addOn = new
                             {
-                                type = "submit",
-                                icon = "fa fa-search",
-                                level = "primary"
+                                label = "搜索",
+                                type = "submit"
+                            }
+                        },
+                        new
+                        {
+                            type = "plain",
+                            text = "这里的表单项可以配置多个"
+                        }
+                    }
+                },
+                bulkActions = new object[]
+                {
+                    new
+                    {
+                        label = "批量删除",
+                        actionType = "ajax",
+                        api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$ids",
+                        confirmText = "确定要批量删除?"
+                    },
+                    new
+                    {
+                        label = "批量修改",
+                        actionType = "dialog",
+                        dialog = new
+                        {
+                            title = "批量编辑",
+                            name = "sample-bulk-edit",
+                            body = new
+                            {
+                                type = "form",
+                                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate2",
+                                body = new object[]
+                                {
+                                    new
+                                    {
+                                        type = "hidden",
+                                        name = "ids"
+                                    },
+                                    new
+                                    {
+                                        type = "input-text",
+                                        name = "engine",
+                                        label = "Engine"
+                                    }
+                                }
                             }
                         }
                     }
                 },
-                new
+                quickSaveApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate",
+                quickSaveItemApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                columns = new object[]
                 {
-                    type = "crud",
-                    name = "list",
-                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample",
-                    mode = "list",
-                    listItem = new
+                    new
                     {
-                        actions = new object[]
+                        name = "id",
+                        label = "ID",
+                        width = 30,
+                        sortable = true,
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "engine",
+                        label = "Rendering engine",
+                        sortable = true,
+                        searchable = true,
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "browser",
+                        label = "Browser",
+                        sortable = true,
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "platform",
+                        label = "Platform(s)",
+                        sortable = true,
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "version",
+                        label = "Engine version",
+                        quickEdit = true,
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        name = "grade",
+                        label = "CSS grade",
+                        quickEdit = new
+                        {
+                            mode = "inline",
+                            type = "select",
+                            options = new[] { "A", "B", "C", "D", "X" },
+                            saveImmediately = true
+                        },
+                        type = "text",
+                        toggled = true
+                    },
+                    new
+                    {
+                        type = "operation",
+                        label = "操作",
+                        width = 130,
+                        buttons = new object[]
                         {
                             new
                             {
@@ -103,6 +224,15 @@
                                                 type = "static",
                                                 name = "grade",
                                                 label = "CSS grade"
+                                            },
+                                            new
+                                            {
+                                                type = "divider"
+                                            },
+                                            new
+                                            {
+                                                type = "html",
+                                                html = "<p>添加其他 <span>Html 片段</span> 需要支持变量替换（todo）.</p>"
                                             }
                                         }
                                     }
@@ -182,43 +312,10 @@
                                 icon = "fa fa-times text-danger",
                                 actionType = "ajax",
                                 confirmText = "您确认要删除?",
-                                api = "delete:/api/sample/$id"
+                                api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id"
                             }
                         },
-                        body = new object[]
-                        {
-                            new
-                            {
-                                name = "engine",
-                                label = "Rendering engine",
-                                labelClassName = "w-sm"
-                            },
-                            new
-                            {
-                                type = "hbox",
-                                columns = new object[]
-                                {
-                                    new
-                                    {
-                                        name = "browser",
-                                        label = "Browser",
-                                        labelClassName = "w-sm"
-                                    },
-                                    new
-                                    {
-                                        name = "platform",
-                                        label = "Platform(s)",
-                                        labelClassName = "w-sm"
-                                    }
-                                }
-                            },
-                            new
-                            {
-                                name = "version",
-                                label = "Engine version",
-                                labelClassName = "w-sm"
-                            }
-                        }
+                        toggled = true
                     }
                 }
             }

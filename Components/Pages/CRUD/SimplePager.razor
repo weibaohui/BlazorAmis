@@ -1,0 +1,60 @@
+@page "/CRUD/SimplePager"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new {
+            title = "简单分页，返回 hasNext 属性指示是否有下一页",
+            body = new {
+                type = "crud",
+                syncLocation = false,
+                draggable = true,
+                api = new {
+                    method = "get",
+                    url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/simpleList?page=${page}&pageDir=${pageDir}&after=${items[items.length - 1].id}&before=${items[0].id}",
+                    trackExpression = "${page}-${pageDir}"
+                },
+                columns = new object[] {
+                    new {
+                        name = "id",
+                        label = "ID",
+                        type = "text",
+                        remark = "Bla bla Bla"
+                    },
+                    new {
+                        name = "engine",
+                        label = "Rendering engine",
+                        type = "text"
+                    },
+                    new {
+                        name = "browser",
+                        label = "Browser",
+                        type = "text"
+                    },
+                    new {
+                        name = "platform",
+                        label = "Platform(s)",
+                        type = "text"
+                    },
+                    new {
+                        name = "version",
+                        label = "Engine version",
+                        type = "text",
+                        classNameExpr = "<%= data.version < 5 ? 'bg-danger' : '' %>"
+                    },
+                    new {
+                        type = "text",
+                        name = "grade",
+                        label = "CSS grade"
+                    }
+                }
+            }
+        };
+
+
+        return data;
+    }
+
+}

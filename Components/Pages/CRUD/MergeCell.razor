@@ -1,0 +1,137 @@
+@page "/CRUD/MergeCell"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    //TODO 显示不正常
+    private object GetObj()
+    {
+        var data = new
+        {
+            title =
+                "支持自动合并单元格，从左到右，可配置从左侧起多少列内启动自动合并单元格，当前配置 3",
+            body = new
+            {
+                type = "table",
+                data = new
+                {
+                    items = new object[]
+                    {
+                        new
+                        {
+                            engine = "Trident",
+                            browser = "Internet Explorer 4.2",
+                            platform = "Win 95+",
+                            version = "4",
+                            grade = "A"
+                        },
+                        new
+                        {
+                            engine = "Trident",
+                            browser = "Internet Explorer 4.2",
+                            platform = "Win 95+",
+                            version = "4",
+                            grade = "B"
+                        },
+                        new
+                        {
+                            engine = "Trident",
+                            browser = "AOL browser (AOL desktop)",
+                            platform = "Win 95+",
+                            version = "4",
+                            grade = "C"
+                        },
+                        new
+                        {
+                            engine = "Trident",
+                            browser = "AOL browser (AOL desktop)",
+                            platform = "Win 98",
+                            version = "3",
+                            grade = "A"
+                        },
+                        new
+                        {
+                            engine = "Trident",
+                            browser = "AOL browser (AOL desktop)",
+                            platform = "Win 98",
+                            version = "4",
+                            grade = "A"
+                        },
+                        new
+                        {
+                            engine = "Gecko",
+                            browser = "Firefox 1.0",
+                            platform = "Win 98+ / OSX.2+",
+                            version = "4",
+                            grade = "A"
+                        },
+                        new
+                        {
+                            engine = "Gecko",
+                            browser = "Firefox 1.0",
+                            platform = "Win 98+ / OSX.2+",
+                            version = "5",
+                            grade = "A"
+                        },
+                        new
+                        {
+                            engine = "Gecko",
+                            browser = "Firefox 2.0",
+                            platform = "Win 98+ / OSX.2+",
+                            version = "5",
+                            grade = "B"
+                        },
+                        new
+                        {
+                            engine = "Gecko",
+                            browser = "Firefox 2.0",
+                            platform = "Win 98+ / OSX.2+",
+                            version = "5",
+                            grade = "C"
+                        },
+                        new
+                        {
+                            engine = "Gecko",
+                            browser = "Firefox 2.0",
+                            platform = "Win 98+ / OSX.2+",
+                            version = "5",
+                            grade = "D"
+                        }
+                    },
+                    combineNum = 1,
+                    combineFromIndex = 1,
+                    columns = new object[]
+                    {
+                        new
+                        {
+                            name = "engine",
+                            label = "Rendering engine"
+                        },
+                        new
+                        {
+                            name = "browser",
+                            label = "Browser"
+                        },
+                        new
+                        {
+                            name = "platform",
+                            label = "Platform(s)"
+                        },
+                        new
+                        {
+                            name = "version",
+                            label = "Engine version"
+                        },
+                        new
+                        {
+                            name = "grade",
+                            label = "CSS grade"
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

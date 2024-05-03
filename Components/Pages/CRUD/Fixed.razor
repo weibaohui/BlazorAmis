@@ -1,0 +1,359 @@
+@page "/CRUD/Fixed"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var items = new object[]
+        {
+            new
+            {
+                engine = "Other browsers",
+                browser = "All others",
+                platform = "-",
+                version = "-",
+                grade = "U",
+                progress = 50,
+                status = true,
+                weight = 56,
+                createdAt = "2017-11-17T08:47:50.000Z",
+                updatedAt = "2017-11-17T08:47:50.000Z",
+                id = 1
+            },
+            new
+            {
+                engine = "Misc",
+                browser = "PSP browser",
+                platform = "PSP",
+                version = "-",
+                grade = "C",
+                progress = 50,
+                status = true,
+                weight = 55,
+
+                createdAt = "2017-11-17T08:47:50.000Z",
+                updatedAt = "2017-11-17T08:47:50.000Z",
+                id = 2
+            },
+            new
+            {
+                engine = "Misc",
+                browser = "PSP browser",
+                platform = "PSP",
+                version = "-",
+                grade = "C",
+                progress = 50,
+                status = true,
+                weight = 55,
+
+                createdAt = "2017-11-17T08:47:50.000Z",
+                updatedAt = "2017-11-17T08:47:50.000Z",
+                id = 3
+            },
+            new
+            {
+                engine = "Other browsers",
+                browser = "All others",
+                platform = "-",
+                version = "-",
+                grade = "U",
+                progress = 50,
+                status = true,
+                weight = 56,
+
+                createdAt = "2017-11-17T08:47:50.000Z",
+                updatedAt = "2017-11-17T08:47:50.000Z",
+                id = 4
+            },
+            new
+            {
+                engine = "Misc",
+                browser = "PSP browser",
+                platform = "PSP",
+                version = "-",
+                grade = "C",
+                progress = 50,
+                status = true,
+                weight = 55,
+
+                createdAt = "2017-11-17T08:47:50.000Z",
+                updatedAt = "2017-11-17T08:47:50.000Z",
+                id = 5
+            },
+            new
+            {
+                engine = "Misc",
+                browser = "PSP browser",
+                platform = "PSP",
+                version = "-",
+                grade = "C",
+                progress = 50,
+                status = true,
+                weight = 55,
+
+                createdAt = "2017-11-17T08:47:50.000Z",
+                updatedAt = "2017-11-17T08:47:50.000Z",
+                id = 6
+            },
+            new
+            {
+                engine = "Other browsers",
+                browser = "All others",
+                platform = "-",
+                version = "-",
+                grade = "U",
+                progress = 50,
+                status = true,
+                weight = 56,
+
+                createdAt = "2017-11-17T08:47:50.000Z",
+                updatedAt = "2017-11-17T08:47:50.000Z",
+                id = 7
+            },
+            new
+            {
+                engine = "Misc",
+                browser = "PSP browser",
+                platform = "PSP",
+                version = "-",
+                grade = "C",
+                progress = 50,
+                status = true,
+                weight = 55,
+
+                createdAt = "2017-11-17T08:47:50.000Z",
+                updatedAt = "2017-11-17T08:47:50.000Z",
+                id = 8
+            },
+            new
+            {
+                engine = "Misc",
+                browser = "PSP browser",
+                platform = "PSP",
+                version = "-",
+                grade = "C",
+                progress = 50,
+                status = true,
+                weight = 55,
+
+                createdAt = "2017-11-17T08:47:50.000Z",
+                updatedAt = "2017-11-17T08:47:50.000Z",
+                id = 9
+            },
+            new
+            {
+                engine = "Other browsers",
+                browser = "All others",
+                platform = "-",
+                version = "-",
+                grade = "U",
+                progress = 50,
+                status = true,
+                weight = 56,
+
+                createdAt = "2017-11-17T08:47:50.000Z",
+                updatedAt = "2017-11-17T08:47:50.000Z",
+                id = 10
+            }
+        };
+
+        var table = new
+        {
+            type = "table",
+            data = items,
+            columns = new object[]
+            {
+                new
+                {
+                    name = "id",
+                    label = "ID",
+                    width = 30,
+                    sortable = true,
+                    type = "text",
+                    toggled = true,
+                    @fixed = "left"
+                },
+                new
+                {
+                    name = "engine",
+                    label = "Rendering engine",
+                    sortable = true,
+                    searchable = true,
+                    type = "text",
+                    toggled = true,
+                    @fixed = "left"
+                },
+                new
+                {
+                    name = "browser",
+                    label = "Browser",
+                    sortable = true,
+                    type = "text",
+                    toggled = true
+                },
+                new
+                {
+                    name = "platform",
+                    label = "Platform(s)",
+                    sortable = true,
+                    type = "text",
+                    toggled = true
+                },
+                new
+                {
+                    name = "version",
+                    label = "Engine version",
+                    quickEdit = true,
+                    type = "text",
+                    toggled = true
+                },
+                new
+                {
+                    name = "grade",
+                    label = "CSS grade",
+                    quickEdit = new
+                    {
+                        mode = "inline",
+                        type = "select",
+                        options = new string[] { "A", "B", "C", "D", "X" },
+                        saveImmediately = true
+                    },
+                    type = "text",
+                    toggled = true
+                },
+                new
+                {
+                    name = "browser",
+                    label = "Browser",
+                    sortable = true,
+                    type = "text",
+                    toggled = true
+                },
+                new
+                {
+                    name = "platform",
+                    label = "Platform(s)",
+                    sortable = true,
+                    type = "text",
+                    toggled = true
+                },
+                new
+                {
+                    name = "version",
+                    label = "Engine version",
+                    quickEdit = true,
+                    type = "text",
+                    toggled = true
+                },
+                new
+                {
+                    name = "browser",
+                    label = "Browser",
+                    sortable = true,
+                    type = "text",
+                    toggled = true
+                },
+                new
+                {
+                    name = "platform",
+                    label = "Platform(s)",
+                    sortable = true,
+                    type = "text",
+                    toggled = true
+                },
+                new
+                {
+                    name = "version",
+                    label = "Engine version",
+                    quickEdit = true,
+                    type = "text",
+                    toggled = true
+                },
+                new
+                {
+                    name = "browser",
+                    label = "Browser",
+                    sortable = true,
+                    type = "text",
+                    toggled = true
+                },
+                new
+                {
+                    name = "platform",
+                    label = "Platform(s)",
+                    sortable = true,
+                    type = "text",
+                    toggled = true,
+                    @fixed = "right"
+                },
+                new
+                {
+                    name = "version",
+                    label = "Engine version",
+                    quickEdit = true,
+                    type = "text",
+                    toggled = true, 
+                    @fixed = "right"
+                }
+            }
+        };
+        var data =new {
+            title = "固顶和列固定示例",
+            remark = "bla bla bla",
+            body = new object[]
+            {
+                table=table,
+                new
+                {
+                    label = "点击弹框",
+                    type = "button",
+                    actionType = "dialog",
+                    dialog = new
+                    {
+                        title = "弹框标题",
+                        size = "lg",
+                        body = new object[]
+                        {
+                            table,
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>",
+                            "<div>分割</div>"
+                        }
+                    }
+                },
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                "<div>分割</div>",
+                table
+            }
+        }
+        ;
+        return data;
+    }
+
+}

@@ -1,0 +1,125 @@
+@page "/CRUD/ParsePrimitiveQuery"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "解析Query参数",
+            body = new object[]
+            {
+                new
+                {
+                    type = "alert",
+                    body = new
+                    {
+                        type = "html",
+                        html = "<code>parsePrimitiveQuery</code>默认开启，开启后会对url中的Query进行转换，将原始类型的字符串格式的转化为同位类型"
+                    },
+                    level = "info",
+                    showCloseButton = true,
+                    showIcon = true,
+                    className = "mb-2"
+                },
+                new
+                {
+                    type = "crud",
+                    name = "crud",
+                    syncLocation = false,
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/crud/table5",
+                    parsePrimitiveQuery = new
+                    {
+                        enable = true,
+                        types = new string[] { "boolean", "number" }
+                    },
+                    filter = new
+                    {
+                        debug = true,
+                        title = "条件搜索",
+                        body = new object[]
+                        {
+                            new
+                            {
+                                type = "group",
+                                body = new object[]
+                                {
+                                    new
+                                    {
+                                        type = "switch",
+                                        name = "status",
+                                        label = "已核验",
+                                        size = "sm",
+                                        value = false
+                                    },
+                                    new
+                                    {
+                                        type = "select",
+                                        name = "version",
+                                        label = "版本",
+                                        options = new object[]
+                                        {
+                                            new { label = "5.5", value = 5.5 },
+                                            new { label = "6", value = 6 },
+                                            new { label = "7", value = 7 }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        actions = new object[]
+                        {
+                            new
+                            {
+                                type = "reset",
+                                label = "重置"
+                            },
+                            new
+                            {
+                                type = "submit",
+                                level = "primary",
+                                label = "查询"
+                            }
+                        }
+                    },
+                    columns = new object[]
+                    {
+                        new
+                        {
+                            name = "id",
+                            label = "ID"
+                        },
+                        new
+                        {
+                            name = "browser",
+                            label = "Browser"
+                        },
+                        new
+                        {
+                            name = "status",
+                            label = "已核验",
+                            type = "tpl",
+                            tpl = "${status === true ? '是' : '否'}",
+                            filterable = new
+                            {
+                                options = new object[]
+                                {
+                                    new { label = "是", value = true },
+                                    new { label = "否", value = false }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "version",
+                            label = "版本"
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

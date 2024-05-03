@@ -1,0 +1,358 @@
+@page "/CRUD/ExportCSVExcel"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            title = "CSV 导出的是原始数据，而 Excel 是尽可能还原展现效果",
+            body = new
+            {
+                type = "crud",
+                syncLocation=false,
+                headerToolbar = new object[] { "export-excel", "export-excel-template", "export-csv" },
+                data = new
+                {
+                    mapping_type = new Dictionary<string,string>()
+                    {
+                        {"*","其他"},
+                    },
+                    items = new object[]
+                    {
+                        new
+                        {
+                            link = "https://www.microsoft1.com/",
+                            icon = "../../static/ie.png",
+                            browser = "Internet Explorer 4.2 2",
+                            platform = "Win 95+",
+                            notExport = "1",
+                            grade = "A",
+                            engine = new
+                            {
+                                name = "Trident1",
+                                version = "4/2"
+                            },
+                            date = "1591326307",
+                            num = "12312334234234523",
+                            children = new object[]
+                            {
+                                new
+                                {
+                                    link = "https://www.microsoft2.com/",
+                                    engine = new
+                                    {
+                                        name = "Trident2",
+                                        version = "4/2"
+                                    },
+                                    browser = "Internet Explorer 4.0",
+                                    platform = "Win 95+",
+                                    version = "4",
+                                    grade = "X",
+                                    id = 1001
+                                },
+                                new
+                                {
+                                    link = "https://www.microsoft3.com/",
+                                    engine = new
+                                    {
+                                        name = "Trident3",
+                                        version = "3/2"
+                                    },
+                                    browser = "Internet Explorer 5.0",
+                                    platform = "Win 95+",
+                                    version = "5",
+                                    grade = "C",
+                                    id = 1002
+                                }
+                            }
+                        },
+                        new
+                        {
+                            link = "https://www.microsoft.com/",
+                            icon = "../../static/ie.png",
+                            browser = "Internet Explorer 4.2",
+                            platform = "Win 95+",
+                            notExport = "1",
+                            grade = "A",
+                            engine = new
+                            {
+                                name = "Trident",
+                                version = "4/2"
+                            },
+                            date = "1591326307",
+                            city = "310100",
+                            num = "12312334234234523"
+                        },
+                        new
+                        {
+                            link = "https://www.microsoft.com/",
+                            icon = "../../static/ie.png",
+                            browser = "Internet Explorer 4.2",
+                            platform = "Win 95+",
+                            engine = new
+                            {
+                                name = "Trident",
+                                version = "4"
+                            },
+                            notExport = "1",
+                            grade = "B",
+                            date = "1591322307",
+                            num = 1231233423232
+                        },
+                        new
+                        {
+                            link = "https://www.microsoft.com/",
+                            icon = "../../static/ie.png",
+                            browser = "AOL browser (AOL desktop)",
+                            platform = "Win 95+",
+                            engine = new
+                            {
+                                name = "Trident",
+                                version = "4"
+                            },
+                            notExport = "1",
+                            grade = "C",
+                            date = "1591322307"
+                        },
+                        new
+                        {
+                            link = "https://www.microsoft.com/",
+                            icon = "../../static/ie.png",
+                            engine = new
+                            {
+                                name = "Trident",
+                                version = "3"
+                            },
+                            browser = "AOL browser (AOL desktop)",
+                            platform = "Win 98",
+                            notExport = "1",
+                            grade = "A",
+                            date = "1591322307"
+                        },
+                        new
+                        {
+                            link = "https://www.microsoft.com/",
+                            icon = "../../static/ie.png",
+                            engine = new
+                            {
+                                name = "Trident",
+                                version = "4"
+                            },
+                            browser = "AOL browser (AOL desktop)",
+                            platform = "Win 98",
+                            notExport = "1",
+                            grade = "A",
+                            date = "1591322307"
+                        },
+                        new
+                        {
+                            icon = "../../static/firefox.png",
+                            link = "https://www.mozilla.org/",
+                            browser = "Firefox 1.0",
+                            platform = "Win 98+ / OSX.2+",
+                            engine = new
+                            {
+                                name = "Gecko",
+                                version = "4"
+                            },
+                            notExport = "1",
+                            grade = "A",
+                            date = "1591322307"
+                        },
+                        new
+                        {
+                            icon = "../../static/firefox.png",
+                            link = "https://www.mozilla.org/",
+                            browser = "Firefox 1.0",
+                            platform = "Win 98+ / OSX.2+",
+                            engine = new
+                            {
+                                name = "Gecko",
+                                version = "5"
+                            },
+                            notExport = "1",
+                            grade = "A",
+                            date = "1591322307"
+                        },
+                        new
+                        {
+                            icon = "../../static/firefox.png",
+                            link = "https://www.mozilla.org/",
+                            engine = new
+                            {
+                                name = "Gecko",
+                                version = "5"
+                            },
+                            browser = "Firefox 2.0",
+                            platform = "Win 98+ / OSX.2+",
+                            notExport = "1",
+                            grade = "B",
+                            date = "1591322307"
+                        },
+                        new
+                        {
+                            icon = "../../static/firefox.png",
+                            link = "https://www.mozilla.org/",
+                            engine = new
+                            {
+                                name = "Gecko",
+                                version = "5"
+                            },
+                            browser = "Firefox 2.0",
+                            platform = "Win 98+ / OSX.2+",
+                            notExport = "1",
+                            grade = "C",
+                            date = "1591322307"
+                        },
+                        new
+                        {
+                            icon = "../../static/firefox.png",
+                            link = "https://www.mozilla.org/",
+                            engine = new
+                            {
+                                name = "Gecko",
+                                version = "5"
+                            },
+                            browser = "Firefox 2.0",
+                            platform = "Win 98+ / OSX.2+",
+                            notExport = "1",
+                            grade = "D"
+                        }
+                    }
+                },
+                combineNum = 3,
+                columns = new object[]
+                {
+                    new
+                    {
+                        name = "icon",
+                        label = "<%= \"图标\" %>",
+                        type = "image"
+                    },
+                    new
+                    {
+                        name = "link",
+                        label = "官网",
+                        type = "link"
+                    },
+                    new
+                    {
+                        name = "link",
+                        label = "浏览器地址",
+                        type = "link",
+                        href = "http://www.browser.com/?q=${browser}",
+                        body = "${browser}"
+                    },
+                    new
+                    {
+                        name = "engine.name",
+                        label = "引擎",
+                        className = "text-primary"
+                    },
+                    new
+                    {
+                        name = "browser",
+                        label = "浏览器"
+                    },
+                    new
+                    {
+                        name = "platform",
+                        label = "操作系统"
+                    },
+                    new
+                    {
+                        name = "engine.version",
+                        label = "引擎版本",
+                        type = "tpl",
+                        tpl = "<b>${engine.version}</b>",
+                        classNameExpr = "<%= data.engine.version > 4 ? 'bg-green-100' : 'bg-red-50' %>"
+                    },
+                    new
+                    {
+                        name = "grade",
+                        label = "CSS等级",
+                        type = "mapping",
+                        map = new
+                        {
+                            A = "优",
+                            B = "中",
+                            C = "差",
+                            D = "极差"
+                        }
+                    },
+                    new
+                    {
+                        name = "grade",
+                        label = "CSS grade",
+                        type = "mapping",
+                        source = "${mapping_type}"
+                    },
+                    new
+                    {
+                        name = "date",
+                        label = "Date",
+                        type = "date"
+                    },
+                    new
+                    {
+                        name = "city",
+                        label = "city",
+                        type = "input-city"
+                    },
+                    new
+                    {
+                        name = "num",
+                        label = "num"
+                    }
+                },
+                prefixRow = new object[]
+                {
+                    new
+                    {
+                        type = "text",
+                        text = "前置总计",
+                        colSpan = 2
+                    },
+                    new
+                    {
+                        type = "tpl",
+                        tpl = "${items|pick:engine.version|sum}"
+                    }
+                },
+                affixRow = new object[]
+                {
+                    new object[]
+                    {
+                        new
+                        {
+                            type = "text",
+                            text = "总计1"
+                        },
+                        new
+                        {
+                            type = "tpl",
+                            tpl = "${items|pick:engine.version|sum}"
+                        }
+                    },
+                    new object[]
+                    {
+                        new
+                        {
+                            type = "text",
+                            text = "总计2"
+                        },
+                        new
+                        {
+                            type = "tpl",
+                            tpl = "${items|pick:engine.version|sum}"
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}
