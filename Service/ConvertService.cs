@@ -18,7 +18,7 @@ public class ConvertService
         //     {
         //       type: 'form',
         //       mode: 'horizontal',
-        //       api: '/api/mock2/form/saveForm',
+        //       api: 'https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/form/saveForm',
         //       body: [
         //         {
         //           label: 'Name',
