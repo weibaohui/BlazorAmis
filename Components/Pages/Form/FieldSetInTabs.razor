@@ -1,55 +1,96 @@
-
 @page "/Form/FieldSetInTabs"
-<PageTitle>Demo</PageTitle>
+<PageTitle>FieldSet Tabs 组合</PageTitle>
 <Amis Data="GetObj()"></Amis>
 
 @code {
+
     private object GetObj()
     {
-        var data = new {
-    title = "FieldSet In Tabs",
-    remark = "",
-    body = new {
-        type = "form",
-        body = new object[] {
-            new {
-                type = "tabs",
-                collapsable = true,
-                tabs = new object[] {
-                    new {
-                        title = "Tab A",
-                        body = new object[] {
-                            new {
-                                type = "fieldset",
-                                body = new object[] {
-                                    new {
-                                        type = "tabs",
-                                        title = "Group A",
-                                        tabs = new object[] {
-                                            new {
-                                                title = "SubTab A",
-                                                body = new object[] {
-                                                    new {
-                                                        name = "a",
-                                                        type = "input-text",
-                                                        label = "Text"
+        var data = new
+        {
+            title = "FieldSet In Tabs",
+            remark = "",
+            body = new
+            {
+                type = "form",
+                body = new object[]
+                {
+                    new
+                    {
+                        type = "tabs",
+                        collapsable = true,
+                        tabs = new object[]
+                        {
+                            new
+                            {
+                                title = "Tab A",
+                                body = new object[]
+                                {
+                                    new
+                                    {
+                                        type = "fieldset",
+                                        body = new object[]
+                                        {
+                                            new
+                                            {
+                                                type = "tabs",
+                                                title = "Group A",
+                                                tabs = new object[]
+                                                {
+                                                    new
+                                                    {
+                                                        title = "SubTab A",
+                                                        body = new object[]
+                                                        {
+                                                            new
+                                                            {
+                                                                name = "a",
+                                                                type = "input-text",
+                                                                label = "Text"
+                                                            },
+                                                            new
+                                                            {
+                                                                name = "a",
+                                                                type = "input-text",
+                                                                label = "Text"
+                                                            }
+                                                        }
                                                     },
-                                                    new {
-                                                        name = "a",
-                                                        type = "input-text",
-                                                        label = "Text"
+                                                    new
+                                                    {
+                                                        title = "SubTab B",
+                                                        body = new object[]
+                                                        {
+                                                            new
+                                                            {
+                                                                name = "a",
+                                                                type = "input-text",
+                                                                label = "Text"
+                                                            },
+                                                            new
+                                                            {
+                                                                name = "a",
+                                                                type = "input-text",
+                                                                label = "Text"
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             },
-                                            new {
-                                                title = "SubTab B",
-                                                body = new object[] {
-                                                    new {
+                                            new
+                                            {
+                                                type = "tabs",
+                                                title = "Group B",
+                                                body = new object[]
+                                                {
+                                                    new
+                                                    {
                                                         name = "a",
                                                         type = "input-text",
                                                         label = "Text"
                                                     },
-                                                    new {
+                                                    new
+                                                    {
                                                         name = "a",
                                                         type = "input-text",
                                                         label = "Text"
@@ -57,59 +98,53 @@
                                                 }
                                             }
                                         }
-                                    },
-                                    new {
-                                        type = "tabs",
-                                        title = "Group B",
-                                        body = new object[] {
-                                            new {
-                                                name = "a",
-                                                type = "input-text",
-                                                label = "Text"
-                                            },
-                                            new {
-                                                name = "a",
-                                                type = "input-text",
-                                                label = "Text"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    new {
-                        title = "Tab B",
-                        body = new object[] {
-                            new {
-                                type = "fieldset",
-                                title = "Group A",
-                                body = new object[] {
-                                    new {
-                                        name = "a",
-                                        type = "input-text",
-                                        label = "Text"
-                                    },
-                                    new {
-                                        name = "a",
-                                        type = "input-text",
-                                        label = "Text"
                                     }
                                 }
                             },
-                            new {
-                                type = "fieldset",
-                                title = "Group B",
-                                body = new object[] {
-                                    new {
-                                        name = "a",
-                                        type = "input-text",
-                                        label = "Text"
+                            new
+                            {
+                                title = "Tab B",
+                                body = new object[]
+                                {
+                                    new
+                                    {
+                                        type = "fieldset",
+                                        title = "Group A",
+                                        body = new object[]
+                                        {
+                                            new
+                                            {
+                                                name = "a",
+                                                type = "input-text",
+                                                label = "Text"
+                                            },
+                                            new
+                                            {
+                                                name = "a",
+                                                type = "input-text",
+                                                label = "Text"
+                                            }
+                                        }
                                     },
-                                    new {
-                                        name = "a",
-                                        type = "input-text",
-                                        label = "Text"
+                                    new
+                                    {
+                                        type = "fieldset",
+                                        title = "Group B",
+                                        body = new object[]
+                                        {
+                                            new
+                                            {
+                                                name = "a",
+                                                type = "input-text",
+                                                label = "Text"
+                                            },
+                                            new
+                                            {
+                                                name = "a",
+                                                type = "input-text",
+                                                label = "Text"
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -117,10 +152,8 @@
                     }
                 }
             }
-        }
-    }
-};
+        };
         return data;
-        
     }
+
 }

@@ -1,30 +1,35 @@
-
 @page "/Form/RichText"
-<PageTitle>Demo</PageTitle>
+<PageTitle>富文本</PageTitle>
 <Amis Data="GetObj()"></Amis>
 
 @code {
+
     private object GetObj()
     {
-        var data = new {
-    title = "富文本编辑器",
-    body = new object[] {
-        new {
-            type = "form",
-            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
-            title = "Form elements",
-            body = new object[] {
-                new {
-                    name = "html",
-                    type = "input-rich-text",
-                    label = "富文本",
-                    value = "<p>Just do <code>IT</code></p>"
+        var data = new
+        {
+            title = "富文本编辑器",
+            body = new object[]
+            {
+                new
+                {
+                    type = "form",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
+                    title = "Form elements",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            name = "html",
+                            type = "input-rich-text",
+                            label = "富文本",
+                            value = "<p>Just do <code>IT</code></p>"
+                        }
+                    }
                 }
             }
-        }
-    }
-};
+        };
         return data;
-        
     }
+
 }

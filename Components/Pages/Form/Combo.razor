@@ -1,652 +1,795 @@
-
 @page "/Form/Combo"
-<PageTitle>Demo</PageTitle>
+<PageTitle>组合类型</PageTitle>
 <Amis Data="GetObj()"></Amis>
 
 @code {
+
     private object GetObj()
     {
-        var data = new {
-    title = "Combo 示例",
-    body = new object[] {
-        new {
-            type = "tabs",
-            tabs = new object[] {
-                new {
-                    title = "基本用法",
-                    hash = "basic",
-                    body = new object[] {
-                        new {
-                            type = "form",
-                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
-                            title = "",
-                            mode = "horizontal",
-                            wrapWithPanel = false,
-                            className = "m-t",
-                            body = new object[] {
-                                new {
-                                    type = "input-text",
-                                    label = "文本",
-                                    name = "a"
-                                },
-                                new {
-                                    type = "divider"
-                                },
-                                new {
-                                    type = "combo",
-                                    name = "combo1",
-                                    label = "组合多条多行",
-                                    multiple = true,
-                                    multiLine = true,
-                                    value = new object[] {new {}},
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            label = "文本",
+        var data = new
+        {
+            title = "Combo 示例",
+            body = new object[]
+            {
+                new
+                {
+                    type = "tabs",
+                    tabs = new object[]
+                    {
+                        new
+                        {
+                            title = "基本用法",
+                            hash = "basic",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "form",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
+                                    title = "",
+                                    mode = "horizontal",
+                                    wrapWithPanel = false,
+                                    className = "m-t",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
                                             type = "input-text",
-                                            placeholder = "文本",
-                                            value = "",
-                                            size = "full"
+                                            label = "文本",
+                                            name = "a"
                                         },
-                                        new {
-                                            name = "b",
-                                            label = "选项",
-                                            type = "select",
-                                            options = new string[] {"a", "b", "c"},
-                                            size = "full"
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo1",
+                                            label = "组合多条多行",
+                                            multiple = true,
+                                            multiLine = true,
+                                            value = new object[] { new { } },
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    label = "文本",
+                                                    type = "input-text",
+                                                    placeholder = "文本",
+                                                    value = "",
+                                                    size = "full"
+                                                },
+                                                new
+                                                {
+                                                    name = "b",
+                                                    label = "选项",
+                                                    type = "select",
+                                                    options = new string[] { "a", "b", "c" },
+                                                    size = "full"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "button",
+                                            label = "独立排序",
+                                            level = "dark",
+                                            className = "m-t-n-xs",
+                                            size = "sm",
+                                            actionType = "dialog",
+                                            visibleOn = "data.combo1.length > 1",
+                                            dialog = new
+                                            {
+                                                title = "对 Combo 进行 拖拽排序",
+                                                body = new
+                                                {
+                                                    type = "form",
+                                                    body = new object[]
+                                                    {
+                                                        new
+                                                        {
+                                                            type = "combo",
+                                                            name = "combo1",
+                                                            label = false,
+                                                            multiple = true,
+                                                            draggable = true,
+                                                            addable = false,
+                                                            removable = false,
+                                                            value = new object[] { new { } },
+                                                            items = new object[]
+                                                            {
+                                                                new
+                                                                {
+                                                                    name = "a",
+                                                                    type = "static",
+                                                                    tpl = "${a} - ${b}"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                actions = new object[]
+                                                {
+                                                    new
+                                                    {
+                                                        type = "submit",
+                                                        mergeData = true,
+                                                        label = "确认",
+                                                        level = "primary"
+                                                    },
+                                                    new
+                                                    {
+                                                        type = "button",
+                                                        actionType = "close",
+                                                        label = "取消"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo2",
+                                            label = "组合多条单行",
+                                            multiple = true,
+                                            value = new object[] { new { } },
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    type = "input-text",
+                                                    placeholder = "文本",
+                                                    value = "",
+                                                    columnClassName = "w-sm"
+                                                },
+                                                new
+                                                {
+                                                    name = "b",
+                                                    type = "select",
+                                                    options = new string[] { "a", "b", "c" }
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo3",
+                                            label = "组合单条多行",
+                                            multiLine = true,
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    label = "文本",
+                                                    type = "input-text",
+                                                    placeholder = "文本",
+                                                    value = "",
+                                                    size = "full"
+                                                },
+                                                new
+                                                {
+                                                    name = "b",
+                                                    label = "选项",
+                                                    type = "select",
+                                                    options = new string[] { "a", "b", "c" }
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo4",
+                                            label = "组合单条单行",
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    type = "input-text",
+                                                    placeholder = "文本",
+                                                    value = "",
+                                                    size = "full"
+                                                },
+                                                new
+                                                {
+                                                    name = "b",
+                                                    type = "select",
+                                                    options = new string[] { "a", "b", "c" }
+                                                }
+                                            }
                                         }
                                     }
-                                },
-                                new {
-                                    type = "button",
-                                    label = "独立排序",
-                                    level = "dark",
-                                    className = "m-t-n-xs",
-                                    size = "sm",
-                                    actionType = "dialog",
-                                    visibleOn = "data.combo1.length > 1",
-                                    dialog = new {
-                                        title = "对 Combo 进行 拖拽排序",
-                                        body = new {
-                                            type = "form",
-                                            body = new object[] {
-                                                new {
-                                                    type = "combo",
-                                                    name = "combo1",
-                                                    label = false,
-                                                    multiple = true,
-                                                    draggable = true,
-                                                    addable = false,
-                                                    removable = false,
-                                                    value = new object[] {new {}},
-                                                    items = new object[] {
-                                                        new {
-                                                            name = "a",
-                                                            type = "static",
-                                                            tpl = "${a} - ${b}"
+                                }
+                            }
+                        },
+                        new
+                        {
+                            title = "内联样式",
+                            hash = "inline",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "form",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
+                                    title = "",
+                                    mode = "horizontal",
+                                    wrapWithPanel = false,
+                                    className = "m-t",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo11",
+                                            label = "组合多条多行内联",
+                                            multiple = true,
+                                            multiLine = true,
+                                            inline = true,
+                                            value = new object[] { new { } },
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    label = "文本",
+                                                    type = "input-text",
+                                                    placeholder = "文本",
+                                                    value = ""
+                                                },
+                                                new
+                                                {
+                                                    name = "b",
+                                                    label = "选项",
+                                                    type = "select",
+                                                    options = new string[] { "a", "b", "c" }
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo22",
+                                            label = "组合多条单行内联",
+                                            multiple = true,
+                                            inline = true,
+                                            value = new object[] { new { } },
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    type = "input-text",
+                                                    placeholder = "文本",
+                                                    value = ""
+                                                },
+                                                new
+                                                {
+                                                    name = "b",
+                                                    type = "select",
+                                                    options = new string[] { "a", "b", "c" }
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "divider"
+                                        },
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo33",
+                                            label = "组合单条多行内联",
+                                            multiLine = true,
+                                            inline = true,
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    label = "文本",
+                                                    type = "input-text",
+                                                    placeholder = "文本",
+                                                    value = ""
+                                                },
+                                                new
+                                                {
+                                                    name = "b",
+                                                    label = "选项",
+                                                    type = "select",
+                                                    options = new string[] { "a", "b", "c" }
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo44",
+                                            label = "组合单条单行内联",
+                                            inline = true,
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    type = "input-text",
+                                                    placeholder = "文本",
+                                                    value = ""
+                                                },
+                                                new
+                                                {
+                                                    name = "b",
+                                                    type = "select",
+                                                    options = new string[] { "a", "b", "c" }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            title = "唯一验证",
+                            hash = "unique",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "form",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
+                                    title = "",
+                                    mode = "horizontal",
+                                    wrapWithPanel = false,
+                                    className = "m-t",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo666",
+                                            label = "组合多条唯一",
+                                            multiple = true,
+                                            value = new object[] { new { } },
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    type = "input-text",
+                                                    placeholder = "文本",
+                                                    value = "",
+                                                    unique = true
+                                                },
+                                                new
+                                                {
+                                                    name = "b",
+                                                    type = "select",
+                                                    options = new string[] { "a", "b", "c" },
+                                                    unique = true
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            title = "可拖拽排序",
+                            hash = "sortable",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "form",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
+                                    title = "",
+                                    mode = "horizontal",
+                                    wrapWithPanel = false,
+                                    className = "m-t",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo777",
+                                            label = "可拖拽排序",
+                                            multiple = true,
+                                            value = new object[]
+                                            {
+                                                new { a = "1", b = "a" },
+                                                new { a = "2", b = "b" }
+                                            },
+                                            draggable = true,
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    type = "input-text",
+                                                    placeholder = "文本",
+                                                    unique = true
+                                                },
+                                                new
+                                                {
+                                                    name = "b",
+                                                    type = "select",
+                                                    options = new string[] { "a", "b", "c" },
+                                                    unique = true
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            title = "值打平",
+                            hash = "flat",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "form",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
+                                    title = "",
+                                    mode = "horizontal",
+                                    wrapWithPanel = false,
+                                    className = "m-t",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo888",
+                                            label = "可打平只存储值",
+                                            multiple = true,
+                                            flat = true,
+                                            value = new string[] { "red", "pink" },
+                                            draggable = true,
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    type = "input-color",
+                                                    placeholder = "选取颜色"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "static",
+                                            name = "combo888",
+                                            label = "当前值",
+                                            tpl = "<pre>${combo888|json}</pre>"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            title = "条件",
+                            hash = "conditions",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "form",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
+                                    title = "",
+                                    mode = "horizontal",
+                                    wrapWithPanel = false,
+                                    className = "m-t",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "tpl",
+                                            tpl = "<p class=\"m-b-xl\">添加时可选择类型，比如这个例子，可以选择是文本类型还是数字类型</p>"
+                                        },
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo-conditions1",
+                                            label = "单选",
+                                            value = new
+                                            {
+                                                type = "number"
+                                            },
+                                            multiLine = true,
+                                            conditions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "文本",
+                                                    test = "this.type === \"text\"",
+                                                    scaffold = new
+                                                    {
+                                                        type = "text",
+                                                        label = "文本",
+                                                        name = ""
+                                                    },
+                                                    items = new object[]
+                                                    {
+                                                        new
+                                                        {
+                                                            label = "名称",
+                                                            name = "label",
+                                                            type = "input-text"
+                                                        },
+                                                        new
+                                                        {
+                                                            label = "字段名",
+                                                            name = "name",
+                                                            type = "input-text"
+                                                        }
+                                                    }
+                                                },
+                                                new
+                                                {
+                                                    label = "数字",
+                                                    test = "this.type === \"number\"",
+                                                    scaffold = new
+                                                    {
+                                                        type = "number",
+                                                        label = "数字",
+                                                        name = ""
+                                                    },
+                                                    items = new object[]
+                                                    {
+                                                        new
+                                                        {
+                                                            label = "名称",
+                                                            name = "label",
+                                                            type = "input-text"
+                                                        },
+                                                        new
+                                                        {
+                                                            label = "字段名",
+                                                            name = "name",
+                                                            type = "input-text"
+                                                        },
+                                                        new
+                                                        {
+                                                            label = "最小值",
+                                                            name = "min",
+                                                            type = "input-number"
+                                                        },
+                                                        new
+                                                        {
+                                                            label = "最大值",
+                                                            name = "max",
+                                                            type = "input-number"
+                                                        },
+                                                        new
+                                                        {
+                                                            label = "步长",
+                                                            name = "step",
+                                                            type = "input-number"
                                                         }
                                                     }
                                                 }
                                             }
                                         },
-                                        actions = new object[] {
-                                            new {
-                                                type = "submit",
-                                                mergeData = true,
-                                                label = "确认",
-                                                level = "primary"
-                                            },
-                                            new {
-                                                type = "button",
-                                                actionType = "close",
-                                                label = "取消"
-                                            }
-                                        }
-                                    }
-                                },
-                                new {
-                                    type = "combo",
-                                    name = "combo2",
-                                    label = "组合多条单行",
-                                    multiple = true,
-                                    value = new object[] {new {}},
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            type = "input-text",
-                                            placeholder = "文本",
-                                            value = "",
-                                            columnClassName = "w-sm"
-                                        },
-                                        new {
-                                            name = "b",
-                                            type = "select",
-                                            options = new string[] {"a", "b", "c"}
-                                        }
-                                    }
-                                },
-                                new {
-                                    type = "divider"
-                                },
-                                new {
-                                    type = "combo",
-                                    name = "combo3",
-                                    label = "组合单条多行",
-                                    multiLine = true,
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            label = "文本",
-                                            type = "input-text",
-                                            placeholder = "文本",
-                                            value = "",
-                                            size = "full"
-                                        },
-                                        new {
-                                            name = "b",
-                                            label = "选项",
-                                            type = "select",
-                                            options = new string[] {"a", "b", "c"}
-                                        }
-                                    }
-                                },
-                                new {
-                                    type = "combo",
-                                    name = "combo4",
-                                    label = "组合单条单行",
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            type = "input-text",
-                                            placeholder = "文本",
-                                            value = "",
-                                            size = "full"
-                                        },
-                                        new {
-                                            name = "b",
-                                            type = "select",
-                                            options = new string[] {"a", "b", "c"}
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                new {
-                    title = "内联样式",
-                    hash = "inline",
-                    body = new object[] {
-                        new {
-                            type = "form",
-                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
-                            title = "",
-                            mode = "horizontal",
-                            wrapWithPanel = false,
-                            className = "m-t",
-                            body = new object[] {
-                                new {
-                                    type = "combo",
-                                    name = "combo11",
-                                    label = "组合多条多行内联",
-                                    multiple = true,
-                                    multiLine = true,
-                                    inline = true,
-                                    value = new object[] {new {}},
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            label = "文本",
-                                            type = "input-text",
-                                            placeholder = "文本",
-                                            value = ""
-                                        },
-                                        new {
-                                            name = "b",
-                                            label = "选项",
-                                            type = "select",
-                                            options = new string[] {"a", "b", "c"}
-                                        }
-                                    }
-                                },
-                                new {
-                                    type = "combo",
-                                    name = "combo22",
-                                    label = "组合多条单行内联",
-                                    multiple = true,
-                                    inline = true,
-                                    value = new object[] {new {}},
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            type = "input-text",
-                                            placeholder = "文本",
-                                            value = ""
-                                        },
-                                        new {
-                                            name = "b",
-                                            type = "select",
-                                            options = new string[] {"a", "b", "c"}
-                                        }
-                                    }
-                                },
-                                new {
-                                    type = "divider"
-                                },
-                                new {
-                                    type = "combo",
-                                    name = "combo33",
-                                    label = "组合单条多行内联",
-                                    multiLine = true,
-                                    inline = true,
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            label = "文本",
-                                            type = "input-text",
-                                            placeholder = "文本",
-                                            value = ""
-                                        },
-                                        new {
-                                            name = "b",
-                                            label = "选项",
-                                            type = "select",
-                                            options = new string[] {"a", "b", "c"}
-                                        }
-                                    }
-                                },
-                                new {
-                                    type = "combo",
-                                    name = "combo44",
-                                    label = "组合单条单行内联",
-                                    inline = true,
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            type = "input-text",
-                                            placeholder = "文本",
-                                            value = ""
-                                        },
-                                        new {
-                                            name = "b",
-                                            type = "select",
-                                            options = new string[] {"a", "b", "c"}
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                new {
-                    title = "唯一验证",
-                    hash = "unique",
-                    body = new object[] {
-                        new {
-                            type = "form",
-                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
-                            title = "",
-                            mode = "horizontal",
-                            wrapWithPanel = false,
-                            className = "m-t",
-                            body = new object[] {
-                                new {
-                                    type = "combo",
-                                    name = "combo666",
-                                    label = "组合多条唯一",
-                                    multiple = true,
-                                    value = new object[] {new {}},
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            type = "input-text",
-                                            placeholder = "文本",
-                                            value = "",
-                                            unique = true
-                                        },
-                                        new {
-                                            name = "b",
-                                            type = "select",
-                                            options = new string[] {"a", "b", "c"},
-                                            unique = true
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                new {
-                    title = "可拖拽排序",
-                    hash = "sortable",
-                    body = new object[] {
-                        new {
-                            type = "form",
-                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
-                            title = "",
-                            mode = "horizontal",
-                            wrapWithPanel = false,
-                            className = "m-t",
-                            body = new object[] {
-                                new {
-                                    type = "combo",
-                                    name = "combo777",
-                                    label = "可拖拽排序",
-                                    multiple = true,
-                                    value = new object[] {
-                                        new {a = "1", b = "a"},
-                                        new {a = "2", b = "b"}
-                                    },
-                                    draggable = true,
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            type = "input-text",
-                                            placeholder = "文本",
-                                            unique = true
-                                        },
-                                        new {
-                                            name = "b",
-                                            type = "select",
-                                            options = new string[] {"a", "b", "c"},
-                                            unique = true
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                new {
-                    title = "值打平",
-                    hash = "flat",
-                    body = new object[] {
-                        new {
-                            type = "form",
-                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
-                            title = "",
-                            mode = "horizontal",
-                            wrapWithPanel = false,
-                            className = "m-t",
-                            body = new object[] {
-                                new {
-                                    type = "combo",
-                                    name = "combo888",
-                                    label = "可打平只存储值",
-                                    multiple = true,
-                                    flat = true,
-                                    value = new string[] {"red", "pink"},
-                                    draggable = true,
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            type = "input-color",
-                                            placeholder = "选取颜色"
-                                        }
-                                    }
-                                },
-                                new {
-                                    type = "static",
-                                    name = "combo888",
-                                    label = "当前值",
-                                    tpl = "<pre>${combo888|json}</pre>"
-                                }
-                            }
-                        }
-                    }
-                },
-                new {
-                    title = "条件",
-                    hash = "conditions",
-                    body = new object[] {
-                        new {
-                            type = "form",
-                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
-                            title = "",
-                            mode = "horizontal",
-                            wrapWithPanel = false,
-                            className = "m-t",
-                            body = new object[] {
-                                new {
-                                    type = "tpl",
-                                    tpl = "<p class=\"m-b-xl\">添加时可选择类型，比如这个例子，可以选择是文本类型还是数字类型</p>"
-                                },
-                                new {
-                                    type = "combo",
-                                    name = "combo-conditions1",
-                                    label = "单选",
-                                    value = new {
-                                        type = "number"
-                                    },
-                                    multiLine = true,
-                                    conditions = new object[] {
-                                        new {
-                                            label = "文本",
-                                            test = "this.type === \"text\"",
-                                            scaffold = new {
-                                                type = "text",
-                                                label = "文本",
-                                                name = ""
-                                            },
-                                            items = new object[] {
-                                                new {
-                                                    label = "名称",
-                                                    name = "label",
-                                                    type = "input-text"
-                                                },
-                                                new {
-                                                    label = "字段名",
-                                                    name = "name",
-                                                    type = "input-text"
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo-conditions2",
+                                            label = "多选",
+                                            value = new object[]
+                                            {
+                                                new
+                                                {
+                                                    type = "text"
                                                 }
-                                            }
-                                        },
-                                        new {
-                                            label = "数字",
-                                            test = "this.type === \"number\"",
-                                            scaffold = new {
-                                                type = "number",
-                                                label = "数字",
-                                                name = ""
                                             },
-                                            items = new object[] {
-                                                new {
-                                                    label = "名称",
-                                                    name = "label",
-                                                    type = "input-text"
+                                            multiLine = true,
+                                            multiple = true,
+                                            typeSwitchable = false,
+                                            conditions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "文本",
+                                                    test = "this.type === \"text\"",
+                                                    scaffold = new
+                                                    {
+                                                        type = "text",
+                                                        label = "文本",
+                                                        name = ""
+                                                    },
+                                                    items = new object[]
+                                                    {
+                                                        new
+                                                        {
+                                                            label = "名称",
+                                                            name = "label",
+                                                            type = "input-text"
+                                                        },
+                                                        new
+                                                        {
+                                                            label = "字段名",
+                                                            name = "name",
+                                                            type = "input-text"
+                                                        }
+                                                    }
                                                 },
-                                                new {
-                                                    label = "字段名",
-                                                    name = "name",
-                                                    type = "input-text"
-                                                },
-                                                new {
-                                                    label = "最小值",
-                                                    name = "min",
-                                                    type = "input-number"
-                                                },
-                                                new {
-                                                    label = "最大值",
-                                                    name = "max",
-                                                    type = "input-number"
-                                                },
-                                                new {
-                                                    label = "步长",
-                                                    name = "step",
-                                                    type = "input-number"
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                new {
-                                    type = "combo",
-                                    name = "combo-conditions2",
-                                    label = "多选",
-                                    value = new object[] {
-                                        new {
-                                            type = "text"
-                                        }
-                                    },
-                                    multiLine = true,
-                                    multiple = true,
-                                    typeSwitchable = false,
-                                    conditions = new object[] {
-                                        new {
-                                            label = "文本",
-                                            test = "this.type === \"text\"",
-                                            scaffold = new {
-                                                type = "text",
-                                                label = "文本",
-                                                name = ""
-                                            },
-                                            items = new object[] {
-                                                new {
-                                                    label = "名称",
-                                                    name = "label",
-                                                    type = "input-text"
-                                                },
-                                                new {
-                                                    label = "字段名",
-                                                    name = "name",
-                                                    type = "input-text"
-                                                }
-                                            }
-                                        },
-                                        new {
-                                            label = "数字",
-                                            test = "this.type === \"number\"",
-                                            scaffold = new {
-                                                type = "number",
-                                                label = "数字",
-                                                name = ""
-                                            },
-                                            items = new object[] {
-                                                new {
-                                                    label = "名称",
-                                                    name = "label",
-                                                    type = "input-text"
-                                                },
-                                                new {
-                                                    label = "字段名",
-                                                    name = "name",
-                                                    type = "input-text"
-                                                },
-                                                new {
-                                                    label = "最小值",
-                                                    name = "min",
-                                                    type = "input-number"
-                                                },
-                                                new {
-                                                    label = "最大值",
-                                                    name = "max",
-                                                    type = "input-number"
-                                                },
-                                                new {
-                                                    label = "步长",
-                                                    name = "step",
-                                                    type = "input-number"
+                                                new
+                                                {
+                                                    label = "数字",
+                                                    test = "this.type === \"number\"",
+                                                    scaffold = new
+                                                    {
+                                                        type = "number",
+                                                        label = "数字",
+                                                        name = ""
+                                                    },
+                                                    items = new object[]
+                                                    {
+                                                        new
+                                                        {
+                                                            label = "名称",
+                                                            name = "label",
+                                                            type = "input-text"
+                                                        },
+                                                        new
+                                                        {
+                                                            label = "字段名",
+                                                            name = "name",
+                                                            type = "input-text"
+                                                        },
+                                                        new
+                                                        {
+                                                            label = "最小值",
+                                                            name = "min",
+                                                            type = "input-number"
+                                                        },
+                                                        new
+                                                        {
+                                                            label = "最大值",
+                                                            name = "max",
+                                                            type = "input-number"
+                                                        },
+                                                        new
+                                                        {
+                                                            label = "步长",
+                                                            name = "step",
+                                                            type = "input-number"
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
                                     }
                                 }
                             }
-                        }
-                    }
-                },
-                new {
-                    title = "Tabs",
-                    hash = "tabs",
-                    body = new object[] {
-                        new {
-                            type = "form",
-                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
-                            title = "",
-                            mode = "horizontal",
-                            wrapWithPanel = false,
-                            className = "m-t",
-                            body = new object[] {
-                                new {
-                                    type = "combo",
-                                    name = "combo101",
-                                    label = "组合多条多行",
-                                    multiple = true,
-                                    multiLine = true,
-                                    value = new object[] {new {}},
-                                    tabsMode = true,
-                                    tabsStyle = "card",
-                                    maxLength = 3,
-                                    items = new object[] {
-                                        new {
-                                            name = "a",
-                                            label = "文本",
-                                            type = "input-text",
-                                            placeholder = "文本",
-                                            value = "",
-                                            size = "full"
-                                        },
-                                        new {
-                                            name = "b",
-                                            label = "选项",
-                                            type = "select",
-                                            options = new string[] {"a", "b", "c"},
-                                            size = "full"
+                        },
+                        new
+                        {
+                            title = "Tabs",
+                            hash = "tabs",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "form",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
+                                    title = "",
+                                    mode = "horizontal",
+                                    wrapWithPanel = false,
+                                    className = "m-t",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo101",
+                                            label = "组合多条多行",
+                                            multiple = true,
+                                            multiLine = true,
+                                            value = new object[] { new { } },
+                                            tabsMode = true,
+                                            tabsStyle = "card",
+                                            maxLength = 3,
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a",
+                                                    label = "文本",
+                                                    type = "input-text",
+                                                    placeholder = "文本",
+                                                    value = "",
+                                                    size = "full"
+                                                },
+                                                new
+                                                {
+                                                    name = "b",
+                                                    label = "选项",
+                                                    type = "select",
+                                                    options = new string[] { "a", "b", "c" },
+                                                    size = "full"
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                    }
-                },
-                new {
-                    title = "其他",
-                    hash = "others",
-                    body = new object[] {
-                        new {
-                            type = "form",
-                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
-                            title = "",
-                            mode = "horizontal",
-                            wrapWithPanel = false,
-                            className = "m-t",
-                            body = new object[] {
-                                new {
-                                    type = "input-text",
-                                    disabled = true,
-                                    label = "父级值",
-                                    name = "a_super",
-                                    value = "123"
-                                },
-                                new {
-                                    type = "combo",
-                                    name = "combo999",
-                                    label = "可获取父级数据",
-                                    multiple = true,
-                                    canAccessSuperData = true,
-                                    strictMode = false,
-                                    items = new object[] {
-                                        new {
+                        },
+                        new
+                        {
+                            title = "其他",
+                            hash = "others",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "form",
+                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/saveForm?waitSeconds=2",
+                                    title = "",
+                                    mode = "horizontal",
+                                    wrapWithPanel = false,
+                                    className = "m-t",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "input-text",
+                                            disabled = true,
+                                            label = "父级值",
                                             name = "a_super",
-                                            type = "input-text"
-                                        }
-                                    }
-                                },
-                                new {
-                                    type = "combo",
-                                    name = "combo9999",
-                                    label = "显示序号",
-                                    multiple = true,
-                                    items = new object[] {
-                                        new {
-                                            type = "tpl",
-                                            tpl = "<%= data.index + 1%>",
-                                            className = "p-t-xs",
-                                            mode = "inline"
+                                            value = "123"
                                         },
-                                        new {
-                                            name = "a",
-                                            type = "input-text"
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo999",
+                                            label = "可获取父级数据",
+                                            multiple = true,
+                                            canAccessSuperData = true,
+                                            strictMode = false,
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    name = "a_super",
+                                                    type = "input-text"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            type = "combo",
+                                            name = "combo9999",
+                                            label = "显示序号",
+                                            multiple = true,
+                                            items = new object[]
+                                            {
+                                                new
+                                                {
+                                                    type = "tpl",
+                                                    tpl = "<%= data.index + 1%>",
+                                                    className = "p-t-xs",
+                                                    mode = "inline"
+                                                },
+                                                new
+                                                {
+                                                    name = "a",
+                                                    type = "input-text"
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -655,10 +798,8 @@
                     }
                 }
             }
-        }
-    }
-};
+        };
         return data;
-        
     }
+
 }
