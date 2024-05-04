@@ -1,58 +1,71 @@
-
 @page "/Tabs/Form"
-<PageTitle>Demo</PageTitle>
+<PageTitle>表单中选项卡分组</PageTitle>
 <Amis Data="GetObj()"></Amis>
 
 @code {
+
     private object GetObj()
     {
-        var data = new {
-    type = "page",
-    title = "表单中选项卡分组",
-    subTitle = "",
-    body = new object[] {
-        new {
-            type = "form",
-            title = "",
-            tabs = new object[] {
-                new {
-                    title = "选项卡1",
-                    hash = "tab1",
-                    body = new object[] {
-                        new {
-                            type = "input-text",
-                            label = "文本1",
-                            name = "a"
-                        }
-                    }
-                },
-                new {
-                    title = "选项卡2",
-                    hash = "tab2",
-                    body = new object[] {
-                        new {
-                            type = "input-text",
-                            label = "文本2",
-                            name = "b"
-                        }
-                    }
-                },
-                new {
-                    title = "选项卡3",
-                    hash = "tab3",
-                    body = new object[] {
-                        new {
-                            type = "input-text",
-                            label = "文本3",
-                            name = "c"
+        var data = new
+        {
+            type = "page",
+            title = "表单中选项卡分组",
+            subTitle = "",
+            body = new object[]
+            {
+                new
+                {
+                    type = "form",
+                    title = "",
+                    tabs = new object[]
+                    {
+                        new
+                        {
+                            title = "选项卡1",
+                            hash = "tab1",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "input-text",
+                                    label = "文本1",
+                                    name = "a"
+                                }
+                            }
+                        },
+                        new
+                        {
+                            title = "选项卡2",
+                            hash = "tab2",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "input-text",
+                                    label = "文本2",
+                                    name = "b"
+                                }
+                            }
+                        },
+                        new
+                        {
+                            title = "选项卡3",
+                            hash = "tab3",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "input-text",
+                                    label = "文本3",
+                                    name = "c"
+                                }
+                            }
                         }
                     }
                 }
             }
-        }
-    }
-};
+        };
         return data;
-        
     }
+
 }
