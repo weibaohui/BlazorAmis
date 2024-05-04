@@ -14,6 +14,7 @@
             {
                 type = "nav",
                 name = "nav",
+                target = "table",
                 stacked = true,
                 source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/options/nav?parentId=${value}&waitSeconds=2"
             },
@@ -31,11 +32,12 @@
             body = new
             {
                 type = "crud",
+                name = "table",
                 draggable = true,
-                syncLocation=false,
+                syncLocation = false,
                 api = new
                 {
-                    url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample",
+                    url = "/api/mock/Sample",
                     sendOn = "this.cat"
                 },
                 filter = new
@@ -68,7 +70,7 @@
                     {
                         label = "批量删除",
                         actionType = "ajax",
-                        api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$ids",
+                        api = "delete:/api/mock/Sample/$ids",
                         confirmText = "确定要批量删除?"
                     },
                     new
@@ -102,7 +104,7 @@
                     }
                 },
                 quickSaveApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate",
-                quickSaveItemApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                quickSaveItemApi = "/api/mock/Sample/$id",
                 columns = new object[]
                 {
                     new
@@ -252,7 +254,7 @@
                                     {
                                         type = "form",
                                         name = "sample-edit-form",
-                                        api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                                        api = "/api/mock/Sample/$id",
                                         body = new object[]
                                         {
                                             new
@@ -314,7 +316,7 @@
                                 icon = "fa fa-times text-danger",
                                 actionType = "ajax",
                                 confirmText = "您确认要删除?",
-                                api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id"
+                                api = "delete:/api/mock/Sample/$id"
                             }
                         },
                         toggled = true

@@ -14,7 +14,7 @@
             {
                 type = "crud",
                 syncLocation=false,
-                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample",
+                api = "/api/mock/Sample",
                 mode = "cards",
                 defaultParams = new
                 {
@@ -50,7 +50,7 @@
                     {
                         label = "批量删除",
                         actionType = "ajax",
-                        api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/${ids|raw}",
+                        api = "delete:/api/mock/Sample/${ids|raw}",
                         confirmText = "确定要批量删除?"
                     },
                     new
@@ -84,7 +84,7 @@
                     }
                 },
                 quickSaveApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate",
-                quickSaveItemApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                quickSaveItemApi = "/api/mock/Sample/$id",
                 draggable = true,
                 card = new
                 {
@@ -182,7 +182,7 @@
                                 {
                                     type = "form",
                                     name = "sample-edit-form",
-                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                                    api = "/api/mock/Sample/$id",
                                     body = new object[]
                                     {
                                         new
@@ -244,7 +244,7 @@
                             label = "删除",
                             actionType = "ajax",
                             confirmText = "您确认要删除?",
-                            api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id"
+                            api = "delete:/api/mock/Sample/$id"
                         }
                     },
                     body = new object[]

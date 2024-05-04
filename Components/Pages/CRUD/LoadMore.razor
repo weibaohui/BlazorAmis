@@ -13,7 +13,7 @@
             body = new
             {
                 type = "crud",
-                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample",
+                api = "/api/mock/Sample",
                 mode = "list",
                 draggable = true,
                 saveOrderApi = new
@@ -51,7 +51,7 @@
                     {
                         label = "批量删除",
                         actionType = "ajax",
-                        api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/${ids|raw}",
+                        api = "delete:/api/mock/Sample/${ids|raw}",
                         confirmText = "确定要批量删除?",
                         type = "button",
                         level = "danger"
@@ -84,7 +84,7 @@
                     }
                 },
                 quickSaveApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate",
-                quickSaveItemApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                quickSaveItemApi = "/api/mock/Sample/$id",
                 headerToolbar = new object[] { "bulkActions" },
                 footerToolbar = new object[] { "load-more" },
                 listItem = new
@@ -175,7 +175,7 @@
                                 {
                                     type = "form",
                                     name = "sample-edit-form",
-                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                                    api = "/api/mock/Sample/$id",
                                     body = new object[]
                                     {
                                         new
@@ -237,7 +237,7 @@
                             icon = "fa fa-times text-danger",
                             actionType = "ajax",
                             confirmText = "您确认要删除?",
-                            api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id"
+                            api = "delete:/api/mock/Sample/$id"
                         }
                     },
                     body = new object[]

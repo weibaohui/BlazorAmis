@@ -87,7 +87,7 @@
             {
                 type = "crud",
                 draggable = true,
-                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample?waitSeconds=1",
+                api = "/api/mock/Sample?waitSeconds=1",
                 perPage = 15,
                 keepItemSelectionOnPageChange = true,
                 maxKeepItemSelectionLength = 11,
@@ -125,7 +125,7 @@
                     {
                         label = "批量删除",
                         actionType = "ajax",
-                        api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/${ids|raw}",
+                        api = "delete:/api/mock/Sample/${ids|raw}",
                         confirmText = "确定要批量删除?"
                     },
                     new
@@ -159,7 +159,7 @@
                     }
                 },
                 quickSaveApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate",
-                quickSaveItemApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                quickSaveItemApi = "/api/mock/Sample/$id",
                 filterTogglable = true,
                 headerToolbar = new object[]
                 {
@@ -387,7 +387,7 @@
                                         api = new
                                         {
                                             method = "post",
-                                            url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id",
+                                            url = "/api/mock/Sample/$id",
                                             messages = new
                                             {
                                                 success = "成功了-${env}"
@@ -456,7 +456,7 @@
                                 actionType = "ajax",
                                 tooltip = "删除",
                                 confirmText = "您确认要删除?",
-                                api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/$id"
+                                api = "delete:/api/mock/Sample/$id"
                             }
                         },
                         toggled = true
