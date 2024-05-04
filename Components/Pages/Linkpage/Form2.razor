@@ -17,7 +17,7 @@
                     type = "form",
                     title = "监听表单内部的修改",
                     mode = "horizontal",
-                    initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/form/initData?tpl=${tpl}",
+                    initApi = "/api/mock/Form/InitData?tpl=${tpl}",
                     actions = new object[] { },
                     body = new object[]
                     {
@@ -123,7 +123,7 @@
                                 new
                                 {
                                     type = "service",
-                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/form/initData?tpl=${tpl}",
+                                    api = "/api/mock/Form/InitData?tpl=${tpl}",
                                     body = new object[]
                                     {
                                         new
@@ -211,7 +211,7 @@
                                     api = new
                                     {
                                         method = "get",
-                                        url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/form/initData",
+                                        url = "/api/mock/Form/InitData",
                                         data = new
                                         {
                                             tpl = "${tpl}"
@@ -300,7 +300,7 @@
                     type = "form",
                     title = "响应表单",
                     mode = "horizontal",
-                    initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/mock2/form/initData?tpl=${tpl}",
+                    initApi = "/api/mock/Form/InitData?tpl=${tpl}",
                     initFetchOn = "data.tpl",
                     actions = new object[] { },
                     body = new object[]

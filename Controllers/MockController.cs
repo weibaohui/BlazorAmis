@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlazorAmis.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("Api/[controller]")]
 public class MockController : Controller
 {
     [HttpGet("GetOptions")]
@@ -93,6 +93,45 @@ public class MockController : Controller
             {
                 title = "Test Page Component",
                 date = "2017-10-13"
+            }
+        };
+    }
+
+
+    [HttpGet("Form/InitData")]
+    public object FormInitData()
+    {
+        var waitSeconds = Request.Query["waitSeconds"];
+
+        if (int.TryParse(waitSeconds, out var wait))
+        {
+            Thread.Sleep(wait * 1000);
+        }
+
+        var q = Request.Query["keywords"];
+        var info = string.IsNullOrWhiteSpace(q.FirstOrDefault()) ? "" : $"你输入的关键字是{q.FirstOrDefault()}";
+
+        var tpl = Request.Query["tpl"].FirstOrDefault();
+        var tplName = tpl switch
+        {
+            "tpl1" => "tpl1",
+            "tpl2" => "tpl2",
+            "tpl3" => "tpl3",
+            _ => "Amis Renderer",
+        };
+
+
+        return new
+        {
+            status = 0,
+            msg = "",
+            msgTimeout = 10000,
+            data = new
+            {
+                name = tplName,
+                author = tplName,
+                date = DateTimeOffset.Now.ToUnixTimeSeconds(),
+                info = info
             }
         };
     }
