@@ -14,7 +14,7 @@
                 new
                 {
                     type = "form",
-                    api = "/amis/api/mock2/saveForm?waitSeconds=2",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/saveForm?waitSeconds=2",
                     title = "表单项",
                     mode = "horizontal",
                     autoFocus = true,
@@ -238,7 +238,7 @@
                             label = "List",
                             imageClassName = "thumb-lg",
                             desc = "支持放张图片",
-                          options=  new[]
+                            options = new[]
                             {
                                 new
                                 {
@@ -259,7 +259,6 @@
                                     label = "图片3"
                                 }
                             }
-
                         },
                         new { type = "divider" },
                         new
@@ -561,7 +560,7 @@
                             type = "input-image",
                             name = "image",
                             label = "图片有默认占位图",
-                            frameImage= "/photo/3893101144_bff2dc9.jpg",
+                            frameImage = "/photo/3893101144_bff2dc9.jpg",
                             fixedSize = true,
                             fixedSizeClassName = "h-32"
                         },
@@ -609,9 +608,9 @@
                             label = "穿梭器",
                             name = "a",
                             type = "transfer",
-                            source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/data/getOptions?waitSeconds=1",
+                            source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/getOptions?waitSeconds=1",
                             searchable = true,
-                            searchApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/data/AutoComplete2?term=$term",
+                            searchApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/options/autoComplete2?term=$term",
                             selectMode = "list",
                             sortable = true,
                             inline = true
@@ -1058,9 +1057,11 @@
                         },
                         new { type = "divider" },
                         new { type = "divider" },
-                        new {
+                        new
+                        {
                             type = "button-toolbar",
-                            buttons = new object[] {
+                            buttons = new object[]
+                            {
                                 new { type = "submit", label = "登录" },
                                 new { type = "reset", label = "重置" },
                                 new { type = "button", label = "导出", href = "http://www.baidu.com", level = "success" }
