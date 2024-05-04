@@ -1,0 +1,147 @@
+@page "/Services/Data"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "动态加载数据",
+            body = new object[]
+            {
+                "<span class=\"text-danger\">除了用 Page、CRUD、Form 或者 Wizard 能拉取数据外，还可以通过 Service 专门拉取数据，然后丢给其他类型的渲染器渲染。</span>",
+                new
+                {
+                    type = "form",
+                    title = "条件输入",
+                    className = "m-t",
+                    wrapWithPanel = false,
+                    target = "service1",
+                    mode = "inline",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "input-text",
+                            name = "keywords",
+                            placeholder = "关键字",
+                            addOn = new
+                            {
+                                type = "button",
+                                icon = "fa fa-search",
+                                actionType = "submit",
+                                level = "primary"
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    name = "service1",
+                    type = "service",
+                    className = "m-t",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/service/data?keywords=${keywords}",
+                    body = new object[]
+                    {
+                        "当前关键字是 ${keywords}，当前时间是： ${date|date:YYYY-MM-DD HH\\:mm}",
+                        new
+                        {
+                            type = "table",
+                            className = "m-t",
+                            source = "${table1}",
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "id",
+                                    label = "ID",
+                                    type = "text"
+                                },
+                                new
+                                {
+                                    name = "text",
+                                    label = "文本",
+                                    type = "text"
+                                },
+                                new
+                                {
+                                    type = "image",
+                                    label = "图片",
+                                    name = "image",
+                                    popOver = new
+                                    {
+                                        title = "查看大图",
+                                        body = "<div class=\"w-xxl\"><img class=\"w-full\" src=\"${image}\"/></div>"
+                                    }
+                                },
+                                new
+                                {
+                                    name = "date",
+                                    type = "date",
+                                    label = "日期"
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "table",
+                            source = "${table2}",
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "progress",
+                                    label = "进度",
+                                    type = "progress"
+                                },
+                                new
+                                {
+                                    name = "boolean",
+                                    label = "状态",
+                                    type = "status"
+                                },
+                                new
+                                {
+                                    name = "boolean",
+                                    label = "开关",
+                                    type = "switch"
+                                    // readOnly: false // 可以开启修改模式
+                                },
+                                new
+                                {
+                                    name = "type",
+                                    label = "映射",
+                                    type = "mapping",
+                                    map = new Dictionary<string, string>()
+                                    {
+                                        { "*", "其他：${type}" },
+                                        { "1", "<span class='label label-info'>漂亮</span>" },
+                                        { "2", "<span class='label label-success'>开心</span>" },
+                                        { "3", "<span class='label label-danger'>惊吓</span>" },
+                                        { "4", "<span class='label label-warning'>紧张</span>" }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "list",
+                                    type = "list",
+                                    label = "List",
+                                    placeholder = "-",
+                                    listItem = new
+                                    {
+                                        title = "${title}",
+                                        subTitle = "${description}"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

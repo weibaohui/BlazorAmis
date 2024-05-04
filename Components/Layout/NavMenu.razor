@@ -23,7 +23,7 @@
                     {
                         label = "页面",
                         icon = "fa fa-bars fa-th",
-                        unfolded=true,
+                        unfolded = true,
                         children = new object[]
                         {
                             new { label = "初始化出错", to = "/Page/Error" },
@@ -64,7 +64,7 @@
                             new { label = "树形结构", to = "/Form/Tree" }
                         }
                     },
-                     new
+                    new
                     {
                         label = "增删改查",
                         icon = "fa fa-table",
@@ -88,8 +88,10 @@
                             new { label = "键盘操作编辑", to = "/CRUD/Keyboards" },
                             new { label = "操作并下一个", to = "/CRUD/JumpNext" },
                             new { label = "列展示详情", to = "/CRUD/Popover" },
-                            new { label = "前端分页", icon = "fa fa-list-ol",
-                                children = new []
+                            new
+                            {
+                                label = "前端分页", icon = "fa fa-list-ol",
+                                children = new[]
                                 {
                                     new { label = "一次性加载", to = "/CRUD/LoadOnce" },
                                     new { label = "匹配函数", to = "/CRUD/MatchFunc" }
@@ -139,6 +141,17 @@
                             new { label = "表单提交后显示结果", to = "/Linkpage/FormSubmit", },
                             new { label = "表单自动更新", to = "/Linkpage/Form2", },
                             new { label = "表单和列表联动", to = "/Linkpage/CRUD", }
+                        }
+                    },
+                    new
+                    {
+                        label = "动态加载",
+                        icon = "fa fa-magic",
+                        children = new[]
+                        {
+                            new { label = "动态加载数据", to = "/Services/Data" },
+                            new { label = "动态加载页面", to = "/Services/Schema" },
+                            new { label = "动态加载部分表单", to = "/Services/Form" }
                         }
                     },
                     new { label = "代码高亮", icon = "fa fa-code", to = "/Code", },
