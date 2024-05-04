@@ -14,7 +14,7 @@
                 draggable = true,
                 api = new {
                     method = "get",
-                    url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/simpleList?page=${page}&pageDir=${pageDir}&after=${items[items.length - 1].id}&before=${items[0].id}",
+                    url = "/api/mock/Sample?page=${page}&pageDir=${pageDir}&after=${items[items.length - 1].id}&before=${items[0].id}",
                     trackExpression = "${page}-${pageDir}"
                 },
                 columns = new object[] {

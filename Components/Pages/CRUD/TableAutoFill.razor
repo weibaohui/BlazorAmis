@@ -26,7 +26,7 @@
                         {
                             type = "form",
                             name = "sample-edit-form",
-                            api = "post:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample",
+                            api = "post:/api/mock/Sample/Add",
                             body = new object[]
                             {
                                 new
@@ -115,7 +115,7 @@
                             body = new
                             {
                                 type = "form",
-                                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate2",
+                                api = "post:/api/mock/Sample/BulkUpdate",
                                 body = new object[]
                                 {
                                     new
@@ -134,7 +134,7 @@
                         }
                     }
                 },
-                quickSaveApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate",
+                quickSaveApi = "/api/mock/Sample/BulkUpdate",
                 quickSaveItemApi = "/api/mock/Sample/$id",
                 filterTogglable = true,
                 headerToolbar = new object[]

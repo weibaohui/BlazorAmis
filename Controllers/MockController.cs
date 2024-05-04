@@ -82,7 +82,7 @@ public class MockController : Controller
     }
 
     [Route("Sample/{id?}")]
-    public object PostSampleWithId(int? id)
+    public object PostSampleWithId(string? id)
     {
         var data = new
         {
@@ -96,6 +96,44 @@ public class MockController : Controller
                 grade = "A",
                 id = id
             }
+        };
+
+        return data;
+    }
+
+    [HttpPost("Sample/BulkUpdate")]
+    public object PostSampleBulkUpdate([FromBody] object input)
+    {
+        var data = new
+        {
+            status = 0,
+            msg = "保存成功！",
+            data = input
+        };
+
+        return data;
+    }
+    [HttpPost("Sample/SaveOrder")]
+    public object PostSampleSaveOrder([FromBody] object input)
+    {
+        var data = new
+        {
+            status = 0,
+            msg = "保存成功！",
+            data = input
+        };
+
+        return data;
+    }
+    [HttpPost("Sample/Add")]
+    public object PostSampleAdd([FromBody] object input)
+    {
+        var data = new
+        {
+            status = 0,
+            msg = "保存成功！",
+            id=1,
+            data = input
         };
 
         return data;

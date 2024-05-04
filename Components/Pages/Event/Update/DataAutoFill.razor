@@ -253,7 +253,7 @@
                             valueField = "id",
                             labelField = "id",
                             label = "多选",
-                            source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample",
+                            source = "/api/mock/Sample",
                             size = "lg",
                             multiple = false,
                             description = "选择一项内容，自动填入Form其他组件，并触发按钮动作",
@@ -261,8 +261,8 @@
                             {
                                 mode = "table",
                                 name = "thelist",
-                                quickSaveApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample/bulkUpdate",
-                                quickSaveItemApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample/$id",
+                                quickSaveApi = "/api/mock/Sample/BulkUpdate",
+                                quickSaveItemApi = "/api/mock/Sample/$id",
                                 draggable = true,
                                 headerToolbar = new
                                 {
@@ -429,7 +429,7 @@
                                                     {
                                                         type = "form",
                                                         name = "sample-edit-form",
-                                                        api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample/$id",
+                                                        api = "/api/mock/Sample/$id",
                                                         body = new object[]
                                                         {
                                                             new

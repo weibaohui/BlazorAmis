@@ -25,7 +25,7 @@
                 draggable = true,
                 saveOrderApi = new
                 {
-                    url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/saveOrder"
+                    url = "/api/mock/Sample/SaveOrder"
                 },
                 orderField = "weight",
                 affixHeader = true,
@@ -52,7 +52,7 @@
                             body = new
                             {
                                 type = "form",
-                                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate2",
+                                api = "post:/api/mock/Sample/BulkUpdate",
                                 body = new object[]
                                 {
                                     new { type = "hidden", name = "ids" },
@@ -67,7 +67,7 @@
                         }
                     }
                 },
-                quickSaveApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/sample/bulkUpdate",
+                quickSaveApi = "/api/mock/Sample/BulkUpdate",
                 quickSaveItemApi = "/api/mock/Sample/$id",
                 headerToolbar = new object[]
                 {

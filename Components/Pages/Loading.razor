@@ -24,7 +24,7 @@
                         body = new
                         {
                             type = "service",
-                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=10",
+                            api = "/api/mock/Sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=10",
                             loadingConfig = new
                             {
                                 show = true,
@@ -33,7 +33,7 @@
                             body = new
                             {
                                 type = "page",
-                                initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=10",
+                                initApi = "/api/mock/Sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=10",
                                 body = new object[]
                                 {
                                     new
@@ -44,7 +44,7 @@
                                         className = "w-md",
                                         draggable = true,
                                         saveOrderApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//options/nav",
-                                        source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=30",
+                                        source = "/api/mock/Sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=30",
                                         itemActions = new object[]
                                         {
                                             new
@@ -105,7 +105,7 @@
                                         {
                                             type = "crud",
                                             syncLocation = false,
-                                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample?waitSeconds=30",
+                                            api = "/api/mock/Sample?waitSeconds=30",
                                             headerToolbar = new string[] { "bulkActions" },
                                             bulkActions = new object[]
                                             {
@@ -113,7 +113,7 @@
                                                 {
                                                     label = "批量删除",
                                                     actionType = "ajax",
-                                                    api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample/${ids|raw}?waitSeconds=30",
+                                                    api = "delete:/api/mock/Sample/${ids|raw}?waitSeconds=30",
                                                     confirmText = "确定要批量删除?"
                                                 },
                                                 new
@@ -126,7 +126,7 @@
                                                         body = new
                                                         {
                                                             type = "form",
-                                                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample/bulkUpdate2?waitSeconds=30",
+                                                            api = "/api/mock/Sample/BulkUpdate?waitSeconds=30",
                                                             body = new object[]
                                                             {
                                                                 new
@@ -186,7 +186,7 @@
                                         body = new
                                         {
                                             type = "crud",
-                                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample?orderBy=id&orderDir=desc&waitSeconds=30",
+                                            api = "/api/mock/Sample?orderBy=id&orderDir=desc&waitSeconds=30",
                                             syncLocation = false,
                                             columns = new object[]
                                             {
@@ -218,7 +218,7 @@
                                                             actionType = "ajax",
                                                             level = "danger",
                                                             confirmText = "确认要删除？",
-                                                            api = "delete:https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock//mock2/sample/${id}?waitSeconds=30"
+                                                            api = "delete:/api/mock/Sample/${id}?waitSeconds=30"
                                                         }
                                                     }
                                                 }
@@ -233,7 +233,7 @@
                 new
                 {
                     type = "service",
-                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=10",
+                    api = "/api/mock/Sample?orderBy=id&orderDir=desc&perPage=10&waitSeconds=10",
                     loadingConfig = new
                     {
                         show = true,
