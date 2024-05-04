@@ -1,0 +1,62 @@
+@page "/Event/Component/EachTag"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "service",
+            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample",
+            id = "service-reload",
+            body = new object[]
+            {
+                new
+                {
+                    type = "each",
+                    name = "rows",
+                    items = new
+                    {
+                        type = "tag",
+                        label = "${id}",
+                        closable = true,
+                        onEvent = new
+                        {
+                            close = new
+                            {
+                                actions = new object[]
+                                {
+                                    new
+                                    {
+                                        actionType = "ajax",
+                                        args = new
+                                        {
+                                            api = new
+                                            {
+                                                url = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample/${event.data.label}",
+                                                method = "DELETE"
+                                            },
+                                            messages = new
+                                            {
+                                                success = "${label} 删除成功",
+                                                failed = "删除失败"
+                                            }
+                                        }
+                                    },
+                                    new
+                                    {
+                                        actionType = "reload",
+                                        componentId = "service-reload"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

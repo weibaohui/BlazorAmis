@@ -1,0 +1,142 @@
+@page "/Event/Component/SearchBox"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/page/initData?keywords=${keywords}",
+            body = new object[]
+            {
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "search-box",
+                            name = "keywords",
+                            id = "searchbox01",
+                            onEvent = new
+                            {
+                                search = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msg = "${keywords}"
+                                            }
+                                        }
+                                    }
+                                },
+                                change = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msg = "${keywords}"
+                                            }
+                                        }
+                                    }
+                                },
+                                focus = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msg = "${keywords}"
+                                            }
+                                        }
+                                    }
+                                },
+                                blur = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msg = "${keywords}"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                new
+                {
+                    type = "button",
+                    label = "清空",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "clear",
+                                    componentId = "searchbox01"
+                                }
+                            }
+                        }
+                    }
+                },
+
+                new
+                {
+                    type = "button",
+                    label = "更新值",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "setValue",
+                                    componentId = "searchbox01",
+                                    args = new
+                                    {
+                                        value = "Jerry"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                new
+                {
+                    type = "tpl",
+                    tpl = "<p>关键字：${keywords}</p><p>返回结果：${&|json}</p>"
+                }
+            }
+        };
+        return data;
+    }
+
+}

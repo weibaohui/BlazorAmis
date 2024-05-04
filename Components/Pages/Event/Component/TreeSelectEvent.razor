@@ -1,0 +1,221 @@
+@page "/Event/Component/treeSelect"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var options = new object[]
+        {
+            new
+            {
+                label = "Folder A",
+                value = 1,
+                children = new object[]
+                {
+                    new { label = "file A(懒加载)", defer = true, value = 2 },
+                    new
+                    {
+                        label = "Folder B",
+                        value = 3,
+                        children = new[]
+                        {
+                            new { label = "file b1", value = 3.1 },
+                            new { label = "file b2", value = 3.2 }
+                        }
+                    }
+                }
+            },
+            new { label = "file C", value = 4 },
+            new { label = "file D", value = 5 }
+        };
+
+        Func<string, object> onEvent = name => new
+        {
+            blur = new
+            {
+                actions = new[]
+                {
+                    new
+                    {
+                        actionType = "toast",
+                        args = new { msgType = "info", msg = $"派发blur事件{name}" }
+                    }
+                }
+            },
+            focus = new
+            {
+                actions = new[]
+                {
+                    new
+                    {
+                        actionType = "toast",
+                        args = new { msgType = "info", msg = $"派发focus事件{name}" }
+                    }
+                }
+            },
+            change = new
+            {
+                actions = new[]
+                {
+                    new
+                    {
+                        actionType = "toast",
+                        args = new { msgType = "info", msg = $"派发change事件{name}" }
+                    }
+                }
+            },
+            add = new
+            {
+                actions = new[]
+                {
+                    new
+                    {
+                        actionType = "toast",
+                        args = new { msgType = "info", msg = $"派发add事件{name}" }
+                    },
+                    new
+                    {
+                        actionType = "toast",
+                        args = new { msgType = "info", msg = "派发add事件${items|json}" }
+                    }
+                }
+            },
+            edit = new
+            {
+                actions = new[]
+                {
+                    new
+                    {
+                        actionType = "toast",
+                        args = new { msgType = "info", msg = $"派发edit事件{name}" }
+                    },
+                    new
+                    {
+                        actionType = "toast",
+                        args = new { msgType = "info", msg = "派发edit事件${items|json}" }
+                    }
+                }
+            },
+            delete = new
+            {
+                actions = new[]
+                {
+                    new
+                    {
+                        actionType = "toast",
+                        args = new { msgType = "info", msg = $"派发delete事件{name}" }
+                    },
+                    new
+                    {
+                        actionType = "toast",
+                        args = new { msgType = "info", msg = "派发delete事件${items|json}" }
+                    }
+                }
+            },
+            loadFinished = new
+            {
+                actions = new[]
+                {
+                    new
+                    {
+                        actionType = "toast",
+                        args = new { msgType = "info", msg = $"派发loadFinished事件{name}" }
+                    }
+                }
+            }
+        };
+        var data = new
+        {
+            type = "page",
+            title = "树形选择器",
+            regions = new object[] { "body", "toolbar", "header" },
+            body = new object[]
+            {
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            name = "tree-select-clear",
+                            type = "action",
+                            label = "clear触发器",
+                            level = "primary",
+                            className = "mr-3",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "clear",
+                                            componentId = "tree-select-action",
+                                            description = "点击清空内容"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "tree-select-reset",
+                            type = "action",
+                            label = "reset触发器",
+                            level = "primary",
+                            className = "mr-3",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "clear",
+                                            componentId = "tree-select-action",
+                                            description = "点击清空内容"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "tree-select",
+                            id = "tree-select-action",
+                            name = "tree",
+                            label = "Tree",
+                            creatable = true,
+                            removable = true,
+                            editable = true,
+                            deferApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/deferOptions?label=${label}&waitSeconds=2",
+                            options = options,
+                            onEvent = onEvent("tree")
+                        },
+                        new
+                        {
+                            type = "tree-select",
+                            id = "tree-select-action2",
+                            name = "tree多选",
+                            label = "tree多选",
+                            multiple = true,
+                            creatable = true,
+                            removable = true,
+                            editable = true,
+                            deferApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/deferOptions?label=${label}&waitSeconds=2",
+                            options = options,
+                            onEvent = onEvent("tree多选")
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

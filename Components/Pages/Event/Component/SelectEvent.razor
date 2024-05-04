@@ -1,0 +1,791 @@
+@page "/Event/Component/Select"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+
+        Func<string, object> change = name => new
+        {
+            actions = new List<object>
+            {
+                new
+                {
+                    actionType = "toast",
+                    args = new
+                    {
+                        msgType = "info",
+                        msg = "派发change事件${name}"
+                    }
+                }
+            }
+        };
+
+        var add = new
+        {
+            actions = new List<object>
+            {
+                new
+                {
+                    actionType = "toast",
+                    args = new
+                    {
+                        msgType = "info",
+                        msg = "clear-select: ${clear-select},items: ${items}"
+                    }
+                }
+            }
+        };
+
+        var edit = new
+        {
+            actions = new List<object>
+            {
+                new
+                {
+                    actionType = "toast",
+                    args = new
+                    {
+                        msgType = "info",
+                        msg = "clear-select: ${clear-select},items: ${items}"
+                    }
+                }
+            }
+        };
+
+        var del = new
+        {
+            actions = new List<object>
+            {
+                new
+                {
+                    actionType = "toast",
+                    args = new
+                    {
+                        msgType = "info",
+                        msg = "clear-select: ${clear-select},items: ${items}"
+                    }
+                }
+            }
+        };
+
+        var blur = new
+        {
+            actions = new List<object>
+            {
+                new
+                {
+                    actionType = "toast",
+                    args = new
+                    {
+                        msgType = "info",
+                        msg = "派发blur事件"
+                    }
+                }
+            }
+        };
+
+        var focus = new
+        {
+            actions = new List<object>
+            {
+                new
+                {
+                    actionType = "toast",
+                    args = new
+                    {
+                        msgType = "info",
+                        msg = "派发focus事件"
+                    }
+                }
+            }
+        };
+
+        var options = new[]
+        {
+            new { label = "选项A", value = "A" },
+            new { label = "选项B", value = "B" },
+            new { label = "选项C", value = "C" }
+        };
+        var data = new
+        {
+            type = "page",
+            title = "下拉框组件事件",
+            regions = new object[] { "body", "toolbar", "header" },
+            body = new object[]
+            {
+                new
+                {
+                    type = "tpl",
+                    tpl = "Select下拉框",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger1",
+                                    id = "trigger1",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-select",
+                                                    description = "点击清空指定下拉框选中值"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "clear-select",
+                                    id = "clear-select",
+                                    type = "select",
+                                    label = "clear动作测试",
+                                    mode = "row",
+                                    value = "A,B,C",
+                                    multiple = true,
+                                    checkAll = true,
+                                    creatable = true,
+                                    editable = true,
+                                    removable = true,
+                                    options = options,
+                                    onEvent = new
+                                    {
+                                        change = change("clear-select"),
+                                        blur = blur,
+                                        focus = focus,
+                                        add = add,
+                                        edit = edit,
+                                        delete = del
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "inputTag标签选择器",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger2",
+                                    id = "trigger2",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-input-tag",
+                                                    description = "点击清空指定下拉框选中值"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "clear-input-tag",
+                                    id = "clear-input-tag",
+                                    type = "input-tag",
+                                    label = "clear动作测试",
+                                    mode = "row",
+                                    value = "A,B",
+                                    multiple = true,
+                                    options = options,
+                                    onEvent = new
+                                    {
+                                        change = change("clear-input-tag"),
+                                        blur = blur,
+                                        focus = focus
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "matrix-checkboxes矩阵勾选",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger3",
+                                    id = "trigger3",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-matrix-checkboxes",
+                                                    description = "点击清空指定下拉框选中值"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "clear-matrix-checkboxes",
+                                    id = "clear-matrix-checkboxes",
+                                    type = "matrix-checkboxes",
+                                    rowLabel = "行标题说明",
+                                    columns = new object[]
+                                    {
+                                        new { label = "列1" },
+                                        new { label = "列2" }
+                                    },
+                                    rows = new object[]
+                                    {
+                                        new { label = "行1" },
+                                        new { label = "行2" }
+                                    },
+                                    onEvent = new
+                                    {
+                                        change = change("clear-matrix-checkboxes")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "radios单选框",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger4",
+                                    id = "trigger4",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-radios",
+                                                    description = "点击清空指定下拉框选中值"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "clear-radios",
+                                    id = "clear-radios",
+                                    type = "radios",
+                                    options = options,
+                                    onEvent = new
+                                    {
+                                        change = change("clear-radios")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "nested-select嵌套下拉框",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger6",
+                                    id = "trigger6",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-nested-select",
+                                                    description = "点击清空指定嵌套下拉框选中值"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "clear-nested-select",
+                                    id = "clear-nested-select",
+                                    type = "nested-select",
+                                    label = "clear动作测试",
+                                    mode = "row",
+                                    options = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "选项A",
+                                            value = "A",
+                                            children = new object[] { }
+                                        },
+                                        new
+                                        {
+                                            label = "选项B",
+                                            value = "B",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "选项C",
+                                                    value = "C"
+                                                },
+                                                new
+                                                {
+                                                    label = "选项D",
+                                                    value = "D"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    multiple = false,
+                                    hideNodePathLabel = false,
+                                    onlyChildren = false,
+                                    joinValues = true,
+                                    delimiter = "。",
+                                    onEvent = new
+                                    {
+                                        change = change("clear-nested-select"),
+                                        blur = blur,
+                                        focus = focus
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "chained-select级联下拉框",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger11",
+                                    id = "trigger11",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-chained-select",
+                                                    description = "点击清空指定级联下拉框选中值"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "clear-chained-select",
+                                    id = "clear-chained-select",
+                                    label = "clear动作测试",
+                                    mode = "row",
+                                    type = "chained-select",
+                                    source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/options/chainedOptions?waitSeconds=1&parentId=$parentId&level=$level&maxLevel=4",
+                                    value = "a,b",
+                                    onEvent = new
+                                    {
+                                        change = change("clear-chained-select"),
+                                        blur = blur,
+                                        focus = focus
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "input-city城市选择器",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger10",
+                                    id = "trigger10",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-input-city",
+                                                    description = "点击清空城市选择器选中值"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "clear-input-city",
+                                    id = "clear-input-city",
+                                    type = "input-city",
+                                    label = "clear动作测试",
+                                    mode = "row",
+                                    onEvent = new
+                                    {
+                                        change = change("clear-input-city")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "单选框/复选框",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger8",
+                                    id = "trigger8",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-checkbox",
+                                                    description = "点击清空指定单选框选中值"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "clear-checkbox",
+                                    id = "clear-checkbox",
+                                    type = "checkbox",
+                                    label = "clear动作测试",
+                                    mode = "row",
+                                    option = "勾选框",
+                                    onEvent = new
+                                    {
+                                        change = change("clear-checkbox")
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger9",
+                                    id = "trigger9",
+                                    type = "action",
+                                    mode = "row",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-checkboxes",
+                                                    description = "点击清空指定浮选框选中值"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "clear-checkboxes",
+                                    id = "clear-checkboxes",
+                                    type = "checkboxes",
+                                    mode = "row",
+                                    label = "clear动作测试",
+                                    options = options,
+                                    onEvent = new
+                                    {
+                                        change = change("clear-checkboxes")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "options类",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    type = "group",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            name = "trigger5",
+                                            id = "trigger5",
+                                            type = "action",
+                                            label = "clear触发器",
+                                            level = "primary",
+                                            onEvent = new
+                                            {
+                                                click = new
+                                                {
+                                                    actions = new object[]
+                                                    {
+                                                        new
+                                                        {
+                                                            actionType = "clear",
+                                                            componentId = "clear-options_001",
+                                                            description = "点击清空指定下拉框选中值"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            name = "clear-options_001",
+                                            id = "clear-options_001",
+                                            type = "button-group-select",
+                                            options = options,
+                                            onEvent = new
+                                            {
+                                                change = change("clear-options_001")
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger5",
+                                    id = "trigger5",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-options_002",
+                                                    description = "点击清空指定下拉框选中值"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "clear-options_002",
+                                    id = "clear-options_002",
+                                    type = "list-select",
+                                    options = options,
+                                    onEvent = new
+                                    {
+                                        change = change("clear-options_002")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

@@ -1,0 +1,130 @@
+@page "/Event/Component/InputRating"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "评分组件事件",
+            regions = new object[] { "body", "toolbar", "header" },
+            body = new object[]
+            {
+                new
+                {
+                    type = "tpl",
+                    tpl = "InputRating组件",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            name = "input-rating-clear",
+                            type = "action",
+                            label = "clear触发器",
+                            level = "primary",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "clear",
+                                            componentId = "clear-input-rating-clear-receiver",
+                                            description = "点击清空内容"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "rate-clear",
+                            id = "clear-input-rating-clear-receiver",
+                            type = "input-rating",
+                            value = 3,
+                            onEvent = new
+                            {
+                                change = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "派发change事件"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "input-rating-reset",
+                            type = "action",
+                            label = "reset触发器",
+                            level = "primary",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "clear",
+                                            componentId = "clear-input-rating-reset-receiver",
+                                            description = "点击清空内容"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "rate-reset",
+                            id = "clear-input-rating-reset-receiver",
+                            type = "input-rating",
+                            value = 3,
+                            resetValue = 3,
+                            onEvent = new
+                            {
+                                change = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "派发change事件"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

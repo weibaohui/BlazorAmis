@@ -1,0 +1,435 @@
+@page "/Event/Component/Button"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "按钮类组件事件",
+            regions = new object[] { "body", "toolbar", "header" },
+            body = new object[]
+            {
+                new
+                {
+                    type = "tpl",
+                    tpl = "1.普通按钮",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "button",
+                    label = "Button",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发点击事件"
+                                    }
+                                }
+                            }
+                        },
+                        mouseenter = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发鼠标移入事件"
+                                    }
+                                }
+                            }
+                        },
+                        mouseleave = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发鼠标移出事件"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "2.功能按钮",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "input-text",
+                            name = "name",
+                            label = "名称"
+                        }
+                    },
+                    actions = new object[]
+                    {
+                        new
+                        {
+                            type = "submit",
+                            label = "Submit",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "派发点击事件"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "reset",
+                            label = "Reset",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "派发点击事件"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "3.按钮组&按钮工具栏",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "button-toolbar",
+                    buttons = new object[]
+                    {
+                        new
+                        {
+                            type = "button",
+                            label = "按钮1",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "派发点击事件"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "button",
+                            label = "按钮2",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "派发点击事件"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "button-group",
+                    buttons = new object[]
+                    {
+                        new
+                        {
+                            type = "button",
+                            label = "按钮1",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "派发点击事件"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "button",
+                            label = "按钮2",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "派发点击事件"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "4.下拉按钮",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "dropdown-button",
+                    label = "下拉按钮",
+                    buttons = new object[]
+                    {
+                        new
+                        {
+                            type = "button",
+                            label = "按钮1",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "派发点击事件"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "button",
+                            label = "按钮2",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "派发点击事件"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "5.按钮点选",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "button-group-select",
+                    name = "a",
+                    options = new object[]
+                    {
+                        new
+                        {
+                            label = "选项1",
+                            value = "a"
+                        },
+                        new
+                        {
+                            label = "选项2",
+                            value = "b"
+                        }
+                    },
+                    onEvent = new
+                    {
+                        change = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发点选事件"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "6.作为容器",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "action",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "color",
+                            value = "#108cee"
+                        }
+                    },
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发点击事件"
+                                    }
+                                }
+                            }
+                        },
+                        mouseenter = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发鼠标移入事件"
+                                    }
+                                }
+                            }
+                        },
+                        mouseleave = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发鼠标移出事件"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

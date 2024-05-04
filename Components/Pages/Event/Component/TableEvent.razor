@@ -1,0 +1,598 @@
+@page "/Event/Component/Table"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "表格组件事件",
+            regions = new object[] { "body", "toolbar", "header" },
+            body = new object[]
+            {
+                new
+                {
+                    type = "tpl",
+                    tpl = "事件",
+                    inline = false,
+                    wrapperComponent = "h1"
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "选择表格项事件",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "service",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample?perPage=10",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "table",
+                            source = "$rows",
+                            selectable = true,
+                            multiple = true,
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "id",
+                                    label = "ID"
+                                },
+                                new
+                                {
+                                    name = "browser",
+                                    label = "Browser"
+                                },
+                                new
+                                {
+                                    name = "version",
+                                    label = "Version"
+                                }
+                            },
+                            onEvent = new
+                            {
+                                selectedChange = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "选中${selectedItems.length}项数据；未选中${unSelectedItems.length}项数据"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "列排序、列搜索、列筛选事件",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "service",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample?perPage=10",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "table",
+                            source = "$rows",
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "id",
+                                    label = "ID",
+                                    searchable = true
+                                },
+                                new
+                                {
+                                    name = "browser",
+                                    label = "Browser",
+                                    filterable = new
+                                    {
+                                        options = new object[] { "Internet Explorer 4.0", "Internet Explorer 5.0" }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "version",
+                                    label = "Version",
+                                    sortable = true
+                                }
+                            },
+                            onEvent = new
+                            {
+                                columnSort = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "orderBy：${orderBy},orderDir：${orderDir}"
+                                            }
+                                        }
+                                    }
+                                },
+                                columnFilter = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "filterName：${filterName},filterValue：${filterValue}"
+                                            }
+                                        }
+                                    }
+                                },
+                                columnSearch = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "searchName：${searchName},searchValue：${searchValue|json}"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "行排序事件",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "service",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample?perPage=10",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "table",
+                            source = "$rows",
+                            draggable = true,
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "id",
+                                    label = "ID"
+                                },
+                                new
+                                {
+                                    name = "browser",
+                                    label = "Browser"
+                                },
+                                new
+                                {
+                                    name = "version",
+                                    label = "Version"
+                                }
+                            },
+                            onEvent = new
+                            {
+                                orderChange = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "${movedItems.length}行发生移动"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "列显示变化事件",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "service",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample?perPage=10",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "table",
+                            source = "$rows",
+                            columnsTogglable = true,
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "id",
+                                    label = "ID"
+                                },
+                                new
+                                {
+                                    name = "browser",
+                                    label = "Browser"
+                                },
+                                new
+                                {
+                                    name = "version",
+                                    label = "Version"
+                                }
+                            },
+                            onEvent = new
+                            {
+                                columnToggled = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "当前显示${columns.length}列"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "行单击事件",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "service",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample?perPage=10",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "table",
+                            source = "$rows",
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "id",
+                                    label = "ID"
+                                },
+                                new
+                                {
+                                    name = "browser",
+                                    label = "Browser"
+                                },
+                                new
+                                {
+                                    name = "version",
+                                    label = "Version"
+                                }
+                            },
+                            onEvent = new
+                            {
+                                rowClick = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "行单击数据：${item|json}；行索引：${index}"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "数据元素点击、鼠标移入、鼠标移出事件(元素可监听事件与元素的组件类型相关)",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "service",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample?perPage=10",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "table",
+                            source = "$rows",
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "id",
+                                    label = "ID"
+                                },
+                                new
+                                {
+                                    name = "browser",
+                                    label = "Browser",
+                                    type = "tpl",
+                                    onEvent = new
+                                    {
+                                        mouseenter = new
+                                        {
+                                            weight = 0,
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    args = new
+                                                    {
+                                                        msgType = "info",
+                                                        position = "top-right",
+                                                        closeButton = true,
+                                                        showIcon = true,
+                                                        msg = "${nativeEvent.clientX}"
+                                                    },
+                                                    actionType = "toast"
+                                                }
+                                            }
+                                        },
+                                        mouseleave = new
+                                        {
+                                            weight = 0,
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    args = new
+                                                    {
+                                                        msgType = "info",
+                                                        position = "top-right",
+                                                        closeButton = true,
+                                                        showIcon = true,
+                                                        msg = "${nativeEvent.type}"
+                                                    },
+                                                    actionType = "toast"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    name = "version",
+                                    label = "Version",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            weight = 0,
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    args = new
+                                                    {
+                                                        msgType = "info",
+                                                        position = "top-right",
+                                                        closeButton = true,
+                                                        showIcon = true,
+                                                        msg = "${id},${browser},${version}"
+                                                    },
+                                                    actionType = "toast"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "divider"
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "动作",
+                    inline = false,
+                    wrapperComponent = "h1"
+                },
+                new
+                {
+                    type = "button-toolbar",
+                    className = "m-b",
+                    buttons = new object[]
+                    {
+                        new
+                        {
+                            name = "trigger1",
+                            id = "trigger1",
+                            type = "action",
+                            label = "设置表格第一项选中",
+                            level = "primary",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "select",
+                                            componentId = "table-select",
+                                            description = "点击设置指定表格第一项内容选中",
+                                            args = new
+                                            {
+                                                selected = "data.rowIndex === 0"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "trigger2",
+                            id = "trigger2",
+                            type = "action",
+                            label = "设置表格全部项选中",
+                            level = "primary",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "selectAll",
+                                            componentId = "table-select",
+                                            description = "点击设置指定表格全部内容选中"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "trigger3",
+                            id = "trigger3",
+                            type = "action",
+                            label = "清空表格全部选中项",
+                            level = "primary",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "clearAll",
+                                            componentId = "table-select",
+                                            description = "点击设置指定表格全部选中项清空"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "trigger4",
+                            id = "trigger4",
+                            type = "action",
+                            label = "开启表格行排序",
+                            level = "primary",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "initDrag",
+                                            componentId = "table-select",
+                                            description = "点击开启表格行排序功能"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "service",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample?perPage=10",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            id = "table-select",
+                            type = "table",
+                            source = "$rows",
+                            selectable = true,
+                            multiple = true,
+                            columns = new object[]
+                            {
+                                new
+                                {
+                                    name = "id",
+                                    label = "ID"
+                                },
+                                new
+                                {
+                                    name = "browser",
+                                    label = "Browser"
+                                },
+                                new
+                                {
+                                    name = "version",
+                                    label = "Version"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

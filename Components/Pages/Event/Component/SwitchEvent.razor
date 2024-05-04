@@ -1,0 +1,59 @@
+@page "/Event/Component/Switch"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "开关组件事件",
+            regions = new string[] { "body", "toolbar", "header" },
+            body = new object[]
+            {
+                new
+                {
+                    type = "tpl",
+                    tpl = "Switch组件",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            name = "switch",
+                            type = "switch",
+                            option = "开关事件",
+                            onEvent = new
+                            {
+                                change = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "派发change事件"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

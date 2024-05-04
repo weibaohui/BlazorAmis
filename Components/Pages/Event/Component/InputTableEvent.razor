@@ -1,0 +1,468 @@
+@page "/Event/Component/InputTable"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "InputTable事件动作",
+            regions = new object[]
+            {
+                "body"
+            },
+            body = new object[]
+            {
+                new
+                {
+                    type = "button",
+                    label = "setValue 未指定index",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    componentId = "u:39c47c713ae6",
+                                    args = new
+                                    {
+                                        value = new object[]
+                                        {
+                                            new
+                                            {
+                                                name = "zzl",
+                                                color = "#ff0000"
+                                            },
+                                            new
+                                            {
+                                                name = "zzl测试下setValue动作",
+                                                color = "#00ff00"
+                                            }
+                                        }
+                                    },
+                                    actionType = "setValue"
+                                }
+                            }
+                        }
+                    },
+                    id = "u:691a43978f4e"
+                },
+                new
+                {
+                    type = "button",
+                    label = "setValue 指定index",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    componentId = "u:39c47c713ae6",
+                                    args = new
+                                    {
+                                        index = 2,
+                                        value = new
+                                        {
+                                            name = "setValue 指定index",
+                                            color = "#00ff00"
+                                        }
+                                    },
+                                    actionType = "setValue"
+                                }
+                            }
+                        }
+                    },
+                    id = "u:691a43978f4e"
+                },
+                new
+                {
+                    type = "button",
+                    label = "addItem 未指定index",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    componentId = "u:39c47c713ae6",
+                                    args = new
+                                    {
+                                        item = new object[]
+                                        {
+                                            new
+                                            {
+                                                name = "${name}",
+                                                color = "#ffffff"
+                                            },
+                                            new
+                                            {
+                                                name = "插入2",
+                                                color = "#2468f2"
+                                            }
+                                        }
+                                    },
+                                    actionType = "addItem"
+                                }
+                            }
+                        }
+                    },
+                    id = "u:691a43978f4e"
+                },
+                new
+                {
+                    type = "button",
+                    label = "addItem 指定index",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    componentId = "u:39c47c713ae6",
+                                    args = new
+                                    {
+                                        index = 1,
+                                        item = new object[]
+                                        {
+                                            new
+                                            {
+                                                name = "index 1",
+                                                color = "#ffffff"
+                                            },
+                                            new
+                                            {
+                                                name = "index 2",
+                                                color = "#ffffff"
+                                            }
+                                        }
+                                    },
+                                    actionType = "addItem"
+                                }
+                            }
+                        }
+                    },
+                    id = "u:691a43978f4e"
+                },
+                new
+                {
+                    type = "button",
+                    label = "deleteItem",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    componentId = "u:39c47c713ae6",
+                                    args = new
+                                    {
+                                        condition = "${CONTAINS(name, 'index')}"
+                                    },
+                                    actionType = "deleteItem"
+                                }
+                            }
+                        }
+                    },
+                    id = "u:691a43978f4e"
+                },
+                new
+                {
+                    type = "button",
+                    label = "clear",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    componentId = "u:39c47c713ae6",
+                                    actionType = "clear"
+                                }
+                            }
+                        }
+                    },
+                    id = "u:691a43978f4e"
+                },
+                new
+                {
+                    type = "button",
+                    label = "reset",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    componentId = "u:39c47c713ae6",
+                                    actionType = "reset"
+                                }
+                            }
+                        }
+                    },
+                    id = "u:691a43978f4e"
+                },
+                new
+                {
+                    type = "button",
+                    label = "老add",
+                    actionType = "add",
+                    target = "table",
+                    payload = new
+                    {
+                        name = "black",
+                        color = "#000000"
+                    }
+                },
+                new
+                {
+                    type = "button",
+                    label = "老delete",
+                    target = "table",
+                    actionType = "delete",
+                    payload = new
+                    {
+                        name = "black",
+                    }
+                },
+                new
+                {
+                    type = "input-text",
+                    label = "测试获取父级数据",
+                    name = "name",
+                    id = "u:5aea6935a4f2",
+                    value = "23455656"
+                },
+                new
+                {
+                    type = "input-table",
+                    name = "table",
+                    label = "表格表单",
+                    value = new object[]
+                    {
+                        new
+                        {
+                            name = "zzl",
+                            color = "#ff0000"
+                        },
+                        new
+                        {
+                            name = "zzl测试下setValue动作",
+                            color = "#00ff00"
+                        }
+                    },
+                    resetValue = new object[]
+                    {
+                        new
+                        {
+                            name = "resetValue",
+                            color = "#ffffff"
+                        }
+                    },
+                    columns = new object[]
+                    {
+                        new
+                        {
+                            label = "color",
+                            name = "color",
+                            quickEdit = new
+                            {
+                                type = "input-color",
+                                id = "u:1d828c468cbd"
+                            },
+                            type = "text",
+                            id = "u:d2dc063d4a3e"
+                        },
+                        new
+                        {
+                            label = "说明文字",
+                            name = "name",
+                            quickEdit = new
+                            {
+                                type = "input-text",
+                                mode = "inline",
+                                id = "u:c9db91691264"
+                            },
+                            type = "text",
+                            id = "u:6b9d980a101d"
+                        }
+                    },
+                    strictMode = false,
+                    id = "u:39c47c713ae6",
+                    addable = true,
+                    copyable = true,
+                    editable = true,
+                    removable = true,
+                    draggable = false,
+                    valueField = "name",
+                    onEvent = new
+                    {
+                        add = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    args = new
+                                    {
+                                        msg = "add ${event.data | json}"
+                                    },
+                                    actionType = "toast"
+                                }
+                            }
+                        },
+                        addConfirm = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    args = new
+                                    {
+                                        msg = "addConfirm ${event.data | json}"
+                                    },
+                                    actionType = "toast"
+                                }
+                            }
+                        },
+                        addSuccess = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    args = new
+                                    {
+                                        msg = "addSuccess ${event.data | json}"
+                                    },
+                                    actionType = "toast"
+                                }
+                            }
+                        },
+                        edit = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    args = new
+                                    {
+                                        msg = "edit ${event.data | json}"
+                                    },
+                                    actionType = "toast"
+                                }
+                            }
+                        },
+                        editConfirm = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    args = new
+                                    {
+                                        msg = "editConfirm ${event.data | json}"
+                                    },
+                                    actionType = "toast"
+                                }
+                            }
+                        },
+                        editSuccess = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    args = new
+                                    {
+                                        msg = "editSuccess ${event.data | json}"
+                                    },
+                                    actionType = "toast"
+                                }
+                            }
+                        },
+                        editFail = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    args = new
+                                    {
+                                        msg = "editFail ${event.data | json}"
+                                    },
+                                    actionType = "toast"
+                                }
+                            }
+                        },
+                        delete = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    args = new
+                                    {
+                                        msg = "delete ${event.data | json}"
+                                    },
+                                    actionType = "toast"
+                                }
+                            }
+                        },
+                        deleteSuccess = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    args = new
+                                    {
+                                        msg = "deleteSuccess ${event.data | json}"
+                                    },
+                                    actionType = "toast"
+                                }
+                            }
+                        },
+                        deleteFail = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    args = new
+                                    {
+                                        msg = "deleteFail ${event.data | json}"
+                                    },
+                                    actionType = "toast"
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "${table | json}"
+                }
+            },
+            id = "u:6bbc05138917"
+        };
+        return data;
+    }
+
+}

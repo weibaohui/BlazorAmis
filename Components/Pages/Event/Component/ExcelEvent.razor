@@ -1,0 +1,106 @@
+@page "/Event/Component/Excel"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "excel事件",
+            regions = new object[] { "body", "toolbar", "header" },
+            body = new object[]
+            {
+                new
+                {
+                    type = "tpl",
+                    tpl = "InputExcel",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger1",
+                                    id = "trigger1",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-input-excel",
+                                                    description = "点击清除数据"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    type = "input-excel",
+                                    id = "clear-input-excel",
+                                    name = "file",
+                                    multiple = true,
+                                    onEvent = new
+                                    {
+                                        change = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "dialog",
+                                                    args = new
+                                                    {
+                                                        val = "${file}"
+                                                    },
+                                                    dialog = new
+                                                    {
+                                                        title = "派发change事件",
+                                                        data = new
+                                                        {
+                                                            val = "${val}"
+                                                        },
+                                                        body = new object[]
+                                                        {
+                                                            new
+                                                            {
+                                                                type = "tpl",
+                                                                tpl = "${val|json}"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

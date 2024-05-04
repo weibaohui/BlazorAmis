@@ -1,0 +1,246 @@
+@page "/Event/Component/Upload"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "上传类组件事件",
+            regions = new object[] { "body", "toolbar", "header" },
+            body = new object[]
+            {
+                new
+                {
+                    type = "tpl",
+                    tpl = "InputFile上传类",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger1",
+                                    id = "trigger1",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-input-file",
+                                                    description = "点击清除数据"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    type = "input-file",
+                                    id = "clear-input-file",
+                                    name = "file",
+                                    multiple = true,
+                                    receiver = "ddd",
+                                    onEvent = new
+                                    {
+                                        change = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "toast",
+                                                    args = new
+                                                    {
+                                                        msgType = "info",
+                                                        msg = "派发change事件${file|json}"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        remove = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "toast",
+                                                    args = new
+                                                    {
+                                                        msgType = "info",
+                                                        msg = "派发remove事件${file|json}"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        success = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "toast",
+                                                    args = new
+                                                    {
+                                                        msgType = "info",
+                                                        msg = "派发success事件${file|json}"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        fail = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "toast",
+                                                    args = new
+                                                    {
+                                                        msgType = "info",
+                                                        msg = "派发fail事件${file|json}"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "group",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "trigger2",
+                                    id = "trigger2",
+                                    type = "action",
+                                    label = "clear触发器",
+                                    level = "primary",
+                                    onEvent = new
+                                    {
+                                        click = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "clear",
+                                                    componentId = "clear-input-image",
+                                                    description = "点击清除数据"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    type = "input-image",
+                                    id = "clear-input-image",
+                                    name = "file",
+                                    multiple = true,
+                                    onEvent = new
+                                    {
+                                        change = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "toast",
+                                                    args = new
+                                                    {
+                                                        msgType = "info",
+                                                        msg = "派发change事件${file|json}"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        remove = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "toast",
+                                                    args = new
+                                                    {
+                                                        msgType = "info",
+                                                        msg = "派发remove事件${file|json}"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        success = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "toast",
+                                                    args = new
+                                                    {
+                                                        msgType = "info",
+                                                        msg = "派发success事件${file|json}"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        fail = new
+                                        {
+                                            actions = new object[]
+                                            {
+                                                new
+                                                {
+                                                    actionType = "toast",
+                                                    args = new
+                                                    {
+                                                        msgType = "info",
+                                                        msg = "派发fail事件${file|json}"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

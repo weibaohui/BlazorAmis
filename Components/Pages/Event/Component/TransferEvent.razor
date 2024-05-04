@@ -1,0 +1,806 @@
+@page "/Event/Component/Transfer"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "穿梭框类事件",
+            regions = new object[] { "body", "toolbar", "header" },
+            body = new object[]
+            {
+                new
+                {
+                    type = "tpl",
+                    tpl = "transfer",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            name = "transferEvent1",
+                            id = "transferEvent1",
+                            type = "action",
+                            label = "全选功能",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            debugger = true,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "selectAll",
+                                            componentId = "transfer-receiver"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "transferEvent2",
+                            id = "transferEvent2",
+                            type = "action",
+                            label = "清空功能",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            debugger = true,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "clear",
+                                            componentId = "transfer-receiver"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "transferEvent2",
+                            id = "transferEvent2",
+                            type = "action",
+                            label = "清空搜索",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            debugger = true,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "clearSearch",
+                                            componentId = "transfer-receiver",
+                                            args = new
+                                            {
+                                                left = true,
+                                                right = true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "transferEvent2",
+                            id = "transferEvent2",
+                            type = "action",
+                            label = "重置功能",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            debugger = true,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "reset",
+                                            componentId = "transfer-receiver"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "action",
+                            actionType = "reload",
+                            label = "刷新 reload",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            target = "transfer"
+                        },
+                        new
+                        {
+                            label = "穿梭器",
+                            id = "transfer-receiver",
+                            type = "transfer",
+                            name = "transfer",
+                            searchable = true,
+                            resultSearchable = true,
+                            debugger = true,
+                            resetValue = "c",
+                            source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/getTreeOptions",
+                            onEvent = new
+                            {
+                                change = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "${transfer|json}"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "tabstransfer",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            name = "transferEvent4",
+                            id = "transferEvent4",
+                            type = "action",
+                            label = "设置changeTabKey为1",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            debugger = true,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "changeTabKey",
+                                            componentId = "tab-transfer-receiver",
+                                            args = new
+                                            {
+                                                activeKey = 1
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "transferEvent5",
+                            id = "transferEvent5",
+                            type = "action",
+                            label = "清空功能",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            debugger = true,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "clear",
+                                            componentId = "tab-transfer-receiver"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "transferEvent6",
+                            id = "transferEvent6",
+                            type = "action",
+                            label = "重置功能",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            debugger = true,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "reset",
+                                            componentId = "tab-transfer-receiver"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "组合穿梭器",
+                            type = "tabs-transfer",
+                            name = "transferEvent7",
+                            sortable = true,
+                            selectMode = "tree",
+                            debug = true,
+                            id = "tab-transfer-receiver",
+                            resetValue = "zhugeliang",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "成员",
+                                    selectMode = "tree",
+                                    searchable = true,
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "法师",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "诸葛亮",
+                                                    value = "zhugeliang"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "战士",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "曹操",
+                                                    value = "caocao"
+                                                },
+                                                new
+                                                {
+                                                    label = "钟无艳",
+                                                    value = "zhongwuyan"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "打野",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "李白",
+                                                    value = "libai"
+                                                },
+                                                new
+                                                {
+                                                    label = "韩信",
+                                                    value = "hanxin"
+                                                },
+                                                new
+                                                {
+                                                    label = "云中君",
+                                                    value = "yunzhongjun"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "用户",
+                                    selectMode = "chained",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "法师",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "诸葛亮",
+                                                    value = "zhugeliang2"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "战士",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "曹操",
+                                                    value = "caocao2"
+                                                },
+                                                new
+                                                {
+                                                    label = "钟无艳",
+                                                    value = "zhongwuyan2"
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "打野",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "李白",
+                                                    value = "libai2"
+                                                },
+                                                new
+                                                {
+                                                    label = "韩信",
+                                                    value = "hanxin2"
+                                                },
+                                                new
+                                                {
+                                                    label = "云中君",
+                                                    value = "yunzhongjun2"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            onEvent = new
+                            {
+                                change = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "${transferEvent7|json}"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "transferpicker",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            name = "transferEvent8",
+                            id = "transferEvent8",
+                            type = "action",
+                            label = "清空功能",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            debugger = true,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "clear",
+                                            componentId = "transfer-picker-receiver"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "transferEvent9",
+                            id = "transferEvent9",
+                            type = "action",
+                            label = "重置功能",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            debugger = true,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "reset",
+                                            componentId = "transfer-picker-receiver"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "组合穿梭器",
+                            type = "transfer-picker",
+                            name = "transferEvent10",
+                            debug = true,
+                            id = "transfer-picker-receiver",
+                            resetValue = "zhugeliang",
+                            sortable = true,
+                            selectMode = "tree",
+                            searchable = true,
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "法师",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "诸葛亮",
+                                            value = "zhugeliang"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "战士",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "曹操",
+                                            value = "caocao"
+                                        },
+                                        new
+                                        {
+                                            label = "钟无艳",
+                                            value = "zhongwuyan"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "打野",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "李白",
+                                            value = "libai"
+                                        },
+                                        new
+                                        {
+                                            label = "韩信",
+                                            value = "hanxin"
+                                        },
+                                        new
+                                        {
+                                            label = "云中君",
+                                            value = "yunzhongjun"
+                                        }
+                                    }
+                                }
+                            },
+                            onEvent = new
+                            {
+                                change = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "${transferEvent10|json}"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "tpl",
+                    tpl = "tabsTransferPicker",
+                    inline = false,
+                    wrapperComponent = "h2"
+                },
+                new
+                {
+                    type = "form",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            name = "transferEvent11",
+                            id = "transferEvent11",
+                            type = "action",
+                            label = "清空功能",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            debugger = true,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "clear",
+                                            componentId = "tabs-transfer-picker-receiver"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            name = "transferEvent12",
+                            id = "transferEvent12",
+                            type = "action",
+                            label = "重置功能",
+                            level = "primary",
+                            className = "mr-3 mb-3",
+                            debugger = true,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "reset",
+                                            componentId = "tabs-transfer-picker-receiver"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "组合穿梭器",
+                            type = "tabs-transfer-picker",
+                            name = "transferEvent13",
+                            debug = true,
+                            id = "tabs-transfer-picker-receiver",
+                            resetValue = "zhugeliang",
+                            sortable = true,
+                            selectMode = "tree",
+                            pickerSize = "md",
+                            menuTpl = "<div class='flex justify-between'><span>${label}</span>${email ? `<div class='text-muted m-r-xs text-sm text-right'>${email}<br />${phone}</div>`: ''}</div>",
+                            valueTpl = "${label}(${value})",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "成员",
+                                    selectMode = "tree",
+                                    searchable = true,
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "法师",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "诸葛亮",
+                                                    value = "zhugeliang",
+                                                    email = "zhugeliang@timi.com",
+                                                    phone = 13111111111
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "战士",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "曹操",
+                                                    value = "caocao",
+                                                    email = "caocao@timi.com",
+                                                    phone = 13111111111
+                                                },
+                                                new
+                                                {
+                                                    label = "钟无艳",
+                                                    value = "zhongwuyan",
+                                                    email = "zhongwuyan@timi.com",
+                                                    phone = 13111111111
+                                                }
+                                            }
+                                        },
+                                        new
+                                        {
+                                            label = "打野",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "李白",
+                                                    value = "libai",
+                                                    email = "libai@timi.com",
+                                                    phone = 13111111111
+                                                },
+                                                new
+                                                {
+                                                    label = "韩信",
+                                                    value = "hanxin",
+                                                    email = "hanxin@timi.com",
+                                                    phone = 13111111111
+                                                },
+                                                new
+                                                {
+                                                    label = "云中君",
+                                                    value = "yunzhongjun",
+                                                    email = "yunzhongjun@timi.com",
+                                                    phone = 13111111111
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "角色",
+                                    selectMode = "list",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "角色 1",
+                                            value = "role1"
+                                        },
+                                        new
+                                        {
+                                            label = "角色 2",
+                                            value = "role2"
+                                        },
+                                        new
+                                        {
+                                            label = "角色 3",
+                                            value = "role3"
+                                        },
+                                        new
+                                        {
+                                            label = "角色 4",
+                                            value = "role4"
+                                        }
+                                    }
+                                },
+                                new
+                                {
+                                    label = "部门",
+                                    selectMode = "tree",
+                                    children = new object[]
+                                    {
+                                        new
+                                        {
+                                            label = "总部",
+                                            value = "dep0",
+                                            children = new object[]
+                                            {
+                                                new
+                                                {
+                                                    label = "部门 1",
+                                                    value = "dep1",
+                                                    children = new object[]
+                                                    {
+                                                        new
+                                                        {
+                                                            label = "部门 4",
+                                                            value = "dep4"
+                                                        },
+                                                        new
+                                                        {
+                                                            label = "部门 5",
+                                                            value = "dep5"
+                                                        }
+                                                    }
+                                                },
+                                                new
+                                                {
+                                                    label = "部门 2",
+                                                    value = "dep2"
+                                                },
+                                                new
+                                                {
+                                                    label = "部门 3",
+                                                    value = "dep3"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            onEvent = new
+                            {
+                                change = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "toast",
+                                            args = new
+                                            {
+                                                msgType = "info",
+                                                msg = "${transferEvent13|json}"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

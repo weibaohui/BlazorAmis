@@ -1,0 +1,325 @@
+@page "/Event/Component/Wizard"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            title = "向导组件事件",
+            regions = new object[] { "body", "toolbar", "header" },
+            body = new object[]
+            {
+                new
+                {
+                    name = "wizard",
+                    id = "wizard-receiver",
+                    type = "wizard",
+                    initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/initData",
+                    steps = new object[]
+                    {
+                        new
+                        {
+                            title = "第一步",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "website",
+                                    label = "网址",
+                                    type = "input-url",
+                                    required = true
+                                },
+                                new
+                                {
+                                    name = "email",
+                                    label = "邮箱",
+                                    type = "input-email",
+                                    required = true
+                                }
+                            },
+                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm?waitSeconds=2"
+                        },
+                        new
+                        {
+                            title = "第二步",
+                            body = new object[]
+                            {
+                                new
+                                {
+                                    name = "defaultEmail",
+                                    type = "input-email",
+                                    label = "Email",
+                                    value = "test@test.com"
+                                },
+                                new
+                                {
+                                    type = "input-text",
+                                    name = "name"
+                                }
+                            },
+                            initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/initData",
+                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm?waitSeconds=2"
+                        },
+                        new
+                        {
+                            title = "确定",
+                            body = new object[] { "最后一步了，确认要提交吗？" },
+                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm?waitSeconds=2"
+                        }
+                    },
+                    onEvent = new
+                    {
+                        inited = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发 inited 事件，数据：" + "${event.data|json}"
+                                    }
+                                }
+                            }
+                        },
+                        change = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发 change 事件，数据：" + "${event.data|json}"
+                                    }
+                                }
+                            }
+                        },
+                        stepChange = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发 stepChange 事件，数据：" + "${event.data|json}"
+                                    }
+                                }
+                            }
+                        },
+                        finished = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发 finished 事件，数据：" + "${event.data|json}"
+                                    }
+                                }
+                            }
+                        },
+                        submitSucc = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发 submitSucc 事件，数据：" + "${event.data|json}"
+                                    }
+                                }
+                            }
+                        },
+                        submitFail = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发 submitFail 事件，数据：" + "${event.data|json}"
+                                    }
+                                }
+                            }
+                        },
+                        stepSubmitSucc = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发 stepSubmitSucc 事件，数据：" + "${event.data|json}"
+                                    }
+                                }
+                            }
+                        },
+                        stepSubmitFail = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "toast",
+                                    args = new
+                                    {
+                                        msgType = "info",
+                                        msg = "派发 stepSubmitFail 事件，数据：" + "${event.data|json}"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    name = "wizard-prev",
+                    type = "button",
+                    label = "跳转上一步",
+                    level = "primary",
+                    className = "mr-3 mb-3",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "prev",
+                                    componentId = "wizard-receiver",
+                                    description = "跳转上一步",
+                                    args = new { }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    name = "wizard-next",
+                    type = "button",
+                    label = "跳转下一步",
+                    level = "primary",
+                    className = "mr-3 mb-3",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "next",
+                                    componentId = "wizard-receiver",
+                                    description = "跳转下一步",
+                                    args = new { }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    name = "wizard-goto-step",
+                    type = "button",
+                    label = "跳转第三步",
+                    level = "primary",
+                    className = "mr-3 mb-3",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "goto-step",
+                                    componentId = "wizard-receiver",
+                                    description = "跳转第三步",
+                                    args = new
+                                    {
+                                        step = 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    name = "wizard-step-submit",
+                    type = "button",
+                    label = "本步骤提交",
+                    level = "primary",
+                    className = "mr-3 mb-3",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "step-submit",
+                                    componentId = "wizard-receiver",
+                                    description = "本步骤提交",
+                                    args = new { }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    name = "wizard-submit",
+                    type = "button",
+                    label = "全部提交",
+                    level = "primary",
+                    className = "mr-3 mb-3",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "submit",
+                                    componentId = "wizard-receiver",
+                                    description = "全部提交",
+                                    args = new { }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}
