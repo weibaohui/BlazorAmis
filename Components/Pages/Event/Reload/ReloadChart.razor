@@ -1,0 +1,72 @@
+@page "/Event/Reload/Chart"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            body = new object[]
+            {
+                new
+                {
+                    type = "alert",
+                    body = "刷新图表，使图表重新加载",
+                    level = "info",
+                    className = "mb-1"
+                },
+                new
+                {
+                    type = "button",
+                    label = "刷新",
+                    level = "primary",
+                    className = "mt-2 mb-2",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "reload",
+                                    componentId = "chart_reload"
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "chart",
+                    id = "chart_reload",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/chart/chartData",
+                    config = new
+                    {
+                        xAxis = new
+                        {
+                            type = "category",
+                            data = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" }
+                        },
+                        yAxis = new
+                        {
+                            type = "value"
+                        },
+                        series = new object[]
+                        {
+                            new
+                            {
+                                data = "${line}",
+                                type = "line"
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

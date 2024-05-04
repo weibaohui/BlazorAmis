@@ -145,6 +145,80 @@
                     },
                     new
                     {
+                        label = "事件动作机制",
+                        icon = "fa fa-bullhorn",
+                        children = new[]
+                        {
+                            new
+                            {
+                                label = "刷新",
+                                children = new[]
+                                {
+                                    new { label = "刷新表单", to = "/Event/Reload/Form" },
+                                    new { label = "刷新图表", to = "/Event/Reload/Chart" },
+                                    new { label = "刷新下拉框", to = "/Event/Reload/Select" }
+                                }
+                            },
+                            new
+                            {
+                                label = "更新数据",
+                                children = new[]
+                                {
+                                    new { label = "更新表单数据", to = "/Action/SetData/Form" },
+                                    new { label = "更新弹窗数据", to = "/Action/SetData/Dialog" },
+                                    new { label = "更新向导数据", to = "/Action/SetData/Wizard" },
+                                    new { label = "更新图表数据", to = "/Action/SetData/Chart" },
+                                    new { label = "更新输入框的值", to = "/Action/SetData/Input" },
+                                    new { label = "更新下拉框的值", to = "/Action/SetData/Select" },
+                                    new { label = "更新点选按钮的值", to = "/Action/SetData/ButtonGroupSelect" },
+                                    new { label = "更新输入组合的值", to = "/Action/SetData/Combo" },
+                                    new { label = "联动更新", to = "/Action/SetData/Sync" },
+                                    new { label = "数据回填", to = "/Action/SetData/Autofill" },
+                                    new { label = "更新全局变量数据", to = "/Action/SetData/Variable" }
+                                }
+                            },
+                            new
+                            {
+                                label = "执行其他组件动作",
+                                children = new[]
+                                {
+                                    new { label = "按钮类组件", to = "/Event/Button" },
+                                    new { label = "输入类组件", to = "/Event/Input" },
+                                    new { label = "上传类组件", to = "/Event/Upload" },
+                                    new { label = "下拉选择类", to = "/Event/Select" },
+                                    new { label = "时间类组件", to = "/Event/Date" },
+                                    new { label = "可关闭的tag group", to = "/Event/EachTag" },
+                                    new { label = "开关组件", to = "/Event/Switch" },
+                                    new { label = "选项卡组件", to = "/Event/Tabs" },
+                                    new { label = "评分组件", to = "/Event/InputRating" },
+                                    new { label = "excel", to = "/Event/Excel" },
+                                    new { label = "向导组件", to = "/Event/Wizard" },
+                                    new { label = "树形选择框", to = "/Event/InputTree" },
+                                    new { label = "树形选择器", to = "/Event/TreeSelect" },
+                                    new { label = "form表单", to = "/Event/Form" },
+                                    new { label = "穿梭框类组件", to = "/Event/Transfer" },
+                                    new { label = "轮播图组件", to = "/Event/Carousel" },
+                                    new { label = "Service组件", to = "/Event/Service" },
+                                    new { label = "表格组件", to = "/Event/Table" },
+                                    new { label = "列表展示类组件", to = "/Event/List" },
+                                    new { label = "chart组件", to = "/Event/Chart" },
+                                    new { label = "SearchBox组件", to = "/Event/Searchbox" },
+                                    new { label = "input-table组件", to = "/Event/InputTable" }
+                                }
+                            },
+                            new
+                            {
+                                label = "阻止组件默认行为",
+                                children = new[]
+                                {
+                                    new { label = "阻止表单默认行为", to = "/Event/Prevent/Form" }
+                                }
+                            }
+                        }
+                    },
+
+                    new
+                    {
                         label = "动态加载",
                         icon = "fa fa-magic",
                         children = new[]

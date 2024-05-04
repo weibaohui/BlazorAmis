@@ -1,0 +1,64 @@
+@page "/Event/Reload/Form"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            body = new object[]
+            {
+                new
+                {
+                    type = "alert",
+                    body = "刷新表单，使表单重新加载，这样可以触发表单的远程数据重新请求",
+                    level = "info",
+                    className = "mb-1"
+                },
+                new
+                {
+                    type = "button",
+                    label = "刷新",
+                    className = "mt-2 mb-2",
+                    level = "primary",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "reload",
+                                    componentId = "form-reload"
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "form",
+                    id = "form-reload",
+                    name = "form-reload",
+                    initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/page/initData",
+                    title = "表单",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "input-text",
+                            id = "date-input-01",
+                            name = "date",
+                            label = "时间戳"
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}
