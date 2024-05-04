@@ -84,6 +84,13 @@ public class MockController : Controller
     [Route("Sample/{id?}")]
     public object PostSampleWithId(string? id)
     {
+        var waitSeconds = Request.Query["waitSeconds"];
+
+        if (int.TryParse(waitSeconds, out var wait))
+        {
+            Thread.Sleep(wait * 1000);
+        }
+
         var data = new
         {
             status = 0,
@@ -104,6 +111,13 @@ public class MockController : Controller
     [HttpPost("Sample/BulkUpdate")]
     public object PostSampleBulkUpdate([FromBody] object input)
     {
+        var waitSeconds = Request.Query["waitSeconds"];
+
+        if (int.TryParse(waitSeconds, out var wait))
+        {
+            Thread.Sleep(wait * 1000);
+        }
+
         var data = new
         {
             status = 0,
@@ -113,6 +127,7 @@ public class MockController : Controller
 
         return data;
     }
+
     [HttpPost("Sample/SaveOrder")]
     public object PostSampleSaveOrder([FromBody] object input)
     {
@@ -125,6 +140,7 @@ public class MockController : Controller
 
         return data;
     }
+
     [HttpPost("Sample/Add")]
     public object PostSampleAdd([FromBody] object input)
     {
@@ -132,7 +148,7 @@ public class MockController : Controller
         {
             status = 0,
             msg = "保存成功！",
-            id=1,
+            id = 1,
             data = input
         };
 
@@ -142,6 +158,13 @@ public class MockController : Controller
     [HttpGet("Sample")]
     public object Sample()
     {
+        var waitSeconds = Request.Query["waitSeconds"];
+
+        if (int.TryParse(waitSeconds, out var wait))
+        {
+            Thread.Sleep(wait * 1000);
+        }
+
         var page = Request.Query["page"].FirstOrDefault() ?? "1";
         var perPageStr = Request.Query["perPage"].FirstOrDefault() ?? "15";
         var perPage = int.Parse(perPageStr);
