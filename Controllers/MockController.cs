@@ -4,9 +4,8 @@ namespace BlazorAmis.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class DataController:Controller
+public class MockController : Controller
 {
-
     [HttpGet("GetOptions")]
     public object GetOptions()
     {
@@ -38,8 +37,8 @@ public class DataController:Controller
                 }
             }
         };
-
     }
+
     [HttpGet("AutoComplete2")]
     public object AutoComplete2()
     {
@@ -59,12 +58,19 @@ public class DataController:Controller
                 }
             }
         };
-
     }
+
     [HttpPost("SaveForm")]
     public object SaveForm()
     {
-        return  new
+        var waitSeconds = Request.Query["waitSeconds"];
+
+        if (int.TryParse(waitSeconds, out var wait))
+        {
+            Thread.Sleep(wait * 1000);
+        }
+
+        return new
         {
             status = 0,
             msg = "保存成功",
@@ -74,10 +80,11 @@ public class DataController:Controller
             }
         };
     }
+
     [HttpGet("InitDataError")]
     public object InitDataError()
     {
-        return  new
+        return new
         {
             status = 404,
             msg = "测试返回错误",
@@ -88,6 +95,5 @@ public class DataController:Controller
                 date = "2017-10-13"
             }
         };
-
     }
 }
