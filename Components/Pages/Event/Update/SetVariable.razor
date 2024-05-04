@@ -1,0 +1,186 @@
+@page "/Event/Update/Variable"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            schema = new
+            {
+                type = "page",
+                title = "更新变量数据",
+                body = new object[]
+                {
+                    new
+                    {
+                        type = "tpl",
+                        tpl = "变量的命名空间通过环境变量设置为了<code>appVariables</code>, 可以通过\\${appVariables.xxx}来取值"
+                    },
+                    new
+                    {
+                        type = "container",
+                        style = new
+                        {
+                            padding = "8px",
+                            marginBottom = "8px",
+                            backgroundColor = "#f5f5f5",
+                            borderRadius = "4px"
+                        },
+                        body = new object[]
+                        {
+                            new
+                            {
+                                type = "tpl",
+                                tpl = "<h2>数据域appVariables</h2>"
+                            },
+                            new
+                            {
+                                type = "json",
+                                id = "u:44521540e64c",
+                                source = "${appVariables}",
+                                levelExpand = 10
+                            },
+                            new
+                            {
+                                type = "tpl",
+                                tpl = "<h3>接口中的<code>ProductName (\\${ProductName})</code>: <strong>${ProductName|default:-}</strong></h3>",
+                                inline = false,
+                                id = "u:98ed5c5534ef"
+                            },
+                            new
+                            {
+                                type = "tpl",
+                                tpl = "<h3>变量中的<code>ProductName (\\${appVariables.ProductName})</code>: <strong>${appVariables.ProductName|default:-}</strong></h3>",
+                                inline = false,
+                                id = "u:98ed5c5534ef"
+                            }
+                        }
+                    },
+                    new
+                    {
+                        type = "form",
+                        title = "表单",
+                        debug = true,
+                        body = new object[]
+                        {
+                            new
+                            {
+                                label = "产品名称",
+                                type = "input-text",
+                                name = "product",
+                                placeholder = "请输入内容, 观察引用变量组件的变化",
+                                id = "u:d9802fd83145",
+                                onEvent = new
+                                {
+                                    change = new
+                                    {
+                                        weight = 0,
+                                        actions = new object[]
+                                        {
+                                            new
+                                            {
+                                                args = new
+                                                {
+                                                    path = "appVariables.ProductName",
+                                                    value = "${event.data.value}"
+                                                },
+                                                actionType = "setValue"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            new
+                            {
+                                type = "static",
+                                label = "产品名称描述",
+                                id = "u:7bd4e2a4f95e",
+                                value = "${appVariables.ProductName}",
+                                name = "staticName"
+                            }
+                        },
+                    }
+                },
+                initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/page/initData2",
+                onEvent = new
+                {
+                    inited = new
+                    {
+                        weight = 0,
+                        actions = new object[]
+                        {
+                            new
+                            {
+                                args = new
+                                {
+                                    path = "appVariables.ProductName",
+                                    value = "${event.data.ProductName}"
+                                },
+                                actionType = "setValue"
+                            }
+                        }
+                    }
+                }
+            },
+            //TODO 修复
+            // props = new
+            // {
+            //     data = new
+            //     {
+            //         [namespace] = JSON.parse(sessionStorage.getItem(namespace))
+            //     }
+            // },
+            // env = new
+            // {
+            //     beforeSetData = (Action<object>)(delegate
+            //     {
+            //         var renderer = data.renderer;
+            //         var action = data.action;
+            //         var  event = data.event;
+            //
+            //         var value =  event?.data?.value ?? action?.args?.value;
+            //         var path = action?.args?.path;
+            //         var session = renderer.props?.env?.session ?? "global";
+            //         var comptList =  event?.context?.scoped?.getComponentsByRefPath(session, path);
+            //
+            //         foreach (var component in comptList)
+            //         {
+            //             var targetPath = component?.props?.$path;
+            //             var targetSchema = component?.props?.$schema;
+            //             var triggerPath = renderer?.props?.$path;
+            //             var triggerSchema = renderer?.props?.$schema;
+            //
+            //             if (!component.setData && (targetPath == triggerPath || isEqual(targetSchema, triggerSchema)))
+            //             {
+            //                 continue;
+            //             }
+            //
+            //             if (component?.props?.onChange != null)
+            //             {
+            //                 var submitOnChange = component.props?.$schema?.submitOnChange;
+            //
+            //                 component.props.onChange(value, submitOnChange, true);
+            //             }
+            //             else if (component?.setData != null)
+            //             {
+            //                 var currentData = JSON.parse(sessionStorage.getItem(namespace) ?? JSON.stringify(initData));
+            //                 var varPath = path.Replace("appVariables.", "");
+            //
+            //                 update(currentData, varPath, origin => { return value.GetType() == origin.GetType() ? value : origin; });
+            //
+            //                 sessionStorage.setItem(namespace, JSON.stringify(currentData));
+            //                 var newCtx = cloneObject(component?.props?.data ?? new { });
+            //                 setVariable(newCtx, path, value, true);
+            //
+            //                 component.setData(newCtx, false);
+            //             }
+            //         }
+            //     })
+            // }
+        };
+        return data;
+    }
+
+}

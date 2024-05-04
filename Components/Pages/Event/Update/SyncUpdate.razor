@@ -1,0 +1,285 @@
+@page "/Event/Update/Sync"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            body = new object[]
+            {
+                new
+                {
+                    type = "alert",
+                    body = "当某组件的值发生变化时，联动去更新另一个组件的数据，可以通过${responseResult}来获取事件产生的数据，例如输入框change事件可以通过${[name]}来获取输入的值，name是组件的名称。",
+                    level = "info",
+                    className = "mb-1"
+                },
+                new
+                {
+                    type = "alert",
+                    body = "输入框同步输入框：上面输入框输入时同步更新表单内的输入框。",
+                    level = "info",
+                    className = "mt-2 mb-1"
+                },
+                new
+                {
+                    type = "input-text",
+                    name = "role",
+                    label = "输入角色",
+                    mode = "horizontal",
+                    onEvent = new
+                    {
+                        change = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "setValue",
+                                    componentId = "form_data_2",
+                                    args = new
+                                    {
+                                        value = new
+                                        {
+                                            myrole = "${role}"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "input-text",
+                    label = "输入年龄",
+                    name = "age",
+                    mode = "horizontal",
+                    onEvent = new
+                    {
+                        change = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "setValue",
+                                    componentId = "form_data_2",
+                                    args = new
+                                    {
+                                        value = new
+                                        {
+                                            age = "${age}"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "form",
+                    id = "form_data_2",
+                    title = "表单",
+                    initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/initData",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "input-text",
+                            label = "角色",
+                            name = "myrole",
+                            disabled = false,
+                            mode = "horizontal"
+                        },
+                        new
+                        {
+                            type = "input-text",
+                            label = "年龄",
+                            name = "age",
+                            disabled = false,
+                            mode = "horizontal"
+                        }
+                    }
+                },
+                new
+                {
+                    type = "alert",
+                    body = "下拉框与输入框联动：选择消息后，将选中值同步给消息输入框。",
+                    level = "info",
+                    className = "mt-2 mb-1"
+                },
+                new
+                {
+                    type = "select",
+                    label = "选择消息",
+                    name = "message",
+                    mode = "horizontal",
+                    options = new object[]
+                    {
+                        new
+                        {
+                            label = "Hi",
+                            value = "Hi!"
+                        },
+                        new
+                        {
+                            label = "Hello",
+                            value = "Hello!"
+                        },
+                        new
+                        {
+                            label = "Hey",
+                            value = "Hey!"
+                        }
+                    },
+                    onEvent = new
+                    {
+                        change = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "setValue",
+                                    componentId = "input_data_msg2",
+                                    args = new
+                                    {
+                                        value = "${message}"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "input-text",
+                    label = "消息",
+                    id = "input_data_msg2",
+                    mode = "horizontal",
+                    name = "mymsg"
+                },
+                new
+                {
+                    type = "alert",
+                    body = "动态更新下拉框的数据源： 选项1的选中值更新后同步更新选项2的数据源。",
+                    level = "info",
+                    className = "mt-2 mb-1"
+                },
+                new
+                {
+                    type = "form",
+                    title = "表单",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "select",
+                            label = "选项1",
+                            name = "select1",
+                            options = new object[]
+                            {
+                                new
+                                {
+                                    label = "选项A",
+                                    value = "A"
+                                },
+                                new
+                                {
+                                    label = "选项B",
+                                    value = "B"
+                                }
+                            },
+                            id = "u:af1ad4e2f8db",
+                            multiple = false,
+                            mode = "inline",
+                            onEvent = new
+                            {
+                                change = new
+                                {
+                                    weight = 0,
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "setValue",
+                                            args = new
+                                            {
+                                                value = new
+                                                {
+                                                    opts = "${optList[select1]}"
+                                                }
+                                            },
+                                            componentId = "u:d731760b321e"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            type = "select",
+                            label = "选项2",
+                            name = "select2",
+                            id = "u:d731760b321d",
+                            multiple = false,
+                            mode = "inline",
+                            source = "${opts}"
+                        }
+                    },
+                    id = "u:d731760b321e",
+                    data = new
+                    {
+                        optList = new
+                        {
+                            A = new object[]
+                            {
+                                new
+                                {
+                                    label = "A",
+                                    value = "a"
+                                },
+                                new
+                                {
+                                    label = "B",
+                                    value = "b"
+                                },
+                                new
+                                {
+                                    label = "C",
+                                    value = "c"
+                                }
+                            },
+                            B = new object[]
+                            {
+                                new
+                                {
+                                    label = "A2",
+                                    value = "a2"
+                                },
+                                new
+                                {
+                                    label = "B2",
+                                    value = "b2"
+                                },
+                                new
+                                {
+                                    label = "C2",
+                                    value = "c2"
+                                }
+                            }
+                        },
+                        opts = new object[] { }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

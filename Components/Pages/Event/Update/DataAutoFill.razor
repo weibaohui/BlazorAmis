@@ -1,0 +1,604 @@
+@page "/Event/Update/AutoFill"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            data = new
+            {
+                globalData = new
+                {
+                    website = "http://www.baidu.com",
+                    email = "amis!@baidu.com"
+                }
+            },
+            body = new object[]
+            {
+                new
+                {
+                    type = "alert",
+                    body = "远程请求后、表单提交后，将数据回填给另一个组件。请求返回的数据可以指定存储在`outputVar`变量里，其他动作可以通过`${[outputVar]}`直接获取该数据。",
+                    level = "info",
+                    className = "mb-1"
+                },
+                new
+                {
+                    type = "alert",
+                    body = "http请求后的数据回填给表单",
+                    level = "info",
+                    className = "mt-2 mb-1"
+                },
+                new
+                {
+                    type = "form",
+                    id = "form_data_001",
+                    title = "用户信息",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "input-text",
+                            label = "名称",
+                            name = "name",
+                            disabled = false,
+                            mode = "horizontal"
+                        },
+                        new
+                        {
+                            type = "input-text",
+                            label = "作者",
+                            name = "author",
+                            disabled = false,
+                            mode = "horizontal"
+                        }
+                    },
+                    actions = new object[]
+                    {
+                        new
+                        {
+                            type = "button",
+                            label = "去获取表单数据",
+                            primary = true,
+                            wrapWithPanel = false,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "ajax",
+                                            args = new
+                                            {
+                                                api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/initData"
+                                            },
+                                            outputVar = "myResult"
+                                        },
+                                        new
+                                        {
+                                            actionType = "setValue",
+                                            componentId = "form_data_001",
+                                            args = new
+                                            {
+                                                value = "${myResult}"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "alert",
+                    body = "弹窗提交后的数据回填给表单",
+                    level = "info",
+                    className = "mt-2 mb-1"
+                },
+                new
+                {
+                    type = "form",
+                    id = "form_data_002",
+                    title = "用户信息",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "input-text",
+                            label = "名称",
+                            name = "name",
+                            disabled = false,
+                            mode = "horizontal"
+                        },
+                        new
+                        {
+                            type = "input-text",
+                            label = "作者",
+                            name = "author",
+                            disabled = false,
+                            mode = "horizontal"
+                        }
+                    },
+                    actions = new object[]
+                    {
+                        new
+                        {
+                            type = "button",
+                            label = "去获取表单数据",
+                            primary = true,
+                            wrapWithPanel = false,
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "dialog",
+                                            dialog = new
+                                            {
+                                                title = "登录",
+                                                id = "dialog_004",
+                                                data = new
+                                                {
+                                                    username = "amis"
+                                                },
+                                                body = new
+                                                {
+                                                    type = "form",
+                                                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm?waitSeconds=2",
+                                                    body = new object[]
+                                                    {
+                                                        new
+                                                        {
+                                                            type = "input-text",
+                                                            name = "username",
+                                                            required = true,
+                                                            placeholder = "请输入用户名",
+                                                            label = "用户名"
+                                                        },
+                                                        new
+                                                        {
+                                                            type = "input-password",
+                                                            name = "password",
+                                                            label = "密码",
+                                                            required = true,
+                                                            placeholder = "请输入密码"
+                                                        },
+                                                        new
+                                                        {
+                                                            type = "checkbox",
+                                                            name = "rememberMe",
+                                                            label = "记住登录"
+                                                        }
+                                                    }
+                                                },
+                                                actions = new object[]
+                                                {
+                                                    new
+                                                    {
+                                                        type = "button",
+                                                        label = "提交",
+                                                        className = "m",
+                                                        primary = true,
+                                                        onEvent = new
+                                                        {
+                                                            click = new
+                                                            {
+                                                                actions = new object[]
+                                                                {
+                                                                    new
+                                                                    {
+                                                                        actionType = "ajax",
+                                                                        args = new
+                                                                        {
+                                                                            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/initData"
+                                                                        },
+                                                                        outputVar = "myResult"
+                                                                    },
+                                                                    new
+                                                                    {
+                                                                        actionType = "setValue",
+                                                                        componentId = "form_data_002",
+                                                                        args = new
+                                                                        {
+                                                                            value = "${myResult}"
+                                                                        }
+                                                                    },
+                                                                    new
+                                                                    {
+                                                                        actionType = "closeDialog"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "alert",
+                    body = "Picker选择后将数据回填到form的其他组件中",
+                    level = "info",
+                    className = "mt-2 mb-1"
+                },
+                new
+                {
+                    type = "form",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/saveForm",
+                    debug = true,
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "picker",
+                            name = "picker",
+                            id = "picker",
+                            joinValues = true,
+                            valueField = "id",
+                            labelField = "id",
+                            label = "多选",
+                            source = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample",
+                            size = "lg",
+                            multiple = false,
+                            description = "选择一项内容，自动填入Form其他组件，并触发按钮动作",
+                            pickerSchema = new
+                            {
+                                mode = "table",
+                                name = "thelist",
+                                quickSaveApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample/bulkUpdate",
+                                quickSaveItemApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample/$id",
+                                draggable = true,
+                                headerToolbar = new
+                                {
+                                    wrapWithPanel = false,
+                                    type = "form",
+                                    className = "text-right",
+                                    target = "thelist",
+                                    mode = "inline",
+                                    body = new object[]
+                                    {
+                                        new
+                                        {
+                                            type = "input-text",
+                                            name = "keywords",
+                                            addOn = new
+                                            {
+                                                type = "submit",
+                                                label = "搜索",
+                                                level = "primary",
+                                                icon = "fa fa-search pull-left"
+                                            }
+                                        }
+                                    }
+                                },
+                                columns = new object[]
+                                {
+                                    new
+                                    {
+                                        name = "engine",
+                                        label = "Rendering engine",
+                                        sortable = true,
+                                        searchable = true,
+                                        type = "text",
+                                        toggled = true
+                                    },
+                                    new
+                                    {
+                                        name = "browser",
+                                        label = "Browser",
+                                        sortable = true,
+                                        type = "text",
+                                        toggled = true
+                                    },
+                                    new
+                                    {
+                                        name = "platform",
+                                        label = "Platform(s)",
+                                        sortable = true,
+                                        type = "text",
+                                        toggled = true
+                                    },
+                                    new
+                                    {
+                                        name = "version",
+                                        label = "Engine version",
+                                        quickEdit = true,
+                                        type = "text",
+                                        toggled = true
+                                    },
+                                    new
+                                    {
+                                        name = "grade",
+                                        label = "CSS grade",
+                                        quickEdit = new
+                                        {
+                                            mode = "inline",
+                                            type = "select",
+                                            options = new string[] { "A", "B", "C", "D", "X" },
+                                            saveImmediately = true
+                                        },
+                                        type = "text",
+                                        toggled = true
+                                    },
+                                    new
+                                    {
+                                        type = "operation",
+                                        label = "操作",
+                                        width = 100,
+                                        buttons = new object[]
+                                        {
+                                            new
+                                            {
+                                                type = "button",
+                                                icon = "fa fa-eye",
+                                                actionType = "dialog",
+                                                dialog = new
+                                                {
+                                                    title = "查看",
+                                                    body = new
+                                                    {
+                                                        type = "form",
+                                                        body = new object[]
+                                                        {
+                                                            new
+                                                            {
+                                                                type = "static",
+                                                                name = "engine",
+                                                                label = "Engine"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "divider"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "static",
+                                                                name = "browser",
+                                                                label = "Browser"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "divider"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "static",
+                                                                name = "platform",
+                                                                label = "Platform(s)"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "divider"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "static",
+                                                                name = "version",
+                                                                label = "Engine version"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "divider"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "static",
+                                                                name = "grade",
+                                                                label = "CSS grade"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "divider"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "html",
+                                                                html = "<p>添加其他 <span>Html 片段</span> 需要支持变量替换（todo）.</p>"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            new
+                                            {
+                                                type = "button",
+                                                icon = "fa fa-pencil",
+                                                actionType = "dialog",
+                                                dialog = new
+                                                {
+                                                    position = "left",
+                                                    size = "lg",
+                                                    title = "编辑",
+                                                    body = new
+                                                    {
+                                                        type = "form",
+                                                        name = "sample-edit-form",
+                                                        api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/sample/$id",
+                                                        body = new object[]
+                                                        {
+                                                            new
+                                                            {
+                                                                type = "input-text",
+                                                                name = "engine",
+                                                                label = "Engine",
+                                                                required = true
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "divider"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "input-text",
+                                                                name = "browser",
+                                                                label = "Browser",
+                                                                required = true
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "divider"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "input-text",
+                                                                name = "platform",
+                                                                label = "Platform(s)",
+                                                                required = true
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "divider"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "input-text",
+                                                                name = "version",
+                                                                label = "Engine version"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "divider"
+                                                            },
+                                                            new
+                                                            {
+                                                                type = "select",
+                                                                name = "grade",
+                                                                label = "CSS grade",
+                                                                options = new string[] { "A", "B", "C", "D", "X" }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            new
+                                            {
+                                                type = "button",
+                                                icon = "fa fa-times text-danger",
+                                                actionType = "ajax",
+                                                confirmText = "您确认要删除?",
+                                                api = "delete:/api/mock2/sample/$id"
+                                            }
+                                        },
+                                        toggled = true
+                                    }
+                                }
+                            },
+                            onEvent = new
+                            {
+                                change = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "setValue",
+                                            componentId = "id",
+                                            args = new
+                                            {
+                                                value = "${picker}"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            actionType = "setValue",
+                                            componentId = "platform",
+                                            args = new
+                                            {
+                                                value = "${selectedItems.platform}"
+                                            }
+                                        },
+                                        new
+                                        {
+                                            actionType = "click",
+                                            componentId = "dialog-action",
+                                            args = new
+                                            {
+                                                browser = "${selectedItems.browser}"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "id",
+                            name = "id",
+                            id = "id",
+                            type = "input-text"
+                        },
+                        new
+                        {
+                            label = "platform",
+                            name = "platform",
+                            id = "platform",
+                            type = "input-text"
+                        },
+                        new
+                        {
+                            type = "action",
+                            id = "dialog-action",
+                            label = "自动触发的弹窗",
+                            level = "primary",
+                            onEvent = new
+                            {
+                                click = new
+                                {
+                                    actions = new object[]
+                                    {
+                                        new
+                                        {
+                                            actionType = "dialog",
+                                            dialog = new
+                                            {
+                                                type = "dialog",
+                                                title = "browser",
+                                                id = "browser-dialog",
+                                                body = new object[]
+                                                {
+                                                    new
+                                                    {
+                                                        type = "form",
+                                                        debug = true,
+                                                        id = "browser-form",
+                                                        body = new object[]
+                                                        {
+                                                            new
+                                                            {
+                                                                type = "input-text",
+                                                                id = "browser",
+                                                                name = "browser",
+                                                                label = "browser"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

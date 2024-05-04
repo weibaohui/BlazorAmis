@@ -1,0 +1,80 @@
+@page "/Event/Update/ButtonGroupSelect"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            id = "mypage",
+            data = new
+            {
+                btnData = "c"
+            },
+            body = new object[]
+            {
+                new
+                {
+                    type = "alert",
+                    body = "直接更新指定点选按钮的选中值。",
+                    level = "info",
+                    className = "mb-1"
+                },
+                new
+                {
+                    type = "button",
+                    label = "更新",
+                    level = "primary",
+                    className = "mt-2 mb-2",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "setValue",
+                                    componentId = "button-group-select_setvalue",
+                                    args = new
+                                    {
+                                        value = "${btnData}"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "button-group-select",
+                    id = "button-group-select_setvalue",
+                    label = "选项",
+                    name = "type",
+                    options = new object[]
+                    {
+                        new
+                        {
+                            label = "Option A",
+                            value = "a"
+                        },
+                        new
+                        {
+                            label = "Option B",
+                            value = "b"
+                        },
+                        new
+                        {
+                            label = "Option C",
+                            value = "c"
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

@@ -1,0 +1,124 @@
+@page "/Event/Update/Input"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            id = "mypage",
+            data = new
+            {
+                globalData = new
+                {
+                    myrole = "法官",
+                    mymsg = "该吃饭了!",
+                    title = "beijing time"
+                }
+            },
+            body = new object[]
+            {
+                new
+                {
+                    type = "alert",
+                    body = "直接更新指定输入框的值。",
+                    level = "info",
+                    className = "mb-1"
+                },
+                new
+                {
+                    type = "button",
+                    label = "更新输入框",
+                    level = "primary",
+                    className = "mt-2 mb-2",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "setValue",
+                                    componentId = "input_data_msg",
+                                    args = new
+                                    {
+                                        value = "我是amis!"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "input-text",
+                    label = "消息",
+                    id = "input_data_msg",
+                    mode = "horizontal",
+                    name = "mymsg"
+                },
+                new
+                {
+                    type = "button",
+                    label = "更新表单内输入框",
+                    level = "primary",
+                    className = "mt-2 mb-2",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "setValue",
+                                    componentId = "input_data_role",
+                                    args = new
+                                    {
+                                        value = "预言家"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "form",
+                    title = "表单",
+                    data = new
+                    {
+                        myrole = "杀手",
+                        age = "18"
+                    },
+                    initApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/form/initData",
+                    body = new object[]
+                    {
+                        new
+                        {
+                            type = "input-text",
+                            id = "input_data_role",
+                            label = "角色",
+                            name = "myrole",
+                            disabled = false,
+                            mode = "horizontal"
+                        },
+                        new
+                        {
+                            type = "input-text",
+                            label = "年龄",
+                            name = "age",
+                            disabled = false,
+                            mode = "horizontal"
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

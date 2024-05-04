@@ -1,0 +1,83 @@
+@page "/Event/Update/Chart"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data =new
+        {
+            type = "page",
+            data = new
+            {
+                lineData = new
+                {
+                    line = new object[] { 65, 63, 10, 73, 42, 21 }
+                }
+            },
+            body = new object[]
+            {
+                new
+                {
+                    type = "alert",
+                    body = "直接更新图表的数据等于更新图表所依赖数据域中的变量，例如下面的例子，`setValue`等于更新绑定的变量`${line}`。",
+                    level = "info",
+                    className = "mb-1"
+                },
+                new
+                {
+                    type = "button",
+                    label = "更新",
+                    level = "primary",
+                    className = "mb-2",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "setValue",
+                                    componentId = "chart_setvalue",
+                                    args = new
+                                    {
+                                        value = "${lineData}"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    type = "chart",
+                    id = "chart_setvalue",
+                    api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/chart/chartData",
+                    config = new
+                    {
+                        xAxis = new
+                        {
+                            type = "category",
+                            data = new object[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" }
+                        },
+                        yAxis = new
+                        {
+                            type = "value"
+                        },
+                        series = new object[]
+                        {
+                            new
+                            {
+                                data = "${line}",
+                                type = "line"
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}

@@ -1,0 +1,169 @@
+@page "/Event/Update/Select"
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var data = new
+        {
+            type = "page",
+            id = "mypage",
+            data = new
+            {
+                singleData = "a",
+                multipleData = "caocao,libai"
+            },
+            body = new object[]
+            {
+                new
+                {
+                    type = "alert",
+                    body = "直接更新指定下拉框的选中值。",
+                    level = "info",
+                    className = "mb-1"
+                },
+                new
+                {
+                    type = "button",
+                    label = "更新单选数据",
+                    level = "primary",
+                    className = "mt-2 mb-2",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "setValue",
+                                    componentId = "single-select",
+                                    args = new
+                                    {
+                                        value = "${singleData}"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    label = "选项",
+                    type = "select",
+                    name = "single-select",
+                    id = "single-select",
+                    options = new object[]
+                    {
+                        new
+                        {
+                            label = "A",
+                            value = "a"
+                        },
+                        new
+                        {
+                            label = "B",
+                            value = "b"
+                        },
+                        new
+                        {
+                            label = "C",
+                            value = "c"
+                        }
+                    }
+                },
+                new
+                {
+                    type = "button",
+                    label = "更新多选数据",
+                    level = "primary",
+                    className = "mt-2 mb-2",
+                    onEvent = new
+                    {
+                        click = new
+                        {
+                            actions = new object[]
+                            {
+                                new
+                                {
+                                    actionType = "setValue",
+                                    componentId = "multiple-select",
+                                    args = new
+                                    {
+                                        value = "${multipleData}"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                new
+                {
+                    label = "分组",
+                    type = "select",
+                    name = "multiple-select",
+                    id = "multiple-select",
+                    multiple = true,
+                    selectMode = "group",
+                    options = new object[]
+                    {
+                        new
+                        {
+                            label = "法师",
+                            children = new object[]
+                            {
+                                new
+                                {
+                                    label = "诸葛亮",
+                                    value = "zhugeliang"
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "战士",
+                            children = new object[]
+                            {
+                                new
+                                {
+                                    label = "曹操",
+                                    value = "caocao"
+                                },
+                                new
+                                {
+                                    label = "钟无艳",
+                                    value = "zhongwuyan"
+                                }
+                            }
+                        },
+                        new
+                        {
+                            label = "打野",
+                            children = new object[]
+                            {
+                                new
+                                {
+                                    label = "李白",
+                                    value = "libai"
+                                },
+                                new
+                                {
+                                    label = "韩信",
+                                    value = "hanxin"
+                                },
+                                new
+                                {
+                                    label = "云中君",
+                                    value = "yunzhongjun"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
+}
