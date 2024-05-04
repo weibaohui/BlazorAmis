@@ -1,0 +1,65 @@
+@page "/CRUD/Columns"
+<PageTitle>列类型汇总</PageTitle>
+<Amis Data="GetObj()"></Amis>
+
+@code {
+
+    private object GetObj()
+    {
+        var body = new
+        {
+            type = "crud",
+            api = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/crud/list",
+            columns = new object[]
+            {
+                new { name = "id", label = "ID", type = "text" },
+                new { name = "audio", label = "音频", type = "audio" },
+                new { name = "carousel", label = "轮播图", type = "carousel", width = "300" },
+                new { name = "text", label = "文本", type = "text" },
+                new
+                {
+                    type = "image",
+                    label = "图片",
+                    name = "image",
+                    enlargeAble = true,
+                    title = "233",
+                    thumbMode = "cover"
+                },
+                new { name = "date", type = "date", label = "日期" },
+                new { name = "progress", label = "进度", type = "progress" },
+                new { name = "boolean", label = "状态", type = "status" },
+                new { name = "boolean", label = "开关", type = "switch" },
+                new
+                {
+                    name = "type",
+                    label = "映射",
+                    type = "mapping",
+                    map = new Dictionary<string, string>
+                    {
+                        { "1", "<span class='label label-info'>漂亮</span>" },
+                        { "2", "<span class='label label-success'>开心</span>" },
+                        { "3", "<span class='label label-danger'>惊吓</span>" },
+                        { "4", "<span class='label label-warning'>紧张</span>" },
+                        { "*", "其他：${type}" }
+                    }
+                },
+                new
+                {
+                    name = "list",
+                    type = "list",
+                    label = "List",
+                    placeholder = "-",
+                    width = 400,
+                    size = "sm",
+                    listItem = new { title = "${title}", subTitle = "${description}" }
+                },
+                new { name = "json", width = 200, type = "json", label = "Json" }
+            }
+        };
+
+        var data = new { title = "增删改查列类型汇总", body };
+        return data;
+    }
+
+
+}
