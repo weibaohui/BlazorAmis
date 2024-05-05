@@ -6,9 +6,13 @@ namespace BlazorAmis.Controllers;
 [Route("Api/[controller]")]
 public class MockController : Controller
 {
-    [HttpGet("GetOptions")]
-    public object GetOptions()
+    [HttpGet("Form/GetOptions")]
+    public object GetOptions(int? waitSeconds)
     {
+        if (waitSeconds != null)
+        {
+            Thread.Sleep(waitSeconds.Value * 1000);
+        }
         return new
         {
             status = 0,
@@ -61,14 +65,13 @@ public class MockController : Controller
     }
 
     [HttpPost("SaveForm")]
-    public object SaveForm()
+    public object SaveForm(int? waitSeconds)
     {
-        var waitSeconds = Request.Query["waitSeconds"];
-
-        if (int.TryParse(waitSeconds, out var wait))
+        if (waitSeconds != null)
         {
-            Thread.Sleep(wait * 1000);
+            Thread.Sleep(waitSeconds.Value * 1000);
         }
+
 
         return new
         {
@@ -82,13 +85,11 @@ public class MockController : Controller
     }
 
     [Route("Sample/{id?}")]
-    public object PostSampleWithId(string? id)
+    public object PostSampleWithId(string? id,int? waitSeconds)
     {
-        var waitSeconds = Request.Query["waitSeconds"];
-
-        if (int.TryParse(waitSeconds, out var wait))
+        if (waitSeconds != null)
         {
-            Thread.Sleep(wait * 1000);
+            Thread.Sleep(waitSeconds.Value * 1000);
         }
 
         var data = new
@@ -109,15 +110,12 @@ public class MockController : Controller
     }
 
     [HttpPost("Sample/BulkUpdate")]
-    public object PostSampleBulkUpdate([FromBody] object input)
+    public object PostSampleBulkUpdate([FromBody] object input,int? waitSeconds)
     {
-        var waitSeconds = Request.Query["waitSeconds"];
-
-        if (int.TryParse(waitSeconds, out var wait))
+        if (waitSeconds != null)
         {
-            Thread.Sleep(wait * 1000);
+            Thread.Sleep(waitSeconds.Value * 1000);
         }
-
         var data = new
         {
             status = 0,
@@ -156,13 +154,11 @@ public class MockController : Controller
     }
 
     [HttpGet("Sample")]
-    public object Sample()
+    public object Sample(int? waitSeconds)
     {
-        var waitSeconds = Request.Query["waitSeconds"];
-
-        if (int.TryParse(waitSeconds, out var wait))
+        if (waitSeconds != null)
         {
-            Thread.Sleep(wait * 1000);
+            Thread.Sleep(waitSeconds.Value * 1000);
         }
 
         var page = Request.Query["page"].FirstOrDefault() ?? "1";
@@ -236,20 +232,16 @@ public class MockController : Controller
     }
 
 
-    [HttpGet("Form/InitData")]
-    public object FormInitData()
+    [Route("Form/InitData")]
+    public object FormInitData(int? waitSeconds,string? keywords,string? tpl)
     {
-        var waitSeconds = Request.Query["waitSeconds"];
 
-        if (int.TryParse(waitSeconds, out var wait))
+        if (waitSeconds != null)
         {
-            Thread.Sleep(wait * 1000);
+            Thread.Sleep(waitSeconds.Value * 1000);
         }
+        var info = string.IsNullOrWhiteSpace(keywords) ? "" : $"你输入的关键字是{keywords}";
 
-        var q = Request.Query["keywords"];
-        var info = string.IsNullOrWhiteSpace(q.FirstOrDefault()) ? "" : $"你输入的关键字是{q.FirstOrDefault()}";
-
-        var tpl = Request.Query["tpl"].FirstOrDefault();
         var tplName = tpl switch
         {
             "tpl1" => "tpl1",
@@ -482,15 +474,15 @@ public class MockController : Controller
             .OrderBy(x => rand.Next())
             .Take(10);
         var data = new
-{
-    status = 0,
-    msg = "ok",
-    data = new
-    {
-        line = randomNumbers
-    }
-};
+        {
+            status = 0,
+            msg = "ok",
+            data = new
+            {
+                line = randomNumbers
+            }
+        };
 
-return data;
-}
+        return data;
+    }
 }
