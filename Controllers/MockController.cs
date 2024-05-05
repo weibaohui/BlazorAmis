@@ -319,6 +319,43 @@ public class MockController : Controller
         return data;
     }
 
+    [HttpGet("Chart/Chart")]
+    public object Chart()
+    {
+        var data = new
+        {
+            status = 0,
+            msg = "ok",
+            data = new
+            {
+                title = new
+                {
+                    text = "销售情况"
+                },
+                tooltip = new { },
+                legend = new
+                {
+                    data = new[] { "销量" }
+                },
+                xAxis = new
+                {
+                    data = new[] { "衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子" }
+                },
+                yAxis = new { },
+                series = new[]
+                {
+                    new
+                    {
+                        name = "销量",
+                        type = "bar",
+                        data = new[] { 43, 19, 24, 99, 36, 55 }
+                    }
+                }
+            }
+        };
+        return data;
+    }
+
     [HttpGet("Chart/Chart1")]
     public object Chart1()
     {
@@ -419,7 +456,7 @@ public class MockController : Controller
                             {
                                 new object[]
                                 {
-                                    new  { name = "早高峰", xAxis = "07:30" },
+                                    new { name = "早高峰", xAxis = "07:30" },
                                     new { xAxis = "10:00" },
                                 },
 
@@ -428,9 +465,6 @@ public class MockController : Controller
                                     new { name = "晚高峰", xAxis = "17:30" },
                                     new { xAxis = "21:15" }
                                 },
-
-
-
                             }
                         }
                     }
@@ -439,4 +473,24 @@ public class MockController : Controller
         };
         return data;
     }
+
+    [HttpGet("Chart/ChartData")]
+    public object ChartData()
+    {
+        var rand = new Random();
+        var randomNumbers = Enumerable.Range(50, 100)
+            .OrderBy(x => rand.Next())
+            .Take(10);
+        var data = new
+{
+    status = 0,
+    msg = "ok",
+    data = new
+    {
+        line = randomNumbers
+    }
+};
+
+return data;
+}
 }
