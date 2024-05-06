@@ -2,12 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorAmis.Controllers;
 
-
 [ApiController]
 [Route("Api/Mock/[controller]")]
 public class FormController
 {
-
     [HttpPost("SaveForm")]
     public object SaveForm(int? waitSeconds)
     {
@@ -28,6 +26,35 @@ public class FormController
         };
     }
 
+    [HttpGet("DeferOptions")]
+    public object DeferOptions(int? waitSeconds, string? label="lazy-option")
+    {
+        if (waitSeconds != null)
+        {
+            Thread.Sleep(waitSeconds.Value * 1000);
+        }
+
+
+        var data = new
+        {
+            status = 0,
+            msg = "",
+            data = new
+            {
+                options = new[]
+                {
+                    new { label = $"{label}-1", value = $"{label}-1", defer = true },
+                    new { label = $"{label}-2", value = $"{label}-2", defer = true },
+                    new { label = $"{label}-3", value = $"{label}-3", defer = false },
+                    new { label = $"{label}-4", value = $"{label}-4", defer = false },
+                    new { label = $"{label}-5", value = $"{label}-5", defer = false }
+                }
+            }
+        };
+
+        return data;
+    }
+
     [HttpPost("SaveFormFailed")]
     public object SaveFormFailed(int? waitSeconds)
     {
@@ -41,21 +68,21 @@ public class FormController
         {
             status = 422,
             msg = "",
-            errors=new
+            errors = new
             {
-                test2="服务器端说，这个有错误。"
+                test2 = "服务器端说，这个有错误。"
             }
         };
     }
 
     [Route("InitData")]
-    public object FormInitData(int? waitSeconds,string? keywords,string? tpl)
+    public object FormInitData(int? waitSeconds, string? keywords, string? tpl)
     {
-
         if (waitSeconds != null)
         {
             Thread.Sleep(waitSeconds.Value * 1000);
         }
+
         var info = string.IsNullOrWhiteSpace(keywords) ? "" : $"你输入的关键字是{keywords}";
 
         var tplName = tpl switch
@@ -89,6 +116,7 @@ public class FormController
         {
             Thread.Sleep(waitSeconds.Value * 1000);
         }
+
         return new
         {
             status = 0,
@@ -118,5 +146,4 @@ public class FormController
             }
         };
     }
-
 }

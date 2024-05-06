@@ -77,4 +77,40 @@ public class OptionsController
 
         return data;
     }
+
+    [HttpGet("ChainedOptions")]
+    public object ChainedOptions(int? waitSeconds,string? parentId,int? level=0,int? maxLevel=4)
+    {
+        var para = $"{level}";
+        if (level==maxLevel)
+        {
+            var data = new
+            {
+                status = 0,
+            };
+            return data;
+        }
+        else
+        {
+            var data = new
+            {
+                status = 0,
+                msg = "ok",
+                data = new
+                {
+                    options = new[]
+                    {
+                        new { label = $"选项A_{para}", value = "a" },
+                        new { label = $"选项B_{para}", value = "b" },
+                        new { label = $"选项C_{para}", value = "c" }
+                    }
+                }
+            };
+
+            return data;
+        }
+
+    }
+
+
 }
