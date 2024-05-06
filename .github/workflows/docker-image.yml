@@ -39,7 +39,7 @@ jobs:
 
 
       - name: Build the Docker image
-        run: docker build  --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}" -f dockerfile .
+        run: docker build  --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}" -f Dockerfile .
 
 
       - name: Push image
