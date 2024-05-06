@@ -6,6 +6,72 @@ namespace BlazorAmis.Controllers;
 [Route("Api/Mock/[controller]")]
 public class OptionsController
 {
+    [HttpGet("Nav")]
+    public object Nav(int? waitSeconds,string? parentId)
+    {
+        if (waitSeconds != null)
+        {
+            Thread.Sleep(waitSeconds.Value * 1000);
+        }
+
+        var data = new
+        {
+            status = 0,
+            msg = "",
+            data = new
+            {
+                links = new object[]
+                {
+                    new
+                    {
+                        label = "Nav 1",
+                        to = "?cat=1",
+                        value = "1",
+                        icon = "fa fa-user"
+                    },
+                    new
+                    {
+                        label = "Nav 2",
+                        unfolded = true,
+                        children = new object[]
+                        {
+                            new
+                            {
+                                label = "Nav 2-1",
+                                children = new[]
+                                {
+                                    new
+                                    {
+                                        label = "Nav 2-1-1",
+                                        to = "?cat=2-1",
+                                        value = "2-1"
+                                    }
+                                }
+                            },
+                            new
+                            {
+                                label = "Nav 2-2",
+                                to = "?cat=2-2",
+                                value = "2-2"
+                            }
+                        }
+                    },
+                    new
+                    {
+                        label = "Nav 3",
+                        to = "?cat=3",
+                        value = "3",
+                        defer = true
+                    }
+                },
+                value = "?cat=1"
+            }
+        };
+
+        Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(data));
+
+        return data;
+    }
     [HttpGet("Matrix")]
     public object Matrix(int? waitSeconds)
     {
@@ -41,7 +107,10 @@ public class OptionsController
         };
         return data;
     }
-[HttpGet("Tree")]
+
+
+
+    [HttpGet("Tree")]
     public object Tree(int? waitSeconds)
     {
         if (waitSeconds != null)

@@ -14,7 +14,7 @@
                 type = "crud",
                 draggable = true,
                 syncLocation=false,
-                api = "/api/mock/Sample",
+                api = "/api/mock/Sample/Sample",
                 footable = new
                 {
                     expand = "first",
@@ -174,7 +174,7 @@
                                     {
                                         type = "form",
                                         name = "sample-edit-form",
-                                        api = "/api/mock/Sample/$id",
+                                        api = "/api/mock/Sample/Sample/$id",
                                         body = new object[]
                                         {
                                             new
@@ -237,7 +237,7 @@
                                 icon = "fa fa-times text-danger",
                                 actionType = "ajax",
                                 confirmText = "您确认要删除?",
-                                api = "delete:/api/mock/Sample/$id"
+                                api = "delete:/api/mock/Sample/Sample/$id"
                             }
                         },
                         toggled = true

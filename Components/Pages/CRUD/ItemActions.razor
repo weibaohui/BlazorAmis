@@ -14,7 +14,7 @@
             {
                 type = "crud",
                 syncLocation=false,
-                api = "/api/mock/Sample",
+                api = "/api/mock/Sample/Sample",
                 headerToolbar = new object[]
                 {
                     "bulkActions",
@@ -131,7 +131,7 @@
                             {
                                 type = "form",
                                 name = "sample-edit-form",
-                                api = "/api/mock/Sample/$id",
+                                api = "/api/mock/Sample/Sample/$id",
                                 body = new object[]
                                 {
                                     new
@@ -194,7 +194,7 @@
                         label = "删除",
                         actionType = "ajax",
                         confirmText = "您确认要删除?",
-                        api = "delete:/api/mock/Sample/$id"
+                        api = "delete:/api/mock/Sample/Sample/$id"
                     }
                 },
                 bulkActions = new object[]
@@ -203,7 +203,7 @@
                     {
                         label = "批量删除",
                         actionType = "ajax",
-                        api = "delete:/api/mock/Sample/${ids|raw}",
+                        api = "delete:/api/mock/Sample/Sample/${ids|raw}",
                         confirmText = "确定要批量删除?",
                         type = "button"
                     },
@@ -218,7 +218,7 @@
                             body = new
                             {
                                 type = "form",
-                                api = "post:/api/mock/Sample/BulkUpdate",
+                                api = "post:/api/mock/Sample/Sample/BulkUpdate",
                                 body = new object[]
                                 {
                                     new

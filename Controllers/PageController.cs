@@ -22,4 +22,20 @@ public class PageController
         };
     }
 
+    [HttpGet("InitData")]
+    public object InitData(string? keywords)
+    {
+        var data = new
+        {
+            status = 0,
+            msg = "",
+            data = new
+            {
+                title = "Test Page Component",
+                date = "2017-10-13",
+                keywords
+            }
+        };
+        return data;
+    }
 }

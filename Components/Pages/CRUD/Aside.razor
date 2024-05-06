@@ -80,7 +80,7 @@
                         {
                             type = "form",
                             name = "sample-edit-form",
-                            api = "post:/api/mock/Sample/Add",
+                            api = "post:/api/mock/Sample/Sample/Add",
                             body = new object[]
                             {
                                 new
@@ -145,7 +145,7 @@
                 syncLocation = false,
                 api = new
                 {
-                    url = "/api/mock/Sample",
+                    url = "/api/mock/Sample/Sample",
                     sendOn = "this.cat"
                 },
                 filter = new
@@ -178,7 +178,7 @@
                     {
                         label = "批量删除",
                         actionType = "ajax",
-                        api = "delete:/api/mock/Sample/$ids",
+                        api = "delete:/api/mock/Sample/Sample/$ids",
                         confirmText = "确定要批量删除?"
                     },
                     new
@@ -192,7 +192,7 @@
                             body = new
                             {
                                 type = "form",
-                                api = "post:/api/mock/Sample/BulkUpdate",
+                                api = "post:/api/mock/Sample/Sample/BulkUpdate",
                                 body = new object[]
                                 {
                                     new
@@ -211,8 +211,8 @@
                         }
                     }
                 },
-                quickSaveApi = "/api/mock/Sample/BulkUpdate",
-                quickSaveItemApi = "/api/mock/Sample/$id",
+                quickSaveApi = "/api/mock/Sample/Sample/BulkUpdate",
+                quickSaveItemApi = "/api/mock/Sample/Sample/$id",
                 columns = new object[]
                 {
                     new
@@ -362,7 +362,7 @@
                                     {
                                         type = "form",
                                         name = "sample-edit-form",
-                                        api = "/api/mock/Sample/$id",
+                                        api = "/api/mock/Sample/Sample/$id",
                                         body = new object[]
                                         {
                                             new
@@ -424,7 +424,7 @@
                                 icon = "fa fa-times text-danger",
                                 actionType = "ajax",
                                 confirmText = "您确认要删除?",
-                                api = "delete:/api/mock/Sample/$id"
+                                api = "delete:/api/mock/Sample/Sample/$id"
                             }
                         },
                         toggled = true
