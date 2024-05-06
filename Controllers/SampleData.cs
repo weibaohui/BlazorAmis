@@ -7,6 +7,7 @@ public class Row
     public string version { get; set; }
     public string grade { get; set; }
     public string badgeText { get; set; }
+    public bool status { get; set; }
     public int id { get; set; }
 }
 

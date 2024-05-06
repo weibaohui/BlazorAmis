@@ -115,8 +115,9 @@ public class SampleController
         };
         var versions = new string[] { "1", "2", "1.2", "1.5", "2.5", "3.5", "4.7", "9.5", "-" };
         var grades = new string[] { "A", "B", "C", "X", "U", "-" };
+        var statuses = new bool[] { true,false };
 
-        var loop = (perPage != 0) ? perPage : numbers.Count();
+        var loop = perPage;
         // 使用 foreach 循环遍历数字序列
         for (var i = 1; i <= loop; i++)
         {
@@ -128,6 +129,7 @@ public class SampleController
                 platform = platforms.OrderBy(x => Guid.NewGuid()).First(),
                 grade = grades.OrderBy(x => Guid.NewGuid()).First(),
                 version = versions.OrderBy(x => Guid.NewGuid()).First(),
+                status = statuses.OrderBy(x => Guid.NewGuid()).First(),
             };
             data.rows.Add(row);
         }
