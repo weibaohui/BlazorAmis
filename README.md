@@ -3,6 +3,12 @@
 [BlazorServer版本](https://github.com/weibaohui/BlazorAmis)
 [BlazorWasm版本](https://github.com/weibaohui/BlazorAmisWasm)
 
+# 官方Amis页面
+[文档](https://aisuda.bce.baidu.com/amis/zh-CN/docs/index)
+[示例](https://aisuda.bce.baidu.com/amis/examples/index)
+[可视化编辑器](https://aisuda.github.io/amis-editor-demo/#/hello-world)
+[仓库](https://github.com/baidu/amis)
+
 # 特性
 <p>百度Amis使用json表达页面及功能。</p>
 <p>Blazor 可以使用 C# 匿名类进行json的对等表达。</p>
