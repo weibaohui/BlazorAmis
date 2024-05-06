@@ -6,6 +6,96 @@ namespace BlazorAmis.Controllers;
 [Route("Api/Mock/[controller]")]
 public class OptionsController
 {
+    [HttpGet("Matrix")]
+    public object Matrix(int? waitSeconds)
+    {
+        if (waitSeconds != null)
+        {
+            Thread.Sleep(waitSeconds.Value * 1000);
+        }
+
+        var data = new
+        {
+            status = 0,
+            msg = "ok",
+            data = new
+            {
+                columns = new[]
+                {
+                    new { label = "Col A", col = "a" },
+                    new { label = "Col B", col = "b" },
+                    new { label = "Col C", col = "c" },
+                    new { label = "Col D", col = "d" },
+                    new { label = "Col E", col = "e" }
+                },
+                rows = new[]
+                {
+                    new { label = "Row 1", rol = 1 },
+                    new { label = "Row 2", rol = 2 },
+                    new { label = "Row 3", rol = 3 },
+                    new { label = "Row 4", rol = 4 },
+                    new { label = "Row 5", rol = 5 },
+                    new { label = "Row 6", rol = 6 }
+                }
+            }
+        };
+        return data;
+    }
+[HttpGet("Tree")]
+    public object Tree(int? waitSeconds)
+    {
+        if (waitSeconds != null)
+        {
+            Thread.Sleep(waitSeconds.Value * 1000);
+        }
+
+        var data = new
+        {
+            status = 0,
+            msg = "ok",
+            data = new
+            {
+                options = new object[]
+                {
+                    new
+                    {
+                        label = "Folder A",
+                        value = "a",
+                        children = new[]
+                        {
+                            new { label = "Sub File A", value = "a-a" },
+                            new { label = "Sub File B", value = "a-b" }
+                        }
+                    },
+                    new
+                    {
+                        label = "Folder B",
+                        value = "b",
+                        children = new object[]
+                        {
+                            new { label = "Sub File A", value = "b-a" },
+                            new
+                            {
+                                label = "Sub Folder B",
+                                value = "b-b",
+                                children = new[]
+                                {
+                                    new { label = "Sub File A", value = "b-b-a" },
+                                    new { label = "Sub File B", value = "b-b-b" }
+                                }
+                            }
+                        }
+                    },
+                    new { label = "File C", value = "c" },
+                    new { label = "File D", value = "d" },
+                    new { label = "File E", value = "e" }
+                }
+            }
+        };
+
+        return data;
+    }
+
     [HttpGet("AutoComplete2")]
     public object AutoComplete2(string? term)
     {
@@ -21,8 +111,9 @@ public class OptionsController
         var options = dicts;
         if (!string.IsNullOrWhiteSpace(term))
         {
-            options = dicts.Where(x => x.value.Contains(term)  || x.label.Contains(term)).ToArray();
+            options = dicts.Where(x => x.value.Contains(term) || x.label.Contains(term)).ToArray();
         }
+
         return new
         {
             status = 0,
@@ -79,10 +170,10 @@ public class OptionsController
     }
 
     [HttpGet("ChainedOptions")]
-    public object ChainedOptions(int? waitSeconds,string? parentId,int? level=0,int? maxLevel=4)
+    public object ChainedOptions(int? waitSeconds, string? parentId, int? level = 0, int? maxLevel = 4)
     {
         var para = $"{level}";
-        if (level==maxLevel)
+        if (level == maxLevel)
         {
             var data = new
             {
@@ -109,8 +200,5 @@ public class OptionsController
 
             return data;
         }
-
     }
-
-
 }
