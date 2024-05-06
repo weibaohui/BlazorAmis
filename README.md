@@ -10,8 +10,9 @@
 
 #体验
 ```docker
-docker run -it --rm -p 7777:8080 blazoramis
+docker run -it --rm -p 7777:8080 ghcr.io/weibaohui/blazoramis
 ```
+访问7777端口
 
 # 使用
 ```csharp
