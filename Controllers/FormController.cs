@@ -56,7 +56,55 @@ public class FormController
         return data;
     }
 
-    [HttpPost("SaveForm")]
+    [HttpGet("GetTreeOptions")]
+    public object GetTreeOptions(int? waitSeconds)
+    {
+        if (waitSeconds != null)
+        {
+            Thread.Sleep(waitSeconds.Value * 1000);
+        }
+
+
+        var data = new
+        {
+            status = 0,
+            msg = "ok",
+            data = new
+            {
+                options = new object[]
+                {
+                    new
+                    {
+                        label = "Option A",
+                        value = "a",
+                        children = new[]
+                        {
+                            new { label = "Option X", value = "x" },
+                            new { label = "Option Y", value = "y" },
+                            new { label = "Option Z", value = "z" }
+                        }
+                    },
+                    new
+                    {
+                        label = "Option B",
+                        value = "b",
+                        collapsed = true,
+                        children = new[]
+                        {
+                            new { label = "Option 1", value = "1" },
+                            new { label = "Option 2", value = "2" },
+                            new { label = "Option 3", value = "3" }
+                        }
+                    },
+                    new { label = "Option C", value = "c" },
+                    new { label = "Option D", value = "d" },
+                    new { label = "Option E", value = "e" }
+                }
+            }
+        };
+        return data;
+    }
+   [HttpPost("SaveForm")]
     public object SaveForm(int? waitSeconds)
     {
         if (waitSeconds != null)
