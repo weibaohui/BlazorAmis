@@ -14,7 +14,7 @@
             type = "form",
             title = "动态表单元素示例",
             name = "demo-form",
-            api = "/api/mock/saveForm?waitSeconds=2",
+            api = "/api/mock/Form/SaveForm?waitSeconds=2",
             mode = "horizontal",
             actions = new object[] {
                 new {
@@ -62,7 +62,7 @@
                     type = "input-text",
                     label = "文本自动补全",
                     clearable = true,
-                    autoComplete = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/options/autoComplete2?term=$term",
+                    autoComplete = "/api/mock/Options/AutoComplete2?term=$term",
                     description = "通过接口自动补全"
                 },
                 new {

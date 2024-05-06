@@ -15,7 +15,7 @@
                 new
                 {
                     type = "form",
-                    api = "/api/mock/saveForm?waitSeconds=2",
+                    api = "/api/mock/Form/SaveForm?waitSeconds=2",
                     title = "表单项",
                     mode = "horizontal",
                     autoFocus = true,
@@ -611,7 +611,7 @@
                             type = "transfer",
                             source = "/api/mock/Form/GetOptions?waitSeconds=1",
                             searchable = true,
-                            searchApi = "https://3xsw4ap8wah59.cfc-execute.bj.baidubce.com/api/amis-mock/mock2/options/autoComplete2?term=$term",
+                            searchApi = "/api/mock/Options/AutoComplete2?term=$term",
                             selectMode = "list",
                             sortable = true,
                             inline = true
